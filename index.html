@@ -537,7 +537,7 @@
                 id: 4,
                 category: "T08 - Router",
                 question: "Qual a diferença fundamental entre `&lt;a href='/page'>` e `&lt;Link to='/page'>` numa SPA React?",
-                options: options: [
+                options: [
                     "O `<Link>` tem melhor estilo visual padrão.",
                     "O `<a>` recarrega a página; o `<Link>` usa a History API para navegação SPA.",
                     "O `<Link>` é exclusivo do Google Chrome.",
@@ -667,7 +667,7 @@
                 id: 14,
                 category: "T10 - Fullstack",
                 question: "O que é CORS (Cross-Origin Resource Sharing)?",
-                options: options: [
+                options: [
                     "Uma biblioteca de CSS para animações.",
                     "Um sistema de base de dados relacional.",
                     "Mecanismo de segurança que restringe pedidos HTTP entre origens diferentes.",
@@ -692,7 +692,7 @@
             {
                 id: 16,
                 category: "T05 - Lists",
-                question: "O método `.map()` em JSX deve retornar sempre:", options: options: [
+                question: "O método `.map()` em JSX deve retornar sempre:", options: [
                     "Uma string de texto simples.",
                     "Nada (void), serve apenas para iterar.",
                     "Um elemento JSX para cada item do array.",
@@ -731,7 +731,7 @@
                 id: 19,
                 category: "T06 - Performance",
                 question: "Porque é que deves evitar definir componentes *dentro* de outros componentes?",
-                options: options: [
+                options: [
                     "O componente filho é recriado a cada render do pai, perdendo estado e foco.",
                     "Fica visualmente desagradável no código.",
                     "Viola o escopo de variáveis globais.",
@@ -744,7 +744,7 @@
                 id: 20,
                 category: "T09 - Async",
                 question: "O que faz o `await` numa função `async`?",
-                options: options: [
+                options: [
                     "Torna a função síncrona (bloqueante).",
                     "Cancela o pedido HTTP se demorar.",
                     "Bloqueia a thread principal do UI.",
@@ -782,7 +782,7 @@
             {
                 id: 23,
                 category: "T08 - Router",
-                question: "O componente `&lt;Outlet />` é usado para:", options: options: [
+                question: "O componente `&lt;Outlet />` é usado para:", options: [
                     "Exportar dados para outros componentes.",
                     "Renderizar links externos em segurança.",
                     "Renderizar componentes filhos em rotas aninhadas (layouts).",
@@ -973,7 +973,7 @@
                 id: 38,
                 category: "T07 - Forms",
                 question: "Checkbox 'Tri-state' (com estado 'indeterminado'). O React suporta isto?",
-                options: options: [
+                options: [
                     "Não suporta.",
                     "Sim, usando a prop `checked='maybe'`.",
                     "Sim, via prop `indeterminate={true}` (apenas visual).",
@@ -1038,7 +1038,7 @@
                 id: 43,
                 category: "T06 - State",
                 question: "Num componente contador, porque é que `setCount(count + 1)` pode falhar se chamado múltiplas vezes rapidamente?",
-                options: options: [
+                options: [
                     "O React bloqueia atualizações para poupar memória.",
                     "Stale Closure: a função captura o valor de `count` da renderização atual, que não muda.",
                     "Porque o React não suporta atualizações rápidas.",
@@ -1129,7 +1129,7 @@
                 id: 50,
                 category: "T09 - Portals",
                 question: "Para que servem os React Portals (`ReactDOM.createPortal`)?",
-                options: options: [
+                options: [
                     "Renderizar filhos numa parte diferente da árvore DOM (ex: body).",
                     "Criar iframes automaticamente.",
                     "Teleportar componentes entre ficheiros.",
@@ -1141,7 +1141,7 @@
             {
                 id: 51,
                 category: "T08 - Router",
-                question: "O `&lt;BrowserRouter>` usa internamente:", options: options: [
+                question: "O `&lt;BrowserRouter>` usa internamente:", options: [
                     "Hashbangs (URLs com #!).",
                     "Armazenamento LocalStorage.",
                     "Cookies de sessão segura.",
@@ -1231,7 +1231,7 @@
             {
                 id: 58,
                 category: "T08 - Router",
-                question: "Numa rota protegida (Protected Route), se o utilizador não estiver logado, o padrão comum é:", options: options: [
+                question: "Numa rota protegida (Protected Route), se o utilizador não estiver logado, o padrão comum é:", options: [
                     "Redirecionar para Login (`<Navigate to='/login' />`) preservando a localização.",
                     "Retornar `null` para renderizar nada.",
                     "Bloquear o acesso ao browser do utilizador.",
@@ -1400,7 +1400,7 @@
                 id: 71,
                 category: "T07 - Forms",
                 question: "Qual a vantagem de usar uma biblioteca como `React Hook Form` ou `Formik` em vez de state manual?",
-                options: options: [
+                options: [
                     "Otimização de compilação do Babel.",
                     "Permitem criar forms sem usar tags HTML.",
                     "Gestão otimizada de estado, validação e performance (evita re-renders).",
@@ -1413,7 +1413,7 @@
                 id: 72,
                 category: "T09 - Reducer",
                 question: "Quando deves usar `useReducer` em vez de `useState`?",
-                options: options: [
+                options: [
                     "Apenas quando a aplicação usa Redux obrigatoriamente.",
                     "Nunca, o useState é sempre superior.",
                     "Sempre, para qualquer tipo de estado.",
@@ -1465,7 +1465,7 @@
                 id: 76,
                 category: "T09 - Ref",
                 question: "Para que serve o hook `useRef` além de aceder ao DOM?",
-                options: options: [
+                options: [
                     "Substituir completamente o `useState`.",
                     "Criar animações CSS complexas.",
                     "Forçar a re-renderização do componente.",
@@ -1478,7 +1478,7 @@
                 id: 77,
                 category: "T06 - Logic",
                 question: "Qual é a principal vantagem de usar um Ternário (`cond ? A : B`) em vez de `&&` para renderização condicional em JSX?",
-                options: options: [
+                options: [
                     "O ternário obriga a definir o caso `else`, evitando bugs com `0` ou `NaN`.",
                     "O ternário é executado mais rapidamente.",
                     "O operador `&&` é inválido em JSX.",
@@ -1541,7 +1541,7 @@
                 id: 82,
                 category: "T10 - Fullstack",
                 question: "Ao desenvolver localmente com Vite (frontend) e FastAPI (backend), porque é que frequentemente configuramos um 'Proxy' no `vite.config.js`?",
-                options: options: [
+                options: [
                     "Acelerar o carregamento do site em 50%.",
                     "Contornar CORS em dev, fazendo pedidos parecerem vir da mesma origem.",
                     "Encriptar todos os dados enviados.",
@@ -1567,7 +1567,7 @@
                 id: 84,
                 category: "T08 - Router",
                 question: "O que acontece se tiveres duas rotas que correspondem ao mesmo URL (ex: `/users/new` e `/users/:id`)?",
-                options: options: [
+                options: [
                     "Mostra ambas as rotas simultaneamente.",
                     "Mostra a primeira rota definida no código.",
                     "Lança um erro de conflito de rotas.",
@@ -1684,7 +1684,7 @@
                 id: 93,
                 category: "T09 - Callback",
                 question: "Quando deves usar `useCallback`?",
-                options: options: [
+                options: [
                     "Preservar a referência da função para otimizar filhos `React.memo`.",
                     "Apenas para funções `async`.",
                     "Quando a função tem mais de 10 linhas.",
@@ -1710,7 +1710,7 @@
                 id: 95,
                 category: "T06 - Logic",
                 question: "O que retorna a expressão `true && expression` em JSX?",
-                options: options: [
+                options: [
                     "Retorna `false`.",
                     "Retorna `true`.",
                     "Retorna a expressão (renderiza o elemento).",
@@ -1723,7 +1723,7 @@
                 id: 96,
                 category: "T10 - Performance",
                 question: "O que é 'Code Splitting' em React?",
-                options: options: [
+                options: [
                     "Separar ficheiros CSS do JS.",
                     "Dividir o bundle para carregar JS apenas quando necessário.",
                     "Organizar o código em pastas pequenas.",
