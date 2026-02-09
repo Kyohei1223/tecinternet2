@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #3232a0 0%, #16213e 50%, #06182d 100%);
             min-height: 100vh;
             color: #fff;
         }
@@ -42,7 +42,6 @@
             font-weight: 700;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
         }
@@ -96,7 +95,7 @@
         }
 
         .stat.correct .stat-value {
-            color: #10b981;
+            color: #156d50;
         }
 
         .stat.wrong .stat-value {
@@ -440,7 +439,7 @@
     <div class="container">
         <div class="header">
             <h1>Quiz Exclusivo: Slides das Aulas</h1>
-            <p>Preparação para Exame • 100 Questões Exclusivas</p>
+            <p>Preparação para Exame • 80 Questões Exclusivas</p>
         </div>
 
         <div class="stats-bar">
@@ -496,19 +495,1017 @@
         const questions = [
             {
                 id: 1,
-                category: "T09 - useEffect",
-                question: "Analisa o seguinte código:\n<pre><code>useEffect(() => {\n  const interval = setInterval(() => {\n    setCount(count + 1);\n  }, 1000);\n  return () => clearInterval(interval);\n}, []);</code></pre>\nAssumindo que `count` começa em 0, o que acontece?",
+                category: "T04 - Intro",
+                question: "O que caracteriza uma Framework em oposição a uma Biblioteca?",
                 options: [
-                    "O contador incrementa para 1, depois volta a 0, num loop infinito.",
-                    "Erro de encerramento (Closure).",
-                    "O contador incrementa para 1 e fica lá para sempre.",
-                    "O contador incrementa normalmente a cada segundo.",
+                    "Inversão de Controlo (IoC): a framework chama o teu código",
+                    "Bibliotecas têm IoC",
+                    "Frameworks são mais pequenas",
+                    "Frameworks não usam JavaScript",
                 ],
-                correct: 2,
-                explanation: "Stale Closure. O useEffect corre apenas uma vez (deps vazias), capturando o valor `count` inicial (0). O intervalo corre repetidamente `setCount(0 + 1)`, definindo sempre 1. Solução: `setCount(c => c + 1)` ou adicionar `count` às deps (mas isso recriaria o intervalo)."
+                correct: 0,
+                explanation: "A principal diferença é a Inversão de Controlo. Numa biblioteca, tu controlas o fluxo. Numa framework, ela controla o fluxo e chama o teu código."
             },
             {
                 id: 2,
+                category: "T04 - Intro",
+                question: "Qual destas NÃO é uma vantagem de usar uma Framework?",
+                options: [
+                    "Eficiência máxima para apps muito simples",
+                    "Arranque rápido e menos código repetitivo",
+                    "Comunidade e ecossistema",
+                    "Padrões e boas práticas embutidas",
+                ],
+                correct: 0,
+                explanation: "Para apps muito simples (ex: landing page), uma framework pode adicionar complexidade e peso desnecessários (bundle size)."
+            },
+            {
+                id: 3,
+                category: "T04 - Vite",
+                question: "Qual o comando para criar um projeto Vite na pasta atual?",
+                options: [
+                    "<code>create-react-app .</code>",
+                    "<code>npm create vite@latest .</code>",
+                    "<code>npm init react</code>",
+                    "<code>vite new .</code>",
+                ],
+                correct: 1,
+                explanation: "O ponto `.` indica ao Vite para usar o diretório atual em vez de criar uma nova pasta."
+            },
+            {
+                id: 4,
+                category: "T04 - Vite",
+                question: "Qual a função da pasta <code>public/</code> num projeto Vite?",
+                options: [
+                    "Guardar componentes",
+                    "Guardar ficheiros estáticos servidos tal e qual (sem processamento)",
+                    "Guardar o index.html",
+                    "Guardar dependências npm",
+                ],
+                correct: 1,
+                explanation: "Ficheiros em `public/` são copiados para a raiz do dist/ sem serem alterados/minificados pelo Vite."
+            },
+            {
+                id: 5,
+                category: "T04 - React",
+                question: "O que é o DOM Virtual do React?",
+                options: [
+                    "Uma cópia leve do DOM em memória para otimizar atualizações",
+                    "Um browser virtual",
+                    "Uma base de dados",
+                    "Um plugin do VS Code",
+                ],
+                correct: 0,
+                explanation: "React mantém uma cópia do DOM em memória. Quando o estado muda, compara (diff) com o novo DOM Virtual e atualiza apenas o necessário no DOM real."
+            },
+            {
+                id: 6,
+                category: "T05 - JSX",
+                question: "O que é JSX?",
+                options: [
+                    "JavaScript XML - Sintaxe tipo HTML dentro de JS",
+                    "Java Syntax Extension",
+                    "Um novo motor de browser",
+                    "JSON Extra",
+                ],
+                correct: 0,
+                explanation: "JSX é uma extensão de sintaxe para JavaScript que permite escrever estruturas tipo HTML no meio do código JS."
+            },
+            {
+                id: 7,
+                category: "T05 - JSX",
+                question: "Como se define uma classe CSS em JSX?",
+                options: [
+                    "<code>class='box'</code>",
+                    "<code>className='box'</code>",
+                    "<code>css='box'</code>",
+                    "<code>style='box'</code>",
+                ],
+                correct: 1,
+                explanation: "`class` é uma palavra reservada em JS. Em JSX, usa-se `className`."
+            },
+            {
+                id: 8,
+                category: "T05 - Props",
+                question: "As Props em React são...",
+                options: [
+                    "Mutáveis",
+                    "Privadas",
+                    "Imutáveis (leitura apenas)",
+                    "Globais",
+                ],
+                correct: 2,
+                explanation: "Props são passadas de pai para filho e são imutáveis (read-only) do ponto de vista do filho."
+            },
+            {
+                id: 9,
+                category: "T05 - Props",
+                question: "Como passas um número 42 como prop?",
+                options: [
+                    "<code>valor={42}</code>",
+                    "<code>valor=42</code>",
+                    "<code>valor=(42)</code>",
+                    "<code>valor='42'</code>",
+                ],
+                correct: 0,
+                explanation: "Para passar valores que não sejam strings literais (como números, booleanos ou objetos), tens de usar chavetas `{}`."
+            },
+            {
+                id: 10,
+                category: "T05 - State",
+                question: "O que faz o hook <code>useState</code>?",
+                options: [
+                    "Cria uma variável global",
+                    "Conecta à base de dados",
+                    "Cria um componente",
+                    "Declara uma variável de estado que persiste entre renders",
+                ],
+                correct: 3,
+                explanation: "`useState` devolve um par: o valor atual do estado e uma função para o atualizar."
+            },
+            {
+                id: 11,
+                category: "T05 - State",
+                question: "Qual é a sintaxe correta para inicializar um contador a 0?",
+                options: [
+                ],
+                correct: 2,
+                explanation: "Desestruturação de array é o padrão comum para extrair [valor, setter] do useState."
+            },
+            {
+                id: 12,
+                category: "T06 - Listas",
+                question: "Qual método de array é usado para renderizar listas em React?",
+                options: [
+                    "<code>.map()</code>",
+                    "<code>.filter()</code>",
+                    "<code>.forEach()</code>",
+                    "<code>.reduce()</code>",
+                ],
+                correct: 0,
+                explanation: "`.map()` transforma cada item do array num elemento JSX, retornando um novo array de elementos."
+            },
+            {
+                id: 13,
+                category: "T06 - Listas",
+                question: "Porque é obrigatório usar a prop <code>key</code> em listas?",
+                options: [
+                    "Para ordenar a lista",
+                    "Não é obrigatório",
+                    "Para CSS styling",
+                    "Para o React identificar itens individualmente e otimizar re-renders",
+                ],
+                correct: 3,
+                explanation: "Chaves (keys) ajudam o React a saber que itens mudaram, foram adicionados ou removidos. Devem ser estáveis e únicas."
+            },
+            {
+                id: 14,
+                category: "T06 - Listas",
+                question: "Usar o índice do array (index) como key é...",
+                options: [
+                    "Proibido",
+                    "Recomendado sempre",
+                    "A única opção",
+                    "Desaconselhado se a lista puder ser reordenada",
+                ],
+                correct: 3,
+                explanation: "Usar índice pode causar bugs se a lista mudar de ordem. Usar IDs únicos dos dados é o ideal."
+            },
+            {
+                id: 15,
+                category: "T06 - Padrões",
+                question: "Em que consiste o 'State Lifting'?",
+                options: [
+                    "Usar variáveis globais",
+                    "Guardar estado no servidor",
+                    "Eliminar o estado",
+                    "Mover o estado para o pai comum de componentes irmãos que precisam dos dados",
+                ],
+                correct: 3,
+                explanation: "Permite partilhar dados entre componentes irmãos, passando-os como props a partir do pai comum."
+            },
+            {
+                id: 16,
+                category: "T06 - Fluxo",
+                question: "Como é que um filho comunica com o pai em React?",
+                options: [
+                    "Chamando uma função (callback) passada pelo pai via props",
+                    "Usando eventos do DOM",
+                    "Não comunica",
+                    "Atualizando as props diretamente",
+                ],
+                correct: 0,
+                explanation: "O fluxo de dados é unidirecional (baixo). Para 'subir', passamos funções de callback para baixo."
+            },
+            {
+                id: 17,
+                category: "T07 - Forms",
+                question: "O que é um 'Componente Controlado' (Controlled Component)?",
+                options: [
+                    "Um input HTML normal",
+                    "Um componente com testes",
+                    "Um componente de admin",
+                    "Um input cujo valor é controlado pelo State do React",
+                ],
+                correct: 3,
+                explanation: "O React assume o controlo do estado do input, sendo a 'single source of truth'. O atributo value está ligado ao state."
+            },
+            {
+                id: 18,
+                category: "T07 - Forms",
+                question: "Como prevines o recarregamento da página ao submeter um form?",
+                options: [
+                    "Não precisas de fazer nada",
+                    "<code>e.preventDefault()</code>",
+                    "<code>e.stop()</code>",
+                    "<code>return false</code>",
+                ],
+                correct: 1,
+                explanation: "O comportamento padrão do submit HTML é recarregar a página. `e.preventDefault()` impede isso."
+            },
+            {
+                id: 19,
+                category: "T07 - Arrays",
+                question: "Qual a forma correta de adicionar um item a um array no estado?",
+                options: [
+                ],
+                correct: 3,
+                explanation: "O estado em React deve ser tratado como imutável. Criamos um novo array copiando o anterior (`...array`) e adicionando o novo item."
+            },
+            {
+                id: 20,
+                category: "T07 - Arrays",
+                question: "Como removes um item por ID de um array no estado?",
+                options: [
+                ],
+                correct: 1,
+                explanation: "`.filter` cria um novo array contendo apenas os elementos que passam no teste (ou seja, aqueles que NÃO têm o ID a remover)."
+            },
+            {
+                id: 21,
+                category: "T08 - Router",
+                question: "Que componente ativa a History API para mudar de URL sem reload?",
+                options: [
+                    "<code>&lt;Switch&gt;</code>",
+                    "<code>&lt;BrowserRouter&gt;</code>",
+                    "<code>&lt;Router&gt;</code>",
+                    "<code>&lt;Link&gt;</code>",
+                ],
+                correct: 1,
+                explanation: "`BrowserRouter` envove a aplicação e gere o histórico de navegação do browser."
+            },
+            {
+                id: 22,
+                category: "T08 - Router",
+                question: "Qual componente renderiza a UI condicionalmente baseada no URL?",
+                options: [
+                    "<code>&lt;A&gt;</code>",
+                    "<code>&lt;Nav&gt;</code>",
+                    "<code>&lt;Link&gt;</code>",
+                    "<code>&lt;Routes&gt;</code> e <code>&lt;Route&gt;</code>",
+                ],
+                correct: 3,
+                explanation: "`Routes` agrupa as definições e escolhe a `Route` que corresponde ao URL atual."
+            },
+            {
+                id: 23,
+                category: "T08 - Router",
+                question: "Para criar uma ligação interna sem reload, usamos:",
+                options: [
+                    "<code>window.location</code>",
+                    "<code>&lt;Go to='...'&gt;</code>",
+                    "<code>&lt;Link to='...'&gt;</code>",
+                    "<code>&lt;a href='...'&gt;</code>",
+                ],
+                correct: 2,
+                explanation: "`Link` previne o comportamento padrão da âncora `&lt;a&gt;` e usa a API do Router para mudar a URL."
+            },
+            {
+                id: 24,
+                category: "T08 - Router",
+                question: "O que representa o segmento <code>:id</code> em <code>path='/user/:id'</code>?",
+                options: [
+                    "Uma porta",
+                    "Um método HTTP",
+                    "Um erro de sintaxe",
+                    "Um parâmetro dinâmico de URL",
+                ],
+                correct: 3,
+                explanation: "Os dois pontos indicam que aquela parte do URL é variável. Pode ser '123', 'abc', etc."
+            },
+            {
+                id: 25,
+                category: "T08 - Router",
+                question: "Que hook permite ler os parâmetros dinâmicos da URL?",
+                options: [
+                    "<code>useRouter()</code>",
+                    "<code>useLocation()</code>",
+                    "<code>useParams()</code>",
+                    "<code>useHistory()</code>",
+                ],
+                correct: 2,
+                explanation: "`useParams()` retorna um objeto chave-valor com os parâmetros definidos na rota."
+            },
+            {
+                id: 26,
+                category: "T09 - useEffect",
+                question: "O que são 'efeitos colaterais' (side-effects)?",
+                options: [
+                    "Eventos de rato",
+                    "CSS animations",
+                    "Erros no código",
+                    "Ações fora da renderização pura (ex: chamadas API, mudar document.title)",
+                ],
+                correct: 3,
+                explanation: "React componentes devem ser puros; side-effects lidam com o 'mundo exterior'. useEffect isola-os."
+            },
+            {
+                id: 27,
+                category: "T09 - useEffect",
+                question: "Quando corre um <code>useEffect(fn, [])</code> (array vazio)?",
+                options: [
+                    "A cada render",
+                    "Quando desmonta",
+                    "Nunca",
+                    "Apenas na montagem (mount) do componente, uma vez",
+                ],
+                correct: 3,
+                explanation: "O array de dependências vazio significa 'não dependo de nada para re-correr', logo só corre na inicialização."
+            },
+            {
+                id: 28,
+                category: "T09 - useEffect",
+                question: "Se o useEffect não tiver array de dependências, quando corre?",
+                options: [
+                    "Nunca",
+                    "Após cada renderização (perigo de loop)",
+                    "Apenas uma vez",
+                    "Apenas se houver erros",
+                ],
+                correct: 1,
+                explanation: "Sem dependências, o React assume que deve correr o efeito sempre que o componente atualiza."
+            },
+            {
+                id: 29,
+                category: "T09 - API",
+                question: "Qual a diferença entre <code>fetch()</code> e <code>axios</code>?",
+                options: [
+                    "Fetch é nativo do browser; Axios é uma biblioteca externa com mais funcionalidades",
+                    "Axios é mais lento",
+                    "Axios é nativo",
+                    "Fetch não suporta JSON",
+                ],
+                correct: 0,
+                explanation: "Fetch vem incluído nos browsers modernos. Axios precisa de instalação mas simplifica tarefas (JSON automático, interceptors)."
+            },
+            {
+                id: 30,
+                category: "T09 - API",
+                question: "Porque precisamos de Promises (.then) ou async/await nos pedidos HTTP?",
+                options: [
+                    "Porque são operações assíncronas (demoram tempo)",
+                    "Para bloquear o browser",
+                    "Porque são operações síncronas",
+                    "Para fazer threads",
+                ],
+                correct: 0,
+                explanation: "JavaScript é single-threaded. Operações de rede não podem bloquear a thread principal, logo funcionam de forma assíncrona."
+            },
+            {
+                id: 31,
+                category: "T10 - Fullstack",
+                question: "O que é FastAPI?",
+                options: [
+                    "Uma framework de frontend",
+                    "Um editor de texto",
+                    "Um servidor de base de dados",
+                    "Uma framework Python moderna para criar APIs",
+                ],
+                correct: 3,
+                explanation: "FastAPI é a tecnologia usada no backend para criar os endpoints que o React consome."
+            },
+            {
+                id: 32,
+                category: "T10 - Fullstack",
+                question: "O que é CORS?",
+                options: [
+                    "Cross-Origin Resource Sharing",
+                    "Core Operating React System",
+                    "Computer Operated Router System",
+                    "Create Origin React Source",
+                ],
+                correct: 0,
+                explanation: "Mecanismo de segurança que permite (ou bloqueia) pedidos HTTP entre domínios/portas diferentes (ex: localhost:5173 -> localhost:8000)."
+            },
+            {
+                id: 33,
+                category: "T10 - Fullstack",
+                question: "Onde é definido o proxy ou URL base da API no frontend?",
+                options: [
+                    "No HTML",
+                    "No router",
+                    "Numa instância do Axios (baseURL) ou ficheiro de configuração",
+                    "No CSS",
+                ],
+                correct: 2,
+                explanation: "Centralizar a URL da API (ex: `http://localhost:8000`) numa configuração do Axios facilita a manutenção."
+            },
+            {
+                id: 34,
+                category: "Mixed",
+                question: "Qual comando instala dependências definidas no package.json?",
+                options: [
+                    "<code>npm start</code>",
+                    "<code>npm install</code>",
+                    "<code>npm build</code>",
+                    "<code>npm run</code>",
+                ],
+                correct: 1,
+                explanation: "`npm install` lê o package.json e baixa todas as bibliotecas necessárias para a pasta node_modules."
+            },
+            {
+                id: 35,
+                category: "Mixed",
+                question: "O que faz o comando <code>npm run dev</code> num projeto Vite?",
+                options: [
+                    "Formata o código",
+                    "Compila para produção",
+                    "Inicia o servidor de desenvolvimento com Hot Module Replacement (HMR)",
+                    "Corre os testes",
+                ],
+                correct: 2,
+                explanation: "Inicia um servidor local rápido para trabalhares, atualizando o browser instantaneamente quando guardas alterações."
+            },
+            {
+                id: 36,
+                category: "Mixed",
+                question: "Qual destes hooks lida com referências a elementos do DOM?",
+                options: [
+                    "<code>useMemo</code>",
+                    "<code>useEffect</code>",
+                    "<code>useRef</code>",
+                    "<code>useState</code>",
+                ],
+                correct: 2,
+                explanation: "`useRef` permite manter uma referência mutável que não causa re-renders, frequentemente usada para aceder a elementos DOM diretamente."
+            },
+            {
+                id: 37,
+                category: "Mixed",
+                question: "O que acontece se alterares o estado diretamente (ex: <code>count = 5</code>) em vez de usar o setter?",
+                options: [
+                    "Funciona normalmente",
+                    "O componente atualiza",
+                    "Dá erro de compilação",
+                    "O React não sabe que o dado mudou e NÃO re-renderiza a interface",
+                ],
+                correct: 3,
+                explanation: "React só reage a mudanças feitas através da função setter (ex: `setCount(5)`). Alterações diretas são ignoradas pelo ciclo de renderização."
+            },
+            {
+                id: 38,
+                category: "Mixed",
+                question: "Para que serve a prop especial `children`?",
+                options: [
+                    "Para herança de classes",
+                    "Para definir estilos",
+                    "Para passar elementos/conteúdo para dentro de um componente (nesting)",
+                    "Para criar arrays",
+                ],
+                correct: 2,
+                explanation: "`props.children` contém todo o conteúdo que colocas entre a tag de abertura e fecho de um componente (`&lt;Card&gt;Conteudo&lt;/Card&gt;`)."
+            },
+            {
+                id: 39,
+                category: "Mixed",
+                question: "Qual é a melhor prática para nomear componentes?",
+                options: [
+                    "PascalCase (MeuComponente)",
+                    "snake_case (meu_componente)",
+                    "kebab-case (meu-componente)",
+                    "camelCase (meuComponente)",
+                ],
+                correct: 0,
+                explanation: "React exige que componentes comecem com Maiúscula (PascalCase) para os distinguir de tags HTML nativas (div, span)."
+            },
+            {
+                id: 40,
+                category: "Mixed",
+                question: "O que é 'Conditional Rendering' (&&)?",
+                options: [
+                    "Um operador de soma",
+                    "Um erro de lógica",
+                    "Renderizar dois componentes",
+                    "Renderizar um componente apenas se uma condição for verdadeira",
+                ],
+                correct: 3,
+                explanation: "`{condition && &lt;Component /&gt;}`. Se condition for true, renderiza o componente. Se false, o React ignora (renderiza null)."
+            },
+            {
+                id: 41,
+                category: "T06 - Listas",
+                question: "Analisa o seguinte código:\n<pre><code>const frutas = ['Maçã', 'Banana'];\nreturn (\n  <ul>\n    {frutas.map(fruta => <li>{fruta}</li>)}\n  </ul>\n);</code></pre>\nO que falta neste código para evitar avisos na consola?",
+                options: [
+                    "O map não pode ser usado dentro de JSX.",
+                    "Falta um <code>return</code> dentro do map.",
+                    "Nada, está correto.",
+                    "Falta a prop <code>key</code> no elemento <code>li</code>.",
+                ],
+                correct: 3,
+                explanation: "O React precisa da prop <code>key</code> única para identificar quais itens mudaram, foram adicionados ou removidos."
+            },
+            {
+                id: 42,
+                category: "T06 - Listas",
+                question: "Porque não é recomendado usar <code>index</code> como <code>key</code> se a ordem da lista pode mudar?",
+                options: [
+                    "Porque causa erros de sintaxe no JavaScript.",
+                    "Porque o React não aceita números como chaves.",
+                    "Porque se a lista for reordenada, o React pode baralhar o estado dos componentes ou renderizar incorretamente.",
+                    "Porque o index começa sempre em 0.",
+                ],
+                correct: 2,
+                explanation: "Índices como chaves enganam o React se a ordem mudar; o React pensa que o componente na posição 0 é o mesmo, mesmo que o dado tenha mudado."
+            },
+            {
+                id: 43,
+                category: "T06 - Listas",
+                question: "Qual é a sintaxe correta para renderizar uma lista de componentes baseada num array de objetos?",
+                options: [
+                    "<code>for (let i=0; i &lt; n; i++) { ... }&lt;/code&gt;",
+                    "<code>lista.map(item => &lt;Item key={item.id} {...item} /&gt;)</code>",
+                    "<code>lista.forEach(item => &lt;Item /&gt;)</code>",
+                    "<code>lista.filter(item => &lt;Item /&gt;)</code>",
+                ],
+                correct: 1,
+                explanation: "O <code>.map()</code> retorna um novo array de elementos JSX, que o React consegue renderizar. O <code>key</code> é essencial."
+            },
+            {
+                id: 44,
+                category: "T06 - State Lifting",
+                question: "Tens dois componentes irmãos: <code>Menu</code> e <code>Conteudo</code>. O Menu tem botões que mudam o que aparece no Conteúdo. Onde deve ficar o State da 'página atual'?",
+                options: [
+                    "No componente <code>Conteudo</code>.",
+                    "No componente pai comum (ex: <code>App</code>).",
+                    "No componente <code>Menu</code>.",
+                    "Em cada um deles duplicado.",
+                ],
+                correct: 1,
+                explanation: "Para partilhar estado entre irmãos, deves subir o estado (State Lifting) para o pai comum mais próximo."
+            },
+            {
+                id: 45,
+                category: "T06 - State Lifting",
+                question: "Como passas dados de um componente Filho para o Pai?",
+                options: [
+                    "Usando variáveis globais.",
+                    "O Pai passa uma função (callback) via props, e o Filho chama essa função com os dados.",
+                    "Usando <code>props.children</code>.",
+                    "Não é possível fazer isso em React.",
+                ],
+                correct: 1,
+                explanation: "O padrão é passar uma função como prop (ex: <code>onUpdate</code>) do pai para o filho. O filho executa a função enviando os argumentos."
+            },
+            {
+                id: 46,
+                category: "T07 - Forms",
+                question: "Considera o código:\n<pre><code>&lt;input value={nome} /&gt;</code></pre>\nSe tentares escrever neste input, o que acontece?",
+                options: [
+                    "O input desaparece.",
+                    "Escreve normalmente.",
+                    "O input fica bloqueado (read-only) porque não tem <code>onChange</code>.",
+                    "Dá erro de compilação.",
+                ],
+                correct: 2,
+                explanation: "Se forneces um <code>value</code> fixo sem um handler <code>onChange</code>, o React impede a alteração do valor no DOM, tornando-o efetivamente apenas de leitura."
+            },
+            {
+                id: 47,
+                category: "T07 - Forms",
+                question: "Qual a melhor forma de atualizar uma propriedade específica num objeto de estado (ex: formulário com vários campos)?",
+                options: [
+                    "<code>state.campo = valor</code>",
+                    "<code>setState({...state, campo: valor})</code>",
+                    "<code>state.push(valor)</code>",
+                    "<code>setState(valor)</code>",
+                ],
+                correct: 1,
+                explanation: "Usa-se o spread (<code>...state</code>) para copiar as propriedades antigas e sobrescreve-se apenas a que mudou."
+            },
+            {
+                id: 48,
+                category: "T07 - Forms",
+                question: "Num formulário controlado, quando fazes o submit, como evitas o comportamento padrão do browser?",
+                options: [
+                    "Não é preciso fazer nada.",
+                    "<code>event.preventDefault()</code>",
+                    "<code>return false</code>",
+                    "<code>event.stopPropagation()</code>",
+                ],
+                correct: 1,
+                explanation: "<code>e.preventDefault()</code> impede que o browser recarregue a página, permitindo ao React lidar com o envio dos dados via JS."
+            },
+            {
+                id: 49,
+                category: "T07 - Forms",
+                question: "Para validação de formulários, qual abordagem é comum em React puro?",
+                options: [
+                    "Validar apenas no backend.",
+                    "Usar validação HTML5 apenas.",
+                    "Guardar mensagens de erro no State e mostrá-las condicionalmente.",
+                    "Usar <code>alert()</code> para cada erro.",
+                ],
+                correct: 2,
+                explanation: "Manter um estado de erros (ex: <code>errors.email</code>) permite renderizar mensagens de feedback em tempo real junto aos campos."
+            },
+            {
+                id: 50,
+                category: "T07 - Arrays",
+                question: "Como removes o item com ID 5 da lista de tarefas no estado?",
+                options: [
+                ],
+                correct: 2,
+                explanation: "O método <code>.filter()</code> retorna um novo array sem o elemento indesejado, respeitando a imutabilidade do State."
+            },
+            {
+                id: 51,
+                category: "T07 - Arrays",
+                question: "O que faz este código?\n<pre><code>setLista([...lista, novoItem])</code></pre>",
+                options: [
+                    "Adiciona ao início da lista.",
+                    "Substitui a lista pelo novo item.",
+                    "Adiciona <code>novoItem</code> ao final de uma cópia da lista existente.",
+                    "Dá erro porque faltam chavetas.",
+                ],
+                correct: 2,
+                explanation: "O operador spread <code>...</code> expande os elementos da lista atual num novo array, e <code>novoItem</code> é adicionado no fim."
+            },
+            {
+                id: 52,
+                category: "T07 - Modularização",
+                question: "Tens 3 listas (alunos, mentores, staffs) com visual idêntico. Qual a melhor prática?",
+                options: [
+                    "Criar um componente genérico <code>ListaPessoas</code> ou <code>CardPessoa</code> e reutilizá-lo passando props diferentes.",
+                    "Criar <code>ListaAlunos.jsx</code>, <code>ListaMentores.jsx</code>, etc.",
+                    "Usar inheritance de classes.",
+                    "Copiar e colar o código 3 vezes no App.jsx.",
+                ],
+                correct: 0,
+                explanation: "A composição e reutilização de componentes genéricos é um dos pilares do React para evitar repetição de código (DRY)."
+            },
+            {
+                id: 53,
+                category: "T07 - Modularização",
+                question: "Ao criar um componente reutilizável <code>Botao</code>, que props são essenciais para torná-lo flexível?",
+                options: [
+                    "O ID do botão.",
+                    "Apenas o texto.",
+                    "<code>texto</code>, <code>onClick</code> (função) e opcionalmente <code>estilo/variante</code>.",
+                    "Nenhuma prop.",
+                ],
+                correct: 2,
+                explanation: "Para ser útil, o botão genérico precisa de saber o que mostrar (texto) e o que fazer quando clicado (onClick)."
+            },
+            {
+                id: 54,
+                category: "T07 - Forms",
+                question: "Qual tag HTML deve envolver os inputs para permitir submissão com Enter?",
+                options: [
+                    "<code>&lt;div&gt;</code>",
+                    "<code>&lt;form&gt;</code>",
+                    "<code>&lt;section&gt;</code>",
+                    "<code>&lt;input-group&gt;</code>",
+                ],
+                correct: 1,
+                explanation: "A tag <code>&lt;form&gt;</code> captura o evento de submit padrão (tecla Enter ou botão type='submit')."
+            },
+            {
+                id: 55,
+                category: "T06 - Listas",
+                question: "Se a tua lista renderizada estática não muda, é seguro usar o índice como key?",
+                options: [
+                    "Não, nunca é aceitável.",
+                    "Sim, é sempre a melhor opção.",
+                    "Sim, é o único caso onde é aceitável, embora não ideal.",
+                    "Depende do tamanho da lista.",
+                ],
+                correct: 2,
+                explanation: "Se a lista for estática (nunca reordena, filtra ou adiciona/remove itens), o índice é estável e não causa bugs, mas IDs únicos são sempre preferíveis."
+            },
+            {
+                id: 56,
+                category: "T08 - Router",
+                question: "O que faz o componente <code>&lt;Routes&gt;</code> no React Router v6?",
+                options: [
+                    "Renderiza todas as rotas ao mesmo tempo.",
+                    "Renderiza apenas a primeira <code>&lt;Route&gt;</code> que corresponde ao URL atual.",
+                    "Define o histórico do browser.",
+                    "Cria links de navegação.",
+                ],
+                correct: 1,
+                explanation: "<code>&lt;Routes&gt;</code> agrupa todas as definições de rota e escolhe a melhor correspondência (best match) para renderizar, garantindo que apenas uma página é mostrada."
+            },
+            {
+                id: 57,
+                category: "T08 - Router",
+                question: "Como configuras uma rota dinâmica que aceita um ID de produto?",
+                options: [
+                    "<code>&lt;Route path='/produto/{id}' /&gt;</code>",
+                    "<code>&lt;Route path='/produto?id=' /&gt;</code>",
+                    "<code>&lt;Route path='/produto/:id' /&gt;</code>",
+                    "<code>&lt;Route path='/produto/*' /&gt;</code>",
+                ],
+                correct: 2,
+                explanation: "A sintaxe <code>:parametro</code> define um segmento dinâmico na URL que pode ser capturado posteriormente com hooks."
+            },
+            {
+                id: 58,
+                category: "T08 - Router",
+                question: "Qual hook usarias para criar um botão de 'Voltar atrás' programaticamente?",
+                options: [
+                    "<code>useHistory()</code>",
+                    "<code>useNavigate()</code>",
+                    "<code>useParams()</code>",
+                    "<code>useLocation()</code>",
+                ],
+                correct: 1,
+                explanation: "<code>useNavigate</code> devolve uma função que permite navegar para uma rota específica ou voltar atrás no histórico (<code>navigate(-1)</code>)."
+            },
+            {
+                id: 59,
+                category: "T08 - Router",
+                question: "Qual a diferença entre <code>Link</code> e <code>NavLink</code>?",
+                options: [
+                    "Nenhuma.",
+                    "<code>Link</code> é mais rápido.",
+                    "<code>NavLink</code> adiciona automaticamente uma classe 'active' se o link corresponder à URL atual.",
+                    "<code>NavLink</code> só funciona em menus verticais.",
+                ],
+                correct: 2,
+                explanation: "<code>NavLink</code> é ideal para menus de navegação porque facilita o styling do item ativo (ex: destacar a página onde o utilizador está)."
+            },
+            {
+                id: 60,
+                category: "T08 - Router",
+                question: "Podes ter rotas aninhadas (nested routes)?",
+                options: [
+                    "Não, o React Router só suporta um nível.",
+                    "Sim, mas tens de usar <code>iframes</code>.",
+                    "Sim, mas apenas em apps grandes.",
+                    "Sim, definindo rotas dentro de outras rotas e usando <code>&lt;Outlet /&gt;</code> no componente pai.",
+                ],
+                correct: 3,
+                explanation: "Rotas aninhadas permitem que partes da UI (como um menu lateral) persistam enquanto o conteúdo principal muda, usando o <code>Outlet</code> para renderizar o filho."
+            },
+            {
+                id: 61,
+                category: "T09 - useEffect",
+                question: "O que acontece se omitires o array de dependências num <code>useEffect</code>?",
+                options: [
+                    "O efeito corre após cada renderização do componente.",
+                    "O efeito corre apenas uma vez.",
+                    "O React lança um erro.",
+                    "O efeito nunca corre.",
+                ],
+                correct: 0,
+                explanation: "Sem dependências, o React não sabe quando saltar o efeito, por isso executa-o sempre que o componente atualiza (pode causar loops infinitos se atualizares estado lá dentro)."
+            },
+            {
+                id: 62,
+                category: "T09 - API",
+                question: "Ao usar <code>fetch</code> dentro de um <code>useEffect</code>, porque é comum usar uma variável <code>ignore</code> ou AbortController?",
+                options: [
+                    "Para tornar o pedido mais rápido.",
+                    "Para bloquear o utilizador.",
+                    "Porque o fetch é inseguro.",
+                    "Para evitar 'Race Conditions' onde um pedido antigo chega depois do novo e sobrescreve o estado incorretamente.",
+                ],
+                correct: 3,
+                explanation: "Se o componente desmontar ou a dependência mudar rápido, queremos ignorar o resultado de pedidos antigos que já não são relevantes."
+            },
+            {
+                id: 63,
+                category: "T09 - API",
+                question: "Qual é a sintaxe correta para esperar pela resposta JSON num fetch com async/await?",
+                options: [
+                    "<code>const data = await fetch(url).data;</code>",
+                    "<code>const res = await fetch(url); const data = await res.json();</code>",
+                    "<code>const data = fetch(url).json();</code>",
+                    "<code>const res = fetch(url); const data = res.json();</code>",
+                ],
+                correct: 1,
+                explanation: "O <code>fetch</code> retorna uma Promise que resolve numa Response. O método <code>.json()</code> também retorna uma Promise. Ambos precisam de <code>await</code>."
+            },
+            {
+                id: 64,
+                category: "T09 - API",
+                question: "O que significa 'Promessa Pendente' (Pending Promise)?",
+                options: [
+                    "Que a operação falhou.",
+                    "Que a operação teve sucesso.",
+                    "Que a operação assíncrona ainda não terminou.",
+                    "Que o código está bloqueado.",
+                ],
+                correct: 2,
+                explanation: "Uma Promise está num de 3 estados: Pending (em curso), Fulfilled (sucesso) ou Rejected (erro)."
+            },
+            {
+                id: 65,
+                category: "T10 - Fullstack",
+                question: "O que é um decorador em Python (ex: <code>@app.get('/')</code> no FastAPI)?",
+                options: [
+                    "Uma variável global.",
+                    "Um estilo CSS.",
+                    "Uma função que modifica ou regista outra função, neste caso associando uma rota HTTP a uma função Python.",
+                    "Um erro de sintaxe.",
+                ],
+                correct: 2,
+                explanation: "Decoradores (símbolo @) são usados para adicionar comportamento extra a funções, como registar endpoints numa API."
+            },
+            {
+                id: 66,
+                category: "T10 - Fullstack",
+                question: "Para que serve o middleware CORS no backend?",
+                options: [
+                    "Para comprimir respostas JSON.",
+                    "Para ligar à base de dados.",
+                    "Para permitir que o frontend (ex: localhost:5173) faça pedidos ao backend (ex: localhost:8000) de uma origem diferente.",
+                    "Para encriptar passwords.",
+                ],
+                correct: 2,
+                explanation: "Navegadores bloqueiam pedidos entre origens diferentes por segurança. CORS (Cross-Origin Resource Sharing) relaxa essas regras se o servidor permitir."
+            },
+            {
+                id: 67,
+                category: "T10 - Fullstack",
+                question: "No frontend, como configuras um proxy no Vite para evitar escrever sempre 'http://localhost:8000'?",
+                options: [
+                    "Instalando o axios.",
+                    "Não é possível.",
+                    "No ficheiro <code>vite.config.js</code>, na propriedade <code>server.proxy</code>.",
+                    "No ficheiro <code>index.html</code>.",
+                ],
+                correct: 2,
+                explanation: "Configurar um proxy permite fazer pedidos para <code>/api/users</code> e o Vite reencaminha-os internamente para o backend, evitando problemas de CORS em desenvolvimento."
+            },
+            {
+                id: 68,
+                category: "T10 - Fullstack",
+                question: "Qual método HTTP deves usar para criar um novo recurso na API?",
+                options: [
+                    "<code>DELETE</code>",
+                    "<code>POST</code>",
+                    "<code>PUT</code>",
+                    "<code>GET</code>",
+                ],
+                correct: 1,
+                explanation: "Por convenção REST, <code>POST</code> é usado para submeter dados e criar novos registos. <code>PUT</code> é para atualizar, <code>GET</code> para ler."
+            },
+            {
+                id: 69,
+                category: "T10 - Fullstack",
+                question: "O que responde tipicamente uma API quando um recurso não é encontrado?",
+                options: [
+                    "Status 500 Server Error",
+                    "Status 404 Not Found",
+                    "Status 200 OK",
+                    "Status 401 Unauthorized",
+                ],
+                correct: 1,
+                explanation: "404 é o código padrão HTTP para indicar que o caminho ou recurso solicitado não existe."
+            },
+            {
+                id: 70,
+                category: "Mixed - Debugging",
+                question: "Se o teu componente entra num loop infinito de renderizações, qual é a causa mais provável?",
+                options: [
+                    "Atualizar o estado (setState) dentro do corpo do componente sem estar num useEffect ou event handler.",
+                    "Ter ficheiros grandes.",
+                    "Muitas props.",
+                    "Usar CSS modules.",
+                ],
+                correct: 0,
+                explanation: "Atualizar o estado provoca re-render. Se o fazes incondicionalmente no corpo da função principal, crias um ciclo render -> update -> render instantâneo."
+            },
+            {
+                id: 71,
+                category: "Mixed",
+                question: "O que é 'Prop Drilling'?",
+                options: [
+                    "Validar tipos de props.",
+                    "Uma ferramenta de construção.",
+                    "Apagar props.",
+                    "Passar props por muitos níveis de componentes intermédios que não as usam, apenas para chegarem a um componente filho profundo.",
+                ],
+                correct: 3,
+                explanation: "É um anti-padrão que torna o código frágil. Resolve-se com Composição de Componentes, Context API ou State Managers."
+            },
+            {
+                id: 72,
+                category: "Mixed",
+                question: "Qual a diferença entre <code>export default</code> e <code>export</code> nomeado?",
+                options: [
+                    "<code>export</code> nomeado não funciona em React.",
+                    "Nenhuma.",
+                    "<code>default</code> é mais lento.",
+                    "<code>default</code> permite apenas uma exportação por ficheiro e pode ser importado com qualquer nome; <code>export</code> nomeado exige chavetas no import.",
+                ],
+                correct: 3,
+                explanation: "Imports nomeados (`import { Button }`) obrigam a usar o nome exato. Default (`import MeuBotao`) permite renomear (`import Button as MeuBotao` é implícito)."
+            },
+            {
+                id: 73,
+                category: "Mixed",
+                question: "Para que serve o ficheiro <code>package.json</code>?",
+                options: [
+                    "Para guardar as imagens.",
+                    "Para configurar o editor de texto.",
+                    "Para guardar o código fonte.",
+                    "Para listar as dependências, scripts e metadados do projeto.",
+                ],
+                correct: 3,
+                explanation: "É o manifesto do projeto Node.js, definindo o que instalar com `npm install` e como correr comandos via `npm run`."
+            },
+            {
+                id: 74,
+                category: "Mixed",
+                question: "O que significa SPA (Single Page Application)?",
+                options: [
+                    "Uma app que só tem texto.",
+                    "Uma app lenta.",
+                    "Uma aplicação web que carrega uma única página HTML e atualiza o conteúdo dinamicamente com JS, sem recarregar totalmente.",
+                    "Um site estático.",
+                ],
+                correct: 2,
+                explanation: "O React permite criar SPAs, oferecendo uma experiência similar a apps nativas, com transições instantâneas."
+            },
+            {
+                id: 75,
+                category: "T05 - Hooks",
+                question: "Qual é a regra principal dos Hooks (começados por <code>use</code>)?",
+                options: [
+                    "Devem ser chamados sempre no topo da função do componente, nunca dentro de loops ou if.",
+                    "Podem ser chamados em loops e condições.",
+                    "Só funcionam em Classes.",
+                    "Não têm regras.",
+                ],
+                correct: 0,
+                explanation: "O React depende da ordem de chamada dos Hooks para manter o estado correto. Condições quebrariam essa ordem."
+            },
+            {
+                id: 76,
+                category: "T09 - API",
+                question: "Como tratas erros num bloco <code>try/catch</code> com async/await?",
+                options: [
+                    "Colocas o código assíncrono no <code>try</code> e lidas com o erro no <code>catch</code>.",
+                    "Não tratas.",
+                    "Usas <code>.then()</code>.",
+                    "Usas <code>finally</code> apenas.",
+                ],
+                correct: 0,
+                explanation: "Esta sintaxe torna o tratamento de erros síncrono e muito mais legível que cadeias de <code>.catch()</code>."
+            },
+            {
+                id: 77,
+                category: "T08 - Router",
+                question: "O que faz o componente <code>&lt;Outlet /&gt;</code>?",
+                options: [
+                    "Desliga a app.",
+                    "Mostra um popup.",
+                    "Faz logout.",
+                    "Serve de placeholder onde os componentes filhos das rotas aninhadas serão renderizados.",
+                ],
+                correct: 3,
+                explanation: "É essencial para layouts partilhados (ex: Navbar fixa, conteúdo variável) em React Router."
+            },
+            {
+                id: 78,
+                category: "Mixed - Performance",
+                question: "O que faz o <code>React.StrictMode</code> (visto no main.jsx)?",
+                options: [
+                    "Bloqueia erros.",
+                    "Torna a app mais rápida.",
+                    "Impede o uso de CSS.",
+                    "Ajuda a detetar problemas executando componentes duas vezes em desenvolvimento (extra renders) e avisando sobre APIs obsoletas.",
+                ],
+                correct: 3,
+                explanation: "É uma ferramenta de desenvolvimento que propositadamente stressa o código para revelar bugs de efeitos colaterais impuros."
+            },
+            {
+                id: 79,
+                category: "Mixed",
+                question: "Qual a vantagem de usar TypeScript com React (.tsx)?",
+                options: [
+                    "É mais bonito.",
+                    "Faz o site carregar mais rápido.",
+                    "É obrigatório.",
+                    "Adiciona tipagem estática, prevenindo erros comuns (como passar props erradas) antes sequer de correr o código.",
+                ],
+                correct: 3,
+                explanation: "Embora adicione complexidade inicial, o TypeScript captura uma classe inteira de bugs em tempo de compilação."
+            },
+            {
+                id: 80,
                 category: "T06 - Conditional",
                 question: "Analisa o seguinte código:\n<pre><code>const count = 0;\nreturn (\n  &lt;div>\n    {count && &lt;h1>Mensagens: {count}&lt;/h1>}\n  &lt;/div>\n);</code></pre>\nQual é o resultado renderizado no browser?",
                 options: [
@@ -521,7 +1518,7 @@
                 explanation: "Em JS, `0` é falsy, mas o operador `&&` retorna o valor do operando que 'curto-circuitou'. Logo, retorna `0`, e o React renderiza números. Para corrigir: `count > 0 && ...` ou `!!count && ...`."
             },
             {
-                id: 3,
+                id: 81,
                 category: "T05 - JSX",
                 question: "O que acontece se um componente React retornar `null`?",
                 options: [
@@ -534,20 +1531,20 @@
                 explanation: "Retornar `null` (ou `false`/`true`) é válido e diz ao React para não pôr nada no DOM para aquele componente."
             },
             {
-                id: 4,
+                id: 82,
                 category: "T08 - Router",
                 question: "Qual a diferença fundamental entre `&lt;a href='/page'>` e `&lt;Link to='/page'>` numa SPA React?",
                 options: [
-                    "O `<Link>` tem melhor estilo visual padrão.",
-                    "O `<a>` recarrega a página; o `<Link>` usa a History API para navegação SPA.",
-                    "O `<Link>` é exclusivo do Google Chrome.",
+                    "O `&lt;Link&gt;` tem melhor estilo visual padrão.",
+                    "O `&lt;a&gt;` recarrega a página; o `&lt;Link&gt;` usa a History API para navegação SPA.",
+                    "O `&lt;Link&gt;` é exclusivo do Google Chrome.",
                     "Não existe diferença funcional.",
                 ],
                 correct: 1,
                 explanation: "O objetivo de uma SPA é não recarregar. O componente Link interceta o clique e muda o URL via JS."
             },
             {
-                id: 5,
+                id: 83,
                 category: "T10 - Env",
                 question: "Como acedes a variáveis de ambiente no Vite (ex: URL da API)?",
                 options: [
@@ -560,7 +1557,7 @@
                 explanation: "Vite expõe env vars prefixadas com `VITE_` no objeto `import.meta.env`."
             },
             {
-                id: 6,
+                id: 84,
                 category: "T09 - API",
                 question: "Porque é que o `useEffect` não pode ser uma função `async` diretamente (`useEffect(async () => { ... })`)?",
                 options: [
@@ -573,7 +1570,7 @@
                 explanation: "Se retornasse uma Promise, o React tentaria usar essa Promise como função de limpeza ao desmontar, o que falharia. Deve-se criar uma função async *dentro* do efeito e chamá-la."
             },
             {
-                id: 7,
+                id: 85,
                 category: "T07 - Forms",
                 question: "Como impedir o comportamento padrão de recarregar a página ao submeter um form?",
                 options: [
@@ -586,7 +1583,7 @@
                 explanation: "Em React (e JS moderno), retornamos o controlo prevenindo o default. Retornar false é uma técnica antiga (jQuery)."
             },
             {
-                id: 8,
+                id: 86,
                 category: "General - Mixed",
                 question: "Qual destas práticas ajuda a performance em React?",
                 options: [
@@ -599,7 +1596,7 @@
                 explanation: "Windowing renderiza apenas o que está visível no ecrã (10 itens de 1000), poupando imensos recursos DOM."
             },
             {
-                id: 9,
+                id: 87,
                 category: "T06 - Logic",
                 question: "Qual o perigo de usar `array.length && &lt;Component />` para renderizar uma lista condicionalmente?",
                 options: [
@@ -612,7 +1609,7 @@
                 explanation: "Problema clássico do '0 falsy'. Deve-se usar `array.length > 0 && ...`."
             },
             {
-                id: 10,
+                id: 88,
                 category: "T04 - React",
                 question: "O Virtual DOM do React é uma representação leve do DOM real. Qual é a principal vantagem desta arquitetura em termos de performance?",
                 options: [
@@ -625,7 +1622,7 @@
                 explanation: "O acesso ao DOM real é lento. O React minimiza isso acumulando mudanças no VDOM e aplicando-as em batch (Reconciliation)."
             },
             {
-                id: 11,
+                id: 89,
                 category: "T09 - Error Handling",
                 question: "O que acontece se ocorrer um erro dentro de um componente filho e não houver um `Error Boundary` (limite de erro) na árvore acima?",
                 options: [
@@ -638,7 +1635,7 @@
                 explanation: "Desde o React 16, erros de renderização não apanhados desmontam a árvore inteira para evitar mostrar UI corrompida."
             },
             {
-                id: 12,
+                id: 90,
                 category: "T05 - Event Propagation",
                 question: "O que é o `e.preventDefault()` usado frequentemente no `onSubmit` de formulários?",
                 options: [
@@ -651,7 +1648,7 @@
                 explanation: "Os forms HTML recarregam a página por defeito. Em SPAs (React), queremos evitar isso para tratar os dados com JS."
             },
             {
-                id: 13,
+                id: 91,
                 category: "T06 - State Lifting",
                 question: "Tens um Pai e dois Filhos (A e B). O Filho A tem um botão que precisa de ativar uma função no Filho B. Como fazes isto?",
                 options: [
@@ -664,7 +1661,7 @@
                 explanation: "State Lifting. A comunicação entre irmãos faz-se sempre através do pai comum (ou Contexto)."
             },
             {
-                id: 14,
+                id: 92,
                 category: "T10 - Fullstack",
                 question: "O que é CORS (Cross-Origin Resource Sharing)?",
                 options: [
@@ -677,22 +1674,10 @@
                 explanation: "CORS é uma proteção do browser. O servidor (backend) tem de enviar o header `Access-Control-Allow-Origin` para permitir o acesso."
             },
             {
-                id: 15,
-                category: "T05 - JSX",
-                question: "Considera o seguinte código JSX: `const element = &lt;div className='box'>ola&lt;/div>;`. O que é que o compilador (Babel/SWC) produz realmente a partir disto?",
-                options: [
-                    "Uma chamada de função: `React.createElement('div', {className: 'box'}, 'ola')` (ou `_jsx`) que retorna um objeto JavaScript plano.",
-                    "Uma string HTML: \"&lt;div class='box'>ola&lt;/div>\"",
-                    "Um componente funcional.",
-                    "Um objeto DOM real: `document.createElement('div')`",
-                ],
-                correct: 0,
-                explanation: "JSX é açúcar sintático. No final, tudo vira chamadas JavaScript que criam objetos descrevendo a UI."
-            },
-            {
-                id: 16,
+                id: 93,
                 category: "T05 - Lists",
-                question: "O método `.map()` em JSX deve retornar sempre:", options: [
+                question: "O método `.map()` em JSX deve retornar sempre:",
+                options: [
                     "Uma string de texto simples.",
                     "Nada (void), serve apenas para iterar.",
                     "Um elemento JSX para cada item do array.",
@@ -702,7 +1687,7 @@
                 explanation: "O map transforma um array de dados num array de elementos visuais."
             },
             {
-                id: 17,
+                id: 94,
                 category: "T05 - Props",
                 question: "Prop Drilling refere-se a passar dados por múltiplos níveis de componentes. Qual das seguintes é uma solução válida para evitar Prop Drilling excessivo?",
                 options: [
@@ -715,7 +1700,7 @@
                 explanation: "Todas são estratégias válidas. Contexto e State Managers são globais; Composição muitas vezes resolve o problema sem complexidade extra."
             },
             {
-                id: 18,
+                id: 95,
                 category: "T06 - Keys",
                 question: "Podes usar o mesmo `key` em listas diferentes na mesma página?",
                 options: [
@@ -728,7 +1713,7 @@
                 explanation: "O escopo da unicidade da key é apenas dentro do array onde é usada."
             },
             {
-                id: 19,
+                id: 96,
                 category: "T06 - Performance",
                 question: "Porque é que deves evitar definir componentes *dentro* de outros componentes?",
                 options: [
@@ -741,7 +1726,7 @@
                 explanation: "Componentes devem ser definidos no top-level ou noutro ficheiro. Nunca dentro da função de render/corpo de outro componente."
             },
             {
-                id: 20,
+                id: 97,
                 category: "T09 - Async",
                 question: "O que faz o `await` numa função `async`?",
                 options: [
@@ -754,7 +1739,7 @@
                 explanation: "Await é açúcar sintático para Promises."
             },
             {
-                id: 21,
+                id: 98,
                 category: "T08 - Router",
                 question: "Como fazes uma navegação programática (ex: após login com sucesso) na v6?",
                 options: [
@@ -767,7 +1752,7 @@
                 explanation: "`useHistory` foi removido na v6. Agora usa-se o hook `useNavigate`."
             },
             {
-                id: 22,
+                id: 99,
                 category: "T09 - Context",
                 question: "Quando o valor de um Context Provider muda, o que acontece?",
                 options: [
@@ -780,9 +1765,10 @@
                 explanation: "É o mecanismo de pub/sub do React."
             },
             {
-                id: 23,
+                id: 100,
                 category: "T08 - Router",
-                question: "O componente `&lt;Outlet />` é usado para:", options: [
+                question: "O componente `&lt;Outlet />` é usado para:",
+                options: [
                     "Exportar dados para outros componentes.",
                     "Renderizar links externos em segurança.",
                     "Renderizar componentes filhos em rotas aninhadas (layouts).",
@@ -791,999 +1777,6 @@
                 correct: 2,
                 explanation: "É a 'janela' onde o router desenha o conteúdo das rotas filhas dentro do layout da rota pai."
             },
-            {
-                id: 24,
-                category: "T05 - State",
-                question: "O `useState` é assíncrono (batching). Se tiveres `const [count, setCount] = useState(0)` e fizeres `setCount(count + 1); setCount(count + 1); setCount(count + 1);` no mesmo manipulador de evento, qual será o valor final de `count` na próxima renderização?",
-                options: [
-                    "Erro de stack overflow",
-                    "3",
-                    "0",
-                    "1",
-                ],
-                correct: 3,
-                explanation: "Como o `setCount` é assíncrono e estás a usar o valor *atual* `count` (que é 0) em todas as chamadas, todas agendam 'mudar 0 para 1'. O resultado é 1. Para corrigir, usarias a update function: `setCount(c => c + 1)`."
-            },
-            {
-                id: 25,
-                category: "T10 - HTTP",
-                question: "Qual o método HTTP correto para criar um *novo* recurso no servidor?",
-                options: [
-                    "PUT",
-                    "DELETE",
-                    "POST",
-                    "GET",
-                ],
-                correct: 2,
-                explanation: "GET = ler, POST = criar, PUT/PATCH = atualizar, DELETE = apagar."
-            },
-            {
-                id: 26,
-                category: "T06 - Lists",
-                question: "Porque é que o uso de `Math.random()` para gerar chaves (keys) numa lista (`key={Math.random()}`) é uma péssima prática?",
-                options: [
-                    "Porque a cada renderização a chave muda, forçando o React a destruir e recriar o componente inteiro (perde estado, foco e performance), pois ele pensa que é um componente novo.",
-                    "Porque o Math.random() é lento.",
-                    "Nenhuma das anteriores.",
-                    "Porque pode gear números repetidos muito frequentemente.",
-                ],
-                correct: 0,
-                explanation: "Keys instáveis forçam o React a fazer 'unmount' e 'remount' a cada render. Um input perderia o foco a cada letra escrita, por exemplo."
-            },
-            {
-                id: 27,
-                category: "T10 - Build",
-                question: "O que acontece quando corres `npm run build`?",
-                options: [
-                    "Os testes são executados.",
-                    "O projeto é enviado para a cloud.",
-                    "O servidor de dev inicia.",
-                    "O Vite compila o teu código, transforma JSX/TS, minifica CSS/JS, faz tree-shaking e gera ficheiros estáticos prontos para produção na pasta `dist/`.",
-                ],
-                correct: 3,
-                explanation: "Gera os artifacts finais."
-            },
-            {
-                id: 28,
-                category: "T06 - Lists",
-                question: "Se tiveres um array de objetos `users = [{id: 1, name: 'A'}, {id: 2, name: 'B'}]`. Qual a forma correta de renderizar?",
-                options: [
-                    "`users.map(u => &lt;User key={u.id} {...u} />)`",
-                    "`users.forEach(u => &lt;User key={u.id} name={u.name} />)`",
-                    "`for (let u of users) { &lt;User key={u.id} name={u.name} /> }`",
-                    "Todas as anteriores funcionam dentro de `{ ... }` no JSX.",
-                ],
-                correct: 0,
-                explanation: "`forEach` e `for` não retornam valores (ou retornam undefined), logo não funcionam dentro de `{}`. O `map` retorna um novo array de elementos."
-            },
-            {
-                id: 29,
-                category: "T06 - Arrays",
-                question: "Qual a melhor maneira de atualizar um objeto dentro de um array de estado `todos`, mudando o `completed` para true dada um `id`?",
-                options: [
-                    "`setTodos(todos.map(t => t.id === id ? { ...t, completed: true } : t))`",
-                    "`todos.find(t => t.id === id).completed = true; setTodos(todos);`",
-                    "`setTodos(todos.filter(t => t.id === id))`",
-                    "Nenhuma das anteriores.",
-                ],
-                correct: 0,
-                explanation: "A primeira opção muta o estado. A segunda cria um novo array e novos objetos apenas para o item alterado, respeitando a imutabilidade."
-            },
-            {
-                id: 30,
-                category: "T07 - Forms",
-                question: "Considera este handler genérico:\n<pre><code>function handleChange(e) {\n  setFormData({\n    ...formData,\n    [e.target.name]: e.target.value\n  });\n}</code></pre>\nO que faz a sintaxe `[e.target.name]`?",
-                options: [
-                    "Acede à propriedade do evento.",
-                    "É sintaxe específica do React para forms.",
-                    "Cria um array com o nome.",
-                    "É uma 'Computed Property Name' (ES6) que permite usar o valor da variável (ex: 'email') como chave do objeto dinamicamente.",
-                ],
-                correct: 3,
-                explanation: "Permite ter uma única função para tratar N inputs, desde que cada input tenha um atributo `name` correspondente à chave no estado."
-            },
-            {
-                id: 31,
-                category: "T05 - State",
-                question: "Quando deves usar um Componente de Classe em vez de um Componente Funcional num projeto React moderno (v18+)?",
-                options: [
-                    "Quando usas TypeScript.",
-                    "Sempre que precisares de State.",
-                    "Nunca, ou apenas para Error Boundaries (que ainda não têm equivalente em Hooks), pois os Hooks cobrem todos os outros casos de uso.",
-                    "Para melhor performance, pois as classes são mais rápidas.",
-                ],
-                correct: 2,
-                explanation: "Atualmente, Error Boundaries são o único caso onde *precisas* de classes. Tudo o resto (state, effects, refs) faz-se melhor com Function Components e Hooks."
-            },
-            {
-                id: 32,
-                category: "T10 - SSG vs SSR",
-                question: "Qual a diferença entre SPA (Single Page App) e SSR (Server Side Rendering)?",
-                options: [
-                    "SSR não usa React.",
-                    "SPA não funciona em mobile.",
-                    "SPA é mais rápido no carregamento inicial.",
-                    "SPA: HTML vazio, JS renderiza tudo no cliente. SSR: Servidor envia HTML preenchido (melhor SEO/Load inicial), depois o JS 'hidrata' a página.",
-                ],
-                correct: 3,
-                explanation: "Client-Side Rendering (SPA) vs Server-Side Rendering (Next.js/Remix)."
-            },
-            {
-                id: 33,
-                category: "T10 - Security",
-                question: "Qual a melhor defesa contra ataques XSS (Cross Site Scripting) em React?",
-                options: [
-                    "O React protege automaticamente contra XSS ao escapar (encode) todo o conteúdo interpolado `{...}` antes de renderizar.",
-                    "Usar HTTPS.",
-                    "Validar inputs no backend.",
-                    "Usar `dangerouslySetInnerHTML`.",
-                ],
-                correct: 0,
-                explanation: "Se tentares renderizar `&lt;script>alert(1)&lt;\/script>` via `{}`, o React mostra o texto literal, não o executa."
-            },
-            {
-                id: 34,
-                category: "T09 - Memo",
-                question: "O `useMemo` serve para:", options: ["Memorizar componentes inteiros.",
-                    "Memorizar o resultado de cálculos pesados (computacionalmente caros) para evitar recalculá-los a cada render, a menos que as dependências mudem.",
-                    "Guardar dados na cache do browser.",
-                    "Memorizar funções.",
-                ],
-                correct: 1,
-                explanation: "`useCallback` é para funções, `useMemo` é para valores/resultados, `React.memo` é para componentes."
-            },
-            {
-                id: 35,
-                category: "T06 - State Lifting",
-                question: "O padrão 'State Lifting' (Elevação de Estado) serve primariamente para:", options: ["Melhorar a performance da aplicação.",
-                    "Partilhar estado entre componentes irmãos, movendo o estado para o seu ancestral comum mais próximo.",
-                    "Guardar dados na LocalStorage.",
-                    "Partilhar estado entre componentes que não têm relação direta pai-filho.",
-                ],
-                correct: 1,
-                explanation: "Se dois irmãos precisam dos mesmos dados, o estado sai deles e sobe para o pai, que depois distribui via props."
-            },
-            {
-                id: 36,
-                category: "T05 - State",
-                question: "Qual o problema de mutar o State diretamente, por exemplo `user.name = 'Ana'`, em vez de usar `setUser`?",
-                options: [
-                    "Não há problema nenhum se for um objeto.",
-                    "Funciona, mas é mais lento.",
-                    "O React não deteta a mudança porque a referência do objeto na memória mantém-se igual, logo não dispara a re-renderização.",
-                    "Causa um erro de memória.",
-                ],
-                correct: 2,
-                explanation: "O React usa comparação superficial (shallow compare). Se a referência do objeto for a mesma, ele assume que nada mudou e não atualiza a UI."
-            },
-            {
-                id: 37,
-                category: "T06 - Rendering",
-                question: "Porque é que o Re-rendering de um Pai causa o Re-rendering de todos os Filhos por defeito?",
-                options: [
-                    "Porque os filhos são recriados recursivamente quando o pai corre a função de renderização, a menos que se use `React.memo`.",
-                    "Não acontece, o React evita isso automaticamente.",
-                    "É um bug do React.",
-                    "Porque o DOM mudou.",
-                ],
-                correct: 0,
-                explanation: "Por defeito, o React re-renderiza a sub-árvore toda. `React.memo` (High Order Component) pode prevenir isso se as props não mudarem."
-            },
-            {
-                id: 38,
-                category: "T07 - Forms",
-                question: "Checkbox 'Tri-state' (com estado 'indeterminado'). O React suporta isto?",
-                options: [
-                    "Não suporta.",
-                    "Sim, usando a prop `checked='maybe'`.",
-                    "Sim, via prop `indeterminate={true}` (apenas visual).",
-                    "Depende do Sistema Operativo.",
-                ],
-                correct: 2,
-                explanation: "HTML Checkboxes têm uma propriedade `indeterminate` acessível apenas via JS (não attribute HTML). Em React, usas uma `ref` para definir `el.indeterminate = true`."
-            },
-            {
-                id: 39,
-                category: "T07 - Forms",
-                question: "O que caracteriza um componente 'Uncontrolled' em React?",
-                options: [
-                    "Não tem prop `value` controlada pelo State; os dados são acedidos via `ref` diretamente do DOM quando necessário (ex: no submit).",
-                    "Usa `useState` mas não usa `useEffect`.",
-                    "O React não sabe que ele existe.",
-                    "Não tem validação de formulário.",
-                ],
-                correct: 0,
-                explanation: "Num componente Uncontrolled, a 'fonte da verdade' é o próprio DOM, tal como em HTML tradicional. Usamos `useRef` para ler os valores."
-            },
-            {
-                id: 40,
-                category: "T05 - Styles",
-                question: "Como aplicas estilos inline dinâmicos em React (atributo `style`)?",
-                options: [
-                    "style={ color: 'red', font-size: '20px' }",
-                    "style={{ color: 'red', fontSize: '20px' }}",
-                    "style={ 'color: red' }",
-                    "style=\"color: red;\"",
-                ],
-                correct: 1,
-                explanation: "O atributo `style` aceita um objeto JavaScript. A primeira chaveta é para entrar em modo JS, a segunda é o objeto. Propriedades CSS usam camelCase."
-            },
-            {
-                id: 41,
-                category: "T04 - Vite",
-                question: "No contexto de um projeto Vite, qual a principal diferença técnica entre servir ficheiros da pasta `public/` versus importá-los via JavaScript (ex: `import img from './assets/img.png'`)?",
-                options: [
-                    "A pasta `public/` só aceita imagens, enquanto `assets/` aceita CSS e JS.",
-                    "Não há diferença, é apenas uma questão de organização de pastas.",
-                    "Ficheiros em `public/` são servidos na raiz do servidor web sem hash no nome; imports recebem hash para cache busting e são incluídos no bundle graph.",
-                    "Ficheiros em `public/` são processados e minificados; imports são copiados tal como estão.",
-                ],
-                correct: 2,
-                explanation: "O Vite copia o conteúdo de `public/` diretamente para `dist/` sem alterações (bom para robots.txt, favicon). Assets importados são processados (base64 inlining, hashing, otimização)."
-            },
-            {
-                id: 42,
-                category: "T07 - Forms",
-                question: "Para inputs do tipo Checkbox (`type='checkbox'`), que propriedade do evento deves ler para saber se está marcado?",
-                options: [
-                    "`e.target.selected`",
-                    "`e.target.checked`",
-                    "`e.target.on`",
-                    "`e.target.value`",
-                ],
-                correct: 1,
-                explanation: "Checkboxes não usam `value` para o seu estado booleano, usam `checked`. Se leres `value`, recebes geralmente 'on'."
-            },
-            {
-                id: 43,
-                category: "T06 - State",
-                question: "Num componente contador, porque é que `setCount(count + 1)` pode falhar se chamado múltiplas vezes rapidamente?",
-                options: [
-                    "O React bloqueia atualizações para poupar memória.",
-                    "Stale Closure: a função captura o valor de `count` da renderização atual, que não muda.",
-                    "Porque o React não suporta atualizações rápidas.",
-                    "Porque o contador é assíncrono por natureza.",
-                ],
-                correct: 1,
-                explanation: "Stale Closure problem. Functional updates garantem que trabalhas com o valor mais recente pendente."
-            },
-            {
-                id: 44,
-                category: "T05 - Fragments",
-                question: "Para que servem os React Fragments (`&lt;>...&lt;/>` ou `&lt;React.Fragment>`)?",
-                options: [
-                    "Para criar componentes rápidos.",
-                    "Para agrupar múltiplos elementos filhos sem adicionar um nó extra (como uma `div` inútil) ao DOM real.",
-                    "Para comentar código JSX.",
-                    "Para quebrar o código em linhas.",
-                ],
-                correct: 1,
-                explanation: "Muitas vezes precisamos de retornar vários elementos (ex: `&lt;li>A&lt;/li> &lt;li>B&lt;/li>`), mas o JSX exige um pai único. Fragments resolvem isso sem sujar o HTML final."
-            },
-            {
-                id: 45,
-                category: "T08 - Router",
-                question: "Se quiseres ler os Query Parameters (ex: `?sort=asc&page=2`), qual o hook correto no React Router v6?",
-                options: [
-                    "`useParams()`",
-                    "`useSearchParams()`",
-                    "`useQuery()`",
-                    "`useLocation().query`",
-                ],
-                correct: 1,
-                explanation: "`useSearchParams` retorna um objeto similar ao `URLSearchParams` do browser e uma função para atualizar a query string."
-            },
-            {
-                id: 46,
-                category: "T05 - Conditional",
-                question: "Qual a melhor forma de renderizar um componente SE e SÓ SE uma condição for verdadeira e outra for falsa?",
-                options: [
-                    "Calcular a condição boolean antes do return e usar uma variável simples no JSX.",
-                    "Usar operador ternário complexo.",
-                    "Usar `if` dentro do JSX.",
-                    "Usar `switch`.",
-                ],
-                correct: 0,
-                explanation: "Para lógica complexa, é mais legível extrair a condição para uma variável (`const show = cond1 && !cond2`) e usar `{show && &lt;Comp />}`."
-            },
-            {
-                id: 47,
-                category: "T05 - React",
-                question: "O React é 'Unidirectional Data Flow' (Fluxo Unidirecional). O que isto significa?",
-                options: [
-                    "Os dados fluem em ambas as direções (two-way binding) automaticamente.",
-                    "Os dados não fluem entre componentes.",
-                    "Os dados fluem apenas dos filhos para os pais.",
-                    "Os dados fluem apenas dos pais para os filhos (top-down) via props.",
-                ],
-                correct: 3,
-                explanation: "Ao contrário de Angular/Vue (v1), o React favorece o fluxo explícito de cima para baixo. Para subir dados, usamos callbacks, mas os dados descem."
-            },
-            {
-                id: 48,
-                category: "T09 - Optimistic UI",
-                question: "O que é 'Optimistic UI' updates?",
-                options: [
-                    "Esperar sempre pela resposta do servidor para garantir consistência.",
-                    "UIs que mostram mensagens motivacionais.",
-                    "Atualizar a interface *antes* de receber a confirmação do servidor (assumindo sucesso), e reverter se der erro. Dá a sensação de resposta instantânea.",
-                    "Usar animações rápidas.",
-                ],
-                correct: 2,
-                explanation: "Comum em Likes do Facebook ou mensagens de chat."
-            },
-            {
-                id: 49,
-                category: "T04 - Vite",
-                question: "Qual a função do ficheiro `vite.config.js`?",
-                options: [
-                    "Substituir o `package.json`.",
-                    "Guardar as variáveis de ambiente.",
-                    "Definir as rotas da aplicação.",
-                    "Configurar o build tool (plugins, proxy, aliases, output dir).",
-                ],
-                correct: 3,
-                explanation: "É o ficheiro de configuração do Vite onde defines plugins (como `@vitejs/plugin-react`), proxies de API, etc."
-            },
-            {
-                id: 50,
-                category: "T09 - Portals",
-                question: "Para que servem os React Portals (`ReactDOM.createPortal`)?",
-                options: [
-                    "Renderizar filhos numa parte diferente da árvore DOM (ex: body).",
-                    "Criar iframes automaticamente.",
-                    "Teleportar componentes entre ficheiros.",
-                    "Navegar entre páginas sem reload.",
-                ],
-                correct: 0,
-                explanation: "Evita problemas de z-index e overflow:hidden do componente pai."
-            },
-            {
-                id: 51,
-                category: "T08 - Router",
-                question: "O `&lt;BrowserRouter>` usa internamente:", options: [
-                    "Hashbangs (URLs com #!).",
-                    "Armazenamento LocalStorage.",
-                    "Cookies de sessão segura.",
-                    "API HTML5 History (`pushState`/`popstate`).",
-                ],
-                correct: 3,
-                explanation: "Permite URLs limpos sem o `#`. Requer configuração no servidor para redirecionar todos os pedidos para index.html."
-            },
-            {
-                id: 52,
-                category: "T09 - useEffect",
-                question: "Qual a diferença entre passar `undefined` (ou nada) e passar um array vazio `[]` como segundo argumento do `useEffect`?",
-                options: [
-                    "Nenhuma diferença.",
-                    "Com `undefined`, o React lança um aviso.",
-                    "Com `undefined`, o efeito corre após *cada* renderização. Com `[]`, corre apenas na montagem (mount) e desmontagem (cleanup).",
-                    "Com `undefined`, o efeito nunca corre. Com `[]`, corre sempre.",
-                ],
-                correct: 2,
-                explanation: "Sem dependências, o efeito sincroniza com *todas* as renders. Com deps vazias, sincroniza apenas com a 'criação' do componente."
-            },
-            {
-                id: 53,
-                category: "T05 - Props",
-                question: "O que *exatamente* é a prop `children` em React?",
-                options: [
-                    "Um array especial que contém apenas texto.",
-                    "Uma referência ao DOM real dos filhos.",
-                    "Uma estrutura de dados opaca que representa o conteúdo aninhado dentro das tags de abertura e fecho do componente.",
-                    "Nenhuma das anteriores.",
-                ],
-                correct: 2,
-                explanation: "`children` pode ser qualquer coisa: texto, elementos React, funções (render props), ou arrays destes. É o que pões 'dentro' do componente."
-            },
-            {
-                id: 54,
-                category: "T04 - Intro",
-                question: "O que significa dizer que o React é 'Declarativo' em vez de 'Imperativo'?",
-                options: [
-                    "Declarativo: descreves o estado final da UI para um dado estado de dados, e o React trata das transições DOM. Imperativo: manipulas o DOM passo-a-passo manualmente.",
-                    "Imperativo significa que dizes 'O que queres' e o browser decide como fazer.",
-                    "Não há diferença real, são termos académicos.",
-                    "Declarativo significa que escreves muito código para explicar passo-a-passo como atualizar o DOM.",
-                ],
-                correct: 0,
-                explanation: "Imperativo: 'Seleciona div, muda texto, adiciona classe'. Declarativo: 'Se loading, mostra Spinner; senão, mostra Lista'."
-            },
-            {
-                id: 55,
-                category: "T09 - Suspense",
-                question: "Para que serve o componente `&lt;Suspense>`?",
-                options: [
-                    "Para cancelar pedidos.",
-                    "Para mostrar um fallback (ex: Spinner) enquanto componentes 'preguiçosos' (lazy loaded) ou dados assíncronos estão a carregar.",
-                    "Para lidar com erros.",
-                    "Para suspender a execução de código JS.",
-                ],
-                correct: 1,
-                explanation: "Integrado com `React.lazy` (code splitting) e Data Fetching moderno."
-            },
-            {
-                id: 56,
-                category: "T07 - Validation",
-                question: "Ao validar um formulário no submit, se houver erros, como deves impedir o envio?",
-                options: [
-                    "Usando `try/catch`.",
-                    "Chamando `e.preventDefault()` e não executando a lógica de envio (fetch, etc).",
-                    "Apagando o formulário.",
-                    "Fazendo `return`.",
-                ],
-                correct: 1,
-                explanation: "Prevines o envio ao browser, validas os dados no state, e se inválido, mostras erros e não chamas a API."
-            },
-            {
-                id: 57,
-                category: "T04 - Vite",
-                question: "O que acontece se tentares importar um componente React que não exporta nada (nem default nem named export)?",
-                options: [
-                    "O Vite dá erro de build mas funciona em dev.",
-                    "Todas as anteriores.",
-                    "O React renderiza um fragmento vazio automaticamente.",
-                    "O import retorna `undefined`, e tentar usá-lo como ` &lt;Component />` causará um erro de runtime ao renderizar.",
-                ],
-                correct: 3,
-                explanation: "Se importares algo que não existe, recebes `undefined`. O React lança erro ao tentar criar um elemento a partir de undefined: 'Element type is invalid'."
-            },
-            {
-                id: 58,
-                category: "T08 - Router",
-                question: "Numa rota protegida (Protected Route), se o utilizador não estiver logado, o padrão comum é:", options: [
-                    "Redirecionar para Login (`<Navigate to='/login' />`) preservando a localização.",
-                    "Retornar `null` para renderizar nada.",
-                    "Bloquear o acesso ao browser do utilizador.",
-                    "Mostrar um erro 403 Forbidden estático.",
-                ],
-                correct: 0,
-                explanation: "UX padrão: envia para login, o utilizador loga-se, e volta para onde queria ir."
-            },
-            {
-                id: 59,
-                category: "T08 - Router",
-                question: "O que faz o hook `useParams()`?",
-                options: [
-                    "Lê os Route Parameters definidos na rota (ex: `/user/:userId` -> retorna `{ userId: '...' }`).",
-                    "Lê o corpo do pedido POST.",
-                    "Lê o histórico de navegação.",
-                    "Lê os Query Parameters (ex: `?id=1`).",
-                ],
-                correct: 0,
-                explanation: "Extrai as partes dinâmicas do URL definidas com `:` na rota."
-            },
-            {
-                id: 60,
-                category: "T07 - Forms",
-                question: "O que acontece se usares `value` num input mas não definires `onChange`?",
-                options: [
-                    "O input desaparece.",
-                    "O React torna o campo read-only (não consegues escrever) e lança um aviso na consola.",
-                    "O input fica editável mas não guarda o valor.",
-                    "O input funciona normalmente (Uncontrolled).",
-                ],
-                correct: 1,
-                explanation: "Sem onChange, não há maneira de atualizar o state que alimenta o value. O React força o value a ser sempre o mesmo."
-            },
-            {
-                id: 61,
-                category: "T04 - Components",
-                question: "Qual é a regra fundamental sobre o nome de Componentes React?",
-                options: [
-                    "Devem começar com letra minúscula.",
-                    "Devem começar com letra Maiúscula (PascalCase).",
-                    "Devem ter 'Component' no nome.",
-                    "Devem ser escritos em maiúsculas (UPPERCASE).",
-                ],
-                correct: 1,
-                explanation: "Se começar com minúscula, o React acha que é uma tag HTML nativa (como `&lt;div>`). Letra grande indica um componente React."
-            },
-            {
-                id: 62,
-                category: "T09 - API",
-                question: "O que é uma 'Race Condition' (Condição de Corrida) no contexto de data fetching em React?",
-                options: [
-                    "Quando dois componentes fazem fetch ao mesmo tempo.",
-                    "Quando fazes dois pedidos rápidos (A, depois B), e a resposta de A chega *depois* da resposta de B. Se não tratares, o estado fica com os dados de A (antigos) em vez de B (atuais).",
-                    "Quando a internet cai.",
-                    "Quando a API demora muito a responder.",
-                ],
-                correct: 1,
-                explanation: "É um bug comum em procuras 'live'. Para resolver, usa-se uma flag `ignore` ou `AbortController` para cancelar o efeito anterior."
-            },
-            {
-                id: 63,
-                category: "T06 - Lists",
-                question: "Ao renderizar uma lista de componentes ` &lt;Card />`, passas o `index` como `key`. Se removeres o primeiro item da lista, o que acontece?",
-                options: [
-                    "O React pensa que o *último* elemento foi removido, porque os índices deslocaram-se (o antigo 1 virou 0, etc.). Os componentes visuais podem manter o estado interno (como texto num input) do componente errado.",
-                    "O React atualiza tudo corretamente.",
-                    "O React re-renderiza a lista toda do zero sem reaproveitar nada.",
-                    "O React remove o primeiro item do DOM e mantém o estado dos outros.",
-                ],
-                correct: 0,
-                explanation: "Como as chaves (índices) mudaram de dono, o React associa o estado antigo da key '0' ao novo item que agora tem key '0'. Isto causa bugs visuais severos em componentes com estado."
-            },
-            {
-                id: 64,
-                category: "T04 - Ecosystem",
-                question: "Para que serve o Babel num projeto React?",
-                options: [
-                    "Para transpilar JavaScript moderno (ES6+) e JSX para JavaScript compatível com browsers mais antigos (ES5).",
-                    "Para fazer pedidos HTTP.",
-                    "Para minificar o CSS.",
-                    "Para gerir a base de dados.",
-                ],
-                correct: 0,
-                explanation: "Os browsers não entendem JSX nem (alguns) features novas de JS. O Babel traduz isso."
-            },
-            {
-                id: 65,
-                category: "T05 - Structure",
-                question: "Qual a diferença entre `.js` e `.jsx`?",
-                options: [
-                    "`.jsx` é compilado, `.js` não.",
-                    "Nenhuma técnica, mas `.jsx` ajuda os editores a fornecerem melhor autocompletar e syntax highlighting para JSX.",
-                    "`.js` é mais rápido.",
-                    "O React só funciona com `.jsx`.",
-                ],
-                correct: 1,
-                explanation: "No Vite, é obrigatório usar `.jsx` para ficheiros que contêm JSX (por defeito). No CRA, era opcional. Hoje em dia é boa prática usar `.jsx`."
-            },
-            {
-                id: 66,
-                category: "T09 - Patterns",
-                question: "Qual é a vantagem de usar Custom Hooks (ex: `useFetch`) para lógica de API?",
-                options: [
-                    "Tornar o código mais rápido.",
-                    "Nenhuma das anteriores.",
-                    "Abstrair a complexidade (loading, error, data state) do componente visual, permitindo reutilização da lógica em múltiplos componentes.",
-                    "Evitar usar o `useEffect`.",
-                ],
-                correct: 2,
-                explanation: "Separação de responsabilidades (Separation of Concerns). O componente foca-se na UI, o Hook foca-se na lógica de dados."
-            },
-            {
-                id: 67,
-                category: "T05 - Props",
-                question: "As Props em React são descritas como 'Read-Only' (Imutáveis). O que acontece tecnicamente se tentares fazer `props.name = 'NovoNome'` dentro de um componente filho?",
-                options: [
-                    "O valor muda localmente mas não afeta o componente pai.",
-                    "O React atualiza o valor e re-renderiza o componente.",
-                    "O JavaScript lança um erro (em Strict Mode ou se o objeto estiver congelado) ou a alteração é ignorada, pois viola o princípio do fluxo de dados unidirecional.",
-                    "O componente pai é notificado da mudança automaticamente.",
-                ],
-                correct: 2,
-                explanation: "Props devem ser tratadas como imutáveis. Tentar mudá-las diretamente é um anti-padrão grave e falha em runtime ou é ignorado."
-            },
-            {
-                id: 68,
-                category: "T06 - Logic",
-                question: "Qual a saída deste código se `count` for 0? `&lt;div>{count && 'Olá'}&lt;/div>`",
-                options: [
-                    "O número 0",
-                    "Erro",
-                    "A string 'Olá'",
-                    "Nada (vazio)",
-                ],
-                correct: 0,
-                explanation: "Em JS, `0 && 'algo'` retorna 0 (porque 0 é falsy, o operador && retorna o valor falsy). O React renderiza o número 0. Para evitar isto, usa-se `count > 0 && ...` ou ternários."
-            },
-            {
-                id: 69,
-                category: "T04 - Intro",
-                question: "O conceito de 'Inversão de Controlo' (IoC) é frequentemente usado para distinguir Frameworks de Bibliotecas. Qual das seguintes afirmações melhor descreve este conceito no contexto de React?",
-                options: [
-                    "O IoC refere-se apenas à injeção de dependências no backend e não se aplica ao frontend.",
-                    "A Framework chama o código do programador nos momentos apropriados (lifecycle), retirando o controlo do fluxo principal ao programador.",
-                    "O React inverte a ordem de carregamento do DOM para otimizar a performance.",
-                    "O programador chama as funções da biblioteca quando precisa, mantendo o controlo total do fluxo.",
-                ],
-                correct: 1,
-                explanation: "IoC significa que a framework (React) decide *quando* chamar os teus componentes (renderização), em vez de tu chamares o React sequencialmente."
-            },
-            {
-                id: 70,
-                category: "T07 - Forms",
-                question: "Num formulário controlado (Controlled Component), qual é o papel da função `handleChange`?",
-                options: [
-                    "Limpar o formulário.",
-                    "Validar os dados antes de enviar.",
-                    "Prevenir o comportamento nativo do form (submit).",
-                    "Atualizar o estado do componente a cada tecla pressionada, sincronizando o valor do input com o State do React.",
-                ],
-                correct: 3,
-                explanation: "Em Controlled Components, o State é a 'Single Source of Truth'. O handleChange garante que o que vês no input reflete o que está no State."
-            },
-            {
-                id: 71,
-                category: "T07 - Forms",
-                question: "Qual a vantagem de usar uma biblioteca como `React Hook Form` ou `Formik` em vez de state manual?",
-                options: [
-                    "Otimização de compilação do Babel.",
-                    "Permitem criar forms sem usar tags HTML.",
-                    "Gestão otimizada de estado, validação e performance (evita re-renders).",
-                    "Não trazem vantagem real.",
-                ],
-                correct: 2,
-                explanation: "Handling complexo de forms manualmente torna-se verboso e lento. Bibliotecas ajudam na performance (uncontrolled inputs com ref manipulation) e validação."
-            },
-            {
-                id: 72,
-                category: "T09 - Reducer",
-                question: "Quando deves usar `useReducer` em vez de `useState`?",
-                options: [
-                    "Apenas quando a aplicação usa Redux obrigatoriamente.",
-                    "Nunca, o useState é sempre superior.",
-                    "Sempre, para qualquer tipo de estado.",
-                    "Para lógica de estado complexa ou quando o próximo estado depende do anterior.",
-                ],
-                correct: 3,
-                explanation: "useReducer é preferível para lógica complexa ou transições de estado previsíveis."
-            },
-            {
-                id: 73,
-                category: "T08 - Router",
-                question: "Qual a prop usada em `&lt;NavLink>` para aplicar estilos quando o link está ativo?",
-                options: [
-                    "`activeStyle` (removido na v6)",
-                    "Todas as anteriores (dependendo da versão).",
-                    "`className={({ isActive }) => isActive ? 'classe-ativa' : ''}`",
-                    "`activeClassName='classe-ativa'` (removido na v6)",
-                ],
-                correct: 2,
-                explanation: "Na v6, o `className` aceita uma função que recebe o estado de ativação. As props antigas `activeClassName` foram removidas."
-            },
-            {
-                id: 74,
-                category: "T04 - NPM",
-                question: "O que faz a pasta `node_modules`?",
-                options: [
-                    "Guarda os ficheiros de build.",
-                    "Guarda o código fonte do teu projeto.",
-                    "Guarda todas as bibliotecas e dependências instaladas pelo npm/yarn.",
-                    "É uma pasta temporária que pode ser apagada a qualquer altura sem consequências.",
-                ],
-                correct: 2,
-                explanation: "É onde vivem as megabytes de dependências. Podes apagar (para limpar espaço), mas tens de fazer `npm install` antes de correr o projeto novamente."
-            },
-            {
-                id: 75,
-                category: "T04 - Intro",
-                question: "Porque é que o jQuery é considerado uma Biblioteca e não uma Framework?",
-                options: [
-                    "Porque é antigo e não usa Virtual DOM.",
-                    "Porque o jQuery não permite criar Single Page Applications (SPAs).",
-                    "Porque tu chamas os métodos do jQuery explicitamente para manipular o DOM, mantendo o controlo do fluxo da aplicação.",
-                    "Nenhuma das anteriores.",
-                ],
-                correct: 2,
-                explanation: "A distinção chave é quem controla o fluxo (IoC). No jQuery, o teu código manda; no React/Angular, a framework manda."
-            },
-            {
-                id: 76,
-                category: "T09 - Ref",
-                question: "Para que serve o hook `useRef` além de aceder ao DOM?",
-                options: [
-                    "Substituir completamente o `useState`.",
-                    "Criar animações CSS complexas.",
-                    "Forçar a re-renderização do componente.",
-                    "Guardar valores mutáveis sem causar re-render (ex: timers).",
-                ],
-                correct: 3,
-                explanation: "`useRef` é como uma variável de instância numa classe. Muda sem notificar o React."
-            },
-            {
-                id: 77,
-                category: "T06 - Logic",
-                question: "Qual é a principal vantagem de usar um Ternário (`cond ? A : B`) em vez de `&&` para renderização condicional em JSX?",
-                options: [
-                    "O ternário obriga a definir o caso `else`, evitando bugs com `0` ou `NaN`.",
-                    "O ternário é executado mais rapidamente.",
-                    "O operador `&&` é inválido em JSX.",
-                    "Nenhuma, são equivalentes.",
-                ],
-                correct: 0,
-                explanation: "O ternário obriga a definir o caso else (muitas vezes `null`), o que é mais seguro e explícito."
-            },
-            {
-                id: 78,
-                category: "T07 - Multiselect",
-                question: "Num `&lt;select multiple>`, como lês as opções selecionadas no `onChange`?",
-                options: [
-                    "`e.target.value` (dá apenas a primeira)",
-                    "`e.target.values`",
-                    "`e.target.array`",
-                    "`Array.from(e.target.selectedOptions, option => option.value)`",
-                ],
-                correct: 3,
-                explanation: "O DOM standard `selectedOptions` é uma HTMLCollection. Precisas de converter para array e extrair os valores."
-            },
-            {
-                id: 79,
-                category: "T07 - Forms",
-                question: "Numa `textarea` em React, como defines o seu contedo inicial?",
-                options: [
-                    "Tal como em HTML: `&lt;textarea>Texto inicial&lt;/textarea>`",
-                    "Usando a prop `content`.",
-                    "Usando `innerHTML`.",
-                    "Usando a prop `value` (se controlado) ou `defaultValue` (se uncontrolled), tal como num input de texto, pois o React normaliza a API.",
-                ],
-                correct: 3,
-                explanation: "O React altera o comportamento da textarea para ser consistente com inputs: usa `value` em vez de filhos."
-            },
-            {
-                id: 80,
-                category: "T09 - Deps",
-                question: "O plugin ESLint `react-hooks/exhaustive-deps` avisa quando:", options: ["Usas `var` em vez de `const`.",
-                    "O array de dependências está vazio.",
-                    "Usas variáveis dentro do `useEffect` que não estão declaradas no array de dependências (o que pode causar bugs de stale data).",
-                    "O teu código está lento.",
-                ],
-                correct: 2,
-                explanation: "É a regra de ouro para prevenir bugs em Hooks. Se usas, declaras."
-            },
-            {
-                id: 81,
-                category: "T06 - Lists",
-                question: "O que é 'Reconciliation' em React?",
-                options: [
-                    "A conexão com a API.",
-                    "O algoritmo que o React usa para diferenciar uma árvore de elementos da anterior e determinar as partes que precisam de ser atualizadas.",
-                    "O processo de pedir desculpa ao browser.",
-                    "O processo de compilação JSX.",
-                ],
-                correct: 1,
-                explanation: "É o core do React: comparar VDOMs e aplicar updates."
-            },
-            {
-                id: 82,
-                category: "T10 - Fullstack",
-                question: "Ao desenvolver localmente com Vite (frontend) e FastAPI (backend), porque é que frequentemente configuramos um 'Proxy' no `vite.config.js`?",
-                options: [
-                    "Acelerar o carregamento do site em 50%.",
-                    "Contornar CORS em dev, fazendo pedidos parecerem vir da mesma origem.",
-                    "Encriptar todos os dados enviados.",
-                    "Preparar a aplicação para deploy em produção.",
-                ],
-                correct: 1,
-                explanation: "O proxy de desenvolvimento reencaminha pedidos do servidor Vite para o backend. Para o browser, tudo vem de `localhost:5173`."
-            },
-            {
-                id: 83,
-                category: "T07 - Forms",
-                question: "O que é o `prop drilling` reverso (Child to Parent)?",
-                options: [
-                    "É passar props do filho para o pai.",
-                    "Não existe.",
-                    "É usar Contexto.",
-                    "É passar uma função de callback do Pai para o Filho, que o Filho invoca com dados.",
-                ],
-                correct: 3,
-                explanation: "O termo técnico é 'Inverse Data Flow' via callbacks."
-            },
-            {
-                id: 84,
-                category: "T08 - Router",
-                question: "O que acontece se tiveres duas rotas que correspondem ao mesmo URL (ex: `/users/new` e `/users/:id`)?",
-                options: [
-                    "Mostra ambas as rotas simultaneamente.",
-                    "Mostra a primeira rota definida no código.",
-                    "Lança um erro de conflito de rotas.",
-                    "Smart Matching: escolhe a rota mais específica (`/new` vence `:id`).",
-                ],
-                correct: 3,
-                explanation: "Na v5 a ordem importava. Na v6, o algoritmo de ranking escolhe sempre a rota mais específica."
-            },
-            {
-                id: 85,
-                category: "T09 - Hooks Rules",
-                question: "Qual das seguintes viola as Regras dos Hooks?",
-                options: [
-                    "`if (loading) { const [b, setB] = useState(0); }`",
-                    "`function useMyHook() { const [c, setC] = useState(0); }`",
-                    "`const [a, setA] = useState(0);` no topo do componente.",
-                    "Nenhuma das anteriores.",
-                ],
-                correct: 0,
-                explanation: "Hooks não podem ser chamados condicionalmente. A ordem de chamada deve ser sempre a mesma entre renders."
-            },
-            {
-                id: 86,
-                category: "T05 - JSX",
-                question: "Porque é que não podemos usar `if-else` ou loops `for` *diretamente* dentro de uma expressão JSX `{ ... }`?",
-                options: [
-                    "Porque JSX só aceita *expressões* (algo que retorna um valor), e `if` ou `for` são *instruções* (statements) em JavaScript que não retornam valor.",
-                    "Porque o React não suporta lógica complexa na UI.",
-                    "Porque causa conflitos com a sintaxe XML.",
-                    "Na verdade podemos, mas é má prática.",
-                ],
-                correct: 0,
-                explanation: "Dentro de `{}` só podes pôr expressões. `if (x) {}` não retorna nada. Tens de usar ternários `x ? y : z` ou `map()` que retornam valores."
-            },
-            {
-                id: 87,
-                category: "T05 - Events",
-                question: "Em React, porque é que passamos `onClick={handleClick}` e não `onClick={handleClick()}` (com parênteses)?",
-                options: [
-                    "Com parênteses, a função seria executada *imediatamente* durante a renderização (podendo causar loop infinito se tiver setState), em vez de esperar pelo clique.",
-                    "O React adiciona os parênteses automaticamente.",
-                    "Nenhuma das anteriores.",
-                    "É apenas uma preferência de estilo.",
-                ],
-                correct: 0,
-                explanation: "Queremos passar a *referência* da função para ser chamada depois. Se usarmos `()`, estamos a chamar a função logo ali e a passar o seu *resultado* (provavelmente undefined) para o onClick."
-            },
-            {
-                id: 88,
-                category: "T07 - Arrays",
-                question: "Qual a forma CORRETA de adicionar um objeto `novoItem` a um array de estado `items`?",
-                options: [
-                    "setItems(items + novoItem);",
-                    "setItems([...items, novoItem]);",
-                    "items.push(novoItem); setItems(items);",
-                    "setItems(items.push(novoItem));",
-                ],
-                correct: 1,
-                explanation: "`push` muta o array original (má prática) e retorna o novo comprimento (erro grave se passado ao setter). O operador spread `[...] ` cria uma nova cópia do array."
-            },
-            {
-                id: 89,
-                category: "T05 - Strict Mode",
-                question: "Porque é que o `console.log` aparece duas vezes na consola em desenvolvimento?",
-                options: [
-                    "É um bug do browser.",
-                    "É culpa do Vite.",
-                    "Tens o código duplicado.",
-                    "É causado pelo `React.StrictMode`, que renderiza os componentes duas vezes para detetar side-effects impuros.",
-                ],
-                correct: 3,
-                explanation: "O StrictMode faz um 'double invoke' intencional de funções de render e effects para garantir que não têm efeitos colaterais escondidos."
-            },
-            {
-                id: 90,
-                category: "T10 - Architecture",
-                question: "Numa aplicação React + API, onde deves guardar tokens de autenticação (JWT) para persistência segura?",
-                options: [
-                    "No `localStorage` (vulnerável a XSS).",
-                    "Em memória (vulnerável a refresh).",
-                    "Em cookies `HttpOnly` (protegidos contra acesso JS e XSS, mas requer proteção CSRF no backend).",
-                    "Todas têm pros e contras, mas `HttpOnly` cookies são geralmente considerados mais seguros.",
-                ],
-                correct: 3,
-                explanation: "LocalStorage é fácil mas qualquer script injetado pode ler o token. Cookies HttpOnly são invisíveis ao JS."
-            },
-            {
-                id: 91,
-                category: "T06 - Arrays",
-                question: "Como ordenarias uma lista de Strings no State do React sem mutar o array original?",
-                options: [
-                    "`const sorted = [...list].sort(); setList(sorted);`",
-                    "`const sorted = list.sort(); setList(sorted);`",
-                    "`setList(list.sort())`",
-                    "`setList(sort(list))`",
-                ],
-                correct: 0,
-                explanation: "O método `.sort()` em JS muta o array original (in-place). Deves criar uma cópia (`[...list]`) antes de ordenar para respeitar a imutabilidade."
-            },
-            {
-                id: 92,
-                category: "T06 - Keys",
-                question: "Se tiveres uma lista de itens que podem ser reordenados, qual é o critério mais importante para a propriedade `key`?",
-                options: [
-                    "Deve ser um número aleatório.",
-                    "Pode ser qualquer string.",
-                    "Deve ser um valor único e estável, idealmente um ID vindo da base de dados.",
-                    "Deve ser o índice do array.",
-                ],
-                correct: 2,
-                explanation: "A estabilidade e unicidade são cruciais. IDs de base de dados são perfeitos. Índices falham na reordenação."
-            },
-            {
-                id: 93,
-                category: "T09 - Callback",
-                question: "Quando deves usar `useCallback`?",
-                options: [
-                    "Preservar a referência da função para otimizar filhos `React.memo`.",
-                    "Apenas para funções `async`.",
-                    "Quando a função tem mais de 10 linhas.",
-                    "Sempre, para garantir máxima performance.",
-                ],
-                correct: 0,
-                explanation: "Se não usares useCallback, a função é recriada a cada render (nova referência). O filho React.memo vê nova prop e re-renderiza, anulando a otimização."
-            },
-            {
-                id: 94,
-                category: "T10 - Testing",
-                question: "O que testa tipicamente o `React Testing Library`?",
-                options: [
-                    "A performance.",
-                    "A implementação interna (estado, nomes de funções).",
-                    "Snapshots de código.",
-                    "O comportamento da aplicação da perspetiva do utilizador (o que aparece no ecrã, cliques, interações), ignorando detalhes de implementação.",
-                ],
-                correct: 3,
-                explanation: "'Testa como o utilizador usa'. Procura botões pelo texto, não pelo ID ou nome da classe."
-            },
-            {
-                id: 95,
-                category: "T06 - Logic",
-                question: "O que retorna a expressão `true && expression` em JSX?",
-                options: [
-                    "Retorna `false`.",
-                    "Retorna `true`.",
-                    "Retorna a expressão (renderiza o elemento).",
-                    "Retorna `undefined`.",
-                ],
-                correct: 2,
-                explanation: "É a base do conditional rendering."
-            },
-            {
-                id: 96,
-                category: "T10 - Performance",
-                question: "O que é 'Code Splitting' em React?",
-                options: [
-                    "Separar ficheiros CSS do JS.",
-                    "Dividir o bundle para carregar JS apenas quando necessário.",
-                    "Organizar o código em pastas pequenas.",
-                    "Minificar o código para poupar espaço.",
-                ],
-                correct: 1,
-                explanation: "Carregar 5MB de JS no início é lento. Code splitting permite carregar apenas o necessário para a Home Page, e carregar o resto depois."
-            },
-            {
-                id: 97,
-                category: "T09 - Utils",
-                question: "Porque é que o `JSON.stringify` é frequentemente usado nas dependências do `useEffect`?",
-                options: [
-                    "É má prática e nunca deve ser usado.",
-                    "Porque o useEffect só aceita strings.",
-                    "Para converter o objeto em string para enviar para a API.",
-                    "Para comparar objetos por valor (conteúdo) em vez de referência. Sem isso, um objeto `{id: 1}` recriado a cada render dispararia o efeito infinitamente.",
-                ],
-                correct: 3,
-                explanation: "Dependências em React usam comparação superficial (===). Objetos novos são sempre diferentes. Stringify permite comparação 'deep' barata (para objetos pequenos)."
-            },
-            {
-                id: 98,
-                category: "T06 - Logic",
-                question: "Qual a melhor prática para renderizar uma lista vazia?",
-                options: [
-                    "Renderizar undefined.",
-                    "Renderizar uma tabela vazia.",
-                    "Dar erro.",
-                    "Não renderizar nada (null) ou renderizar uma mensagem 'Sem resultados'.",
-                ],
-                correct: 3,
-                explanation: "UX: Feedback ao utilizador é importante."
-            },
-            {
-                id: 99,
-                category: "T09 - Cleanup",
-                question: "Se o teu componente subscreve a um evento do DOM (`window.addEventListener`) no `useEffect`, o que *deves* fazer na função de retorno?",
-                options: [
-                    "Fazer refresh à página.",
-                    "Remover o listener (`window.removeEventListener`) para evitar memory leaks e duplicação de eventos a cada re-render/mount.",
-                    "Fazer `window.listener = null`.",
-                    "Nada, o React limpa automaticamente.",
-                ],
-                correct: 1,
-                explanation: "Se não removeres, s listeners acumulam-se. Se montares/desmontares o componente 10 vezes, ficas com 10 listeners ativos."
-            },
-            {
-                id: 100,
-                category: "T08 - Router",
-                question: "Como defines uma rota 'Catch-All' (404 Not Found) no final das tuas rotas?",
-                options: [
-                    "` &lt;Route path='*' element={&lt;NotFound />} />`",
-                    "` &lt;Route path='default' element={&lt;NotFound />} />`",
-                    "O Router faz isso automaticamente.",
-                    "` &lt;Route path='404' element={&lt;NotFound />} />`",
-                ],
-                correct: 0,
-                explanation: "O caminho `*` corresponde a qualquer URL que não tenha correspondido a nenhuma rota anterior."
-            }
         ];
 
 
@@ -1844,18 +1837,18 @@
             }
 
             return `
-                            <div class="${cardClass}" id="question-${q.id}">
-                                <div class="question-header">
-                                    <span class="question-number">Questão ${q.id}</span>
-                                    <span class="question-category">${q.category}</span>
-                                </div>
-                                <div class="question-text">${q.question}</div>
-                                <div class="options">
-                                    ${q.options.map((opt, i) => createOption(q.id, opt, i, q.correct, answer)).join('')}
-                                </div>
-                                ${isAnswered ? createFeedback(isCorrect, q.options[q.correct], q.explanation) : ''}
-                            </div>
-                            `;
+                <div class="${cardClass}" id="question-${q.id}">
+                    <div class="question-header">
+                        <span class="question-number">Questão ${q.id}</span>
+                        <span class="question-category">${q.category}</span>
+                    </div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, i) => createOption(q.id, opt, i, q.correct, answer)).join('')}
+                    </div>
+                    ${isAnswered ? createFeedback(isCorrect, q.options[q.correct], q.explanation) : ''}
+                </div>
+            `;
         }
 
         function createOption(qId, text, index, correct, answer) {
@@ -1874,11 +1867,11 @@
             const onclick = isAnswered ? '' : `onclick="selectAnswer(${qId}, ${index})"`;
 
             return `
-                            <div class="${optClass}" ${onclick}>
-                                <span class="option-letter">${letters[index]}</span>
-                                <span class="option-text">${text}</span>
-                            </div>
-                            `;
+                <div class="${optClass}" ${onclick}>
+                    <span class="option-letter">${letters[index]}</span>
+                    <span class="option-text">${text}</span>
+                </div>
+            `;
         }
 
         function createFeedback(isCorrect, correctText, explanation) {
@@ -1887,16 +1880,15 @@
                 ? 'Correcto! Boa!'
                 : `Errado. A resposta correta é: ${correctText}`;
 
-            const explText = explanation ? `<div class="explanation">💡 <strong>Explicação:</strong>
-                                ${explanation}</div>` : '';
+            const explText = explanation ? `<div class="explanation">💡 <strong>Explicação:</strong> ${explanation}</div>` : '';
 
             return `
-                            <div class="feedback show ${isCorrect ? 'correct' : 'wrong'}">
-                                <span class="feedback-icon">${icon}</span>
-                                ${message}
-                                ${explText}
-                            </div>
-                            `;
+                <div class="feedback show ${isCorrect ? 'correct' : 'wrong'}">
+                    <span class="feedback-icon">${icon}</span>
+                    ${message}
+                    ${explText}
+                </div>
+            `;
         }
 
         function selectAnswer(qId, optionIndex) {
@@ -1916,8 +1908,7 @@
             document.getElementById('total-correct').textContent = correct;
             document.getElementById('total-wrong').textContent = wrong;
             document.getElementById('percentage').textContent = percentage + '%';
-            document.getElementById('progress-bar').style.width = (total / questions.length * 100) +
-                '%';
+            document.getElementById('progress-bar').style.width = (total / questions.length * 100) + '%';
         }
 
         function scrollToUnanswered() {
