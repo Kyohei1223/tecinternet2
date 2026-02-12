@@ -5,8 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Extra: Identidade e Igualdade em Python</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Prism.js for Syntax Highlighting (One Dark Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-one-dark.min.css" rel="stylesheet" />
     <style>
+        :root {
+            --bg-gradient-start: #0f172a;
+            --bg-gradient-end: #1e293b;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(148, 163, 184, 0.1);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-primary: #38bdf8;
+            /* Light Blue */
+            --accent-secondary: #818cf8;
+            /* Indigo */
+            --gradient-main: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            --correct-color: #10b981;
+            --wrong-color: #ef4444;
+            --code-bg: #282c34;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,9 +36,10 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #3232a0 0%, #16213e 50%, #06182d 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
-            color: #fff;
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
         .container {
@@ -29,180 +51,215 @@
         /* Header */
         .header {
             text-align: center;
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 2.5rem;
+            padding: 2.5rem;
+            background: var(--card-bg);
             border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.025em;
         }
 
         .header p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
         /* Stats Bar */
         .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .stat {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem 2rem;
-            border-radius: 15px;
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 16px;
             text-align: center;
-            min-width: 120px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
+            border: 1px solid var(--card-border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .stat.reset-btn {
             cursor: pointer;
-            background: rgba(239, 68, 68, 0.2);
-            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.2);
         }
 
         .stat.reset-btn:hover {
-            background: rgba(239, 68, 68, 0.4);
-            border-color: rgba(239, 68, 68, 0.6);
-            transform: scale(1.05);
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: 700;
-            color: #667eea;
+            color: var(--accent-primary);
+            margin-bottom: 0.25rem;
         }
 
         .stat-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .stat.correct .stat-value {
-            color: #156d50;
+            color: var(--correct-color);
         }
 
         .stat.wrong .stat-value {
-            color: #ef4444;
+            color: var(--wrong-color);
         }
 
-        /* Category Filter */
-        .category-filter {
+        /* Progress Bar */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            height: 8px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-main);
+            border-radius: 999px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Toggle */
+        .toggle-container {
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 2rem;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem;
         }
 
-        .category-btn {
+        .toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
             padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            user-select: none;
+            transition: color 0.2s;
         }
 
-        .category-btn:hover,
-        .category-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .toggle:hover {
+            color: var(--text-primary);
+        }
+
+        .toggle input {
+            accent-color: var(--accent-secondary);
+            height: 1.1em;
+            width: 1.1em;
         }
 
         /* Question Card */
         .question-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .question-card:hover {
-            border-color: rgba(102, 126, 234, 0.3);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
         }
 
         .question-card.answered {
-            opacity: 0.7;
+            opacity: 0.85;
+        }
+
+        .question-card.answered:hover {
+            opacity: 1;
         }
 
         .question-card.answered.correct-answer {
-            border-color: #10b981;
-            opacity: 1;
+            border-color: rgba(16, 185, 129, 0.4);
         }
 
         .question-card.answered.wrong-answer {
-            border-color: #ef4444;
-            opacity: 1;
+            border-color: rgba(239, 68, 68, 0.4);
         }
 
         .question-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .question-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .question-category {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             padding: 0.4rem 0.8rem;
             border-radius: 8px;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
         }
 
         .question-text {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
+            color: var(--text-primary);
         }
 
-        .question-text code {
-            background: rgba(102, 126, 234, 0.2);
-            padding: 0.2rem 0.5rem;
-            border-radius: 5px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.95rem;
+        /* Code Blocks - Inline and Block */
+        :not(pre)>code[class*="language-"],
+        pre[class*="language-"] {
+            background: var(--code-bg) !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Fira Code', monospace !important;
+            font-size: 0.9em !important;
+            text-shadow: none !important;
         }
 
-        .code-block {
-            background: #1e1e3f;
-            padding: 1rem;
-            border-radius: 10px;
-            margin: 1rem 0;
-            overflow-x: auto;
+        /* Inline code specifically */
+        :not(pre)>code {
+            padding: 0.2rem 0.4rem !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 4px;
+            font-size: 0.9em;
             font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #e2e8f0;
         }
 
         /* Options */
@@ -216,35 +273,35 @@
             display: flex;
             align-items: center;
             padding: 1rem 1.25rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
         .option:hover:not(.disabled) {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-
-        .option.disabled {
-            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .option.selected {
-            background: rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-primary);
         }
 
         .option.correct {
-            background: rgba(16, 185, 129, 0.2);
-            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--correct-color);
         }
 
         .option.wrong {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--wrong-color);
+        }
+
+        .option.disabled {
+            cursor: default;
         }
 
         .option-letter {
@@ -257,36 +314,54 @@
             justify-content: center;
             font-weight: 600;
             margin-right: 1rem;
-            flex-shrink: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .option.selected .option-letter {
+            background: var(--accent-primary);
+            color: #0f172a;
         }
 
         .option.correct .option-letter {
-            background: #10b981;
+            background: var(--correct-color);
+            color: #fff;
         }
 
         .option.wrong .option-letter {
-            background: #ef4444;
+            background: var(--wrong-color);
+            color: #fff;
         }
 
         .option-text {
             flex: 1;
-            line-height: 1.5;
+            font-size: 1rem;
         }
 
         .option-text code {
-            background: rgba(102, 126, 234, 0.2);
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
+            /* Small tweak for code inside options */
+            background: rgba(0, 0, 0, 0.2) !important;
         }
 
         /* Feedback */
         .feedback {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 10px;
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 12px;
             display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .feedback.show {
@@ -294,27 +369,44 @@
         }
 
         .feedback.correct {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         .feedback.wrong {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback.correct .feedback-header {
+            color: var(--correct-color);
+        }
+
+        .feedback.wrong .feedback-header {
+            color: var(--wrong-color);
         }
 
         .feedback-icon {
-            font-size: 1.2rem;
             margin-right: 0.5rem;
         }
 
         .explanation {
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .explanation strong {
+            color: var(--accent-secondary);
         }
 
         /* Buttons */
@@ -322,8 +414,7 @@
             display: flex;
             gap: 1rem;
             justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+            margin-top: 3rem;
         }
 
         .btn {
@@ -333,43 +424,29 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-main);
             color: white;
+            box-shadow: 0 4px 6px rgba(56, 189, 248, 0.25);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 12px rgba(56, 189, 248, 0.3);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Progress Bar */
-        .progress-container {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            height: 8px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            transition: width 0.5s ease;
+            transform: translateY(-2px);
         }
 
         /* Responsive */
@@ -379,58 +456,16 @@
             }
 
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 1.75rem;
             }
 
-            .stats-bar {
-                gap: 1rem;
-            }
-
-            .stat {
-                padding: 0.75rem 1.25rem;
-                min-width: 100px;
+            .stat-value {
+                font-size: 1.5rem;
             }
 
             .question-card {
                 padding: 1.5rem;
             }
-
-            .question-text {
-                font-size: 1rem;
-            }
-        }
-
-        /* Hide answered toggle */
-        .toggle-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .toggle input {
-            accent-color: #667eea;
-        }
-
-        /* USER CUSTOM THEME */
-        body {
-            background: linear-gradient(135deg, #280b47 0%, #16213e 50%, #031d36 100%);
-            background-color: #10241d;
-            color: #fff;
-        }
-
-        .question-card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -438,8 +473,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Quiz Extra: Identidade e Igualdade em Python</h1>
-            <p>Preparação para Exame • 20 Questões Focadas</p>
+            <h1>Quiz Extra: Identidade e Igualdade</h1>
+            <p>30 Questões sobre Python Internals (v3.10+)</p>
         </div>
 
         <div class="stats-bar">
@@ -460,7 +495,7 @@
                 <div class="stat-label">Acerto</div>
             </div>
             <div class="stat reset-btn" onclick="resetQuiz()" title="Reiniciar Quiz">
-                <div class="stat-value">🔄</div>
+                <div class="stat-value">↻</div>
                 <div class="stat-label">Reiniciar</div>
             </div>
         </div>
@@ -469,24 +504,24 @@
             <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
         </div>
 
-        <div class="category-filter" id="category-filter">
-            <button class="category-btn active" data-category="all">Todas</button>
-        </div>
-
         <div class="toggle-container">
             <label class="toggle">
                 <input type="checkbox" id="hide-answered">
-                Esconder respondidas
+                <span>Esconder respondidas</span>
             </label>
         </div>
 
         <div id="questions-container"></div>
 
         <div class="btn-group">
-            <button class="btn btn-secondary" onclick="resetQuiz()">🔄 Reiniciar Quiz</button>
-            <button class="btn btn-primary" onclick="scrollToUnanswered()">⬇️ Próxima Questão</button>
+            <button class="btn btn-secondary" onclick="resetQuiz()">↻ Reiniciar Tudo</button>
+            <button class="btn btn-primary" onclick="scrollToUnanswered()">↓ Próxima Questão</button>
         </div>
     </div>
+
+    <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 
     <script>
         // ========================================================================
@@ -496,7 +531,7 @@
             {
                 id: 1,
                 category: "Listas",
-                question: "Considere o seguinte código:<br><pre><code>x = [1, 2, 3]\ny = [1, 2, 3]\nz = x\nprint(x == y, x is y, x is z)</code></pre><br>Qual é o output?",
+                question: "Considere o seguinte código:<br><pre><code class=\"language-python\">x = [1, 2, 3]\ny = [1, 2, 3]\nz = x\nprint(x == y, x is y, x is z)</code></pre><br>Qual é o output?",
                 options: [
                     "True True True",
                     "True False True",
@@ -509,7 +544,7 @@
             {
                 id: 2,
                 category: "Classes e Sets",
-                question: "Considere:<br><pre><code>class Item:\n    def __init__(self, nome): self.nome = nome\n    def __eq__(self, outro): return self.nome == outro.nome\n    def __hash__(self): return hash(self.nome)\n\ni1 = Item('A'); i2 = Item('A')\ns = {i1, i2}\nprint(len(s), i1 == i2, i1 is i2)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">class Item:\n    def __init__(self, nome): self.nome = nome\n    def __eq__(self, outro): return self.nome == outro.nome\n    def __hash__(self): return hash(self.nome)\n\ni1 = Item('A'); i2 = Item('A')\ns = {i1, i2}\nprint(len(s), i1 == i2, i1 is i2)</code></pre>",
                 options: [
                     "2 True False",
                     "1 True True",
@@ -522,7 +557,7 @@
             {
                 id: 3,
                 category: "Classes e Sets",
-                question: "Considere:<br><pre><code>class Simples:\n    def __init__(self, val): self.val = val\n\ns1 = Simples(10); s2 = Simples(10)\nconjunto = {s1, s2}\nprint(len(conjunto), s1 == s2)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">class Simples:\n    def __init__(self, val): self.val = val\n\ns1 = Simples(10); s2 = Simples(10)\nconjunto = {s1, s2}\nprint(len(conjunto), s1 == s2)</code></pre>",
                 options: [
                     "1 True",
                     "2 False",
@@ -535,7 +570,7 @@
             {
                 id: 4,
                 category: "Imutabilidade",
-                question: "Considere:<br><pre><code>t1 = (1, 2); t2 = (1, 2)\nl1 = [1, 2]; l2 = [1, 2]\nprint(t1 == t2, l1 == l2)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">t1 = (1, 2); t2 = (1, 2)\nl1 = [1, 2]; l2 = [1, 2]\nprint(t1 == t2, l1 == l2)</code></pre>",
                 options: [
                     "True True",
                     "False False",
@@ -548,7 +583,7 @@
             {
                 id: 5,
                 category: "Identity",
-                question: "Considere:<br><pre><code>a = 'python'\nc = 'py' + 'thon'\nprint(a is c)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">a = 'python'\nc = 'py' + 'thon'\nprint(a is c)</code></pre>",
                 options: [
                     "False",
                     "True",
@@ -561,7 +596,7 @@
             {
                 id: 6,
                 category: "Identity",
-                question: "Considere:<br><pre><code>a = None\nb = None\nprint(a == b, a is b)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">a = None\nb = None\nprint(a == b, a is b)</code></pre>",
                 options: [
                     "True True",
                     "True False",
@@ -574,7 +609,7 @@
             {
                 id: 7,
                 category: "Listas",
-                question: "Considere:<br><pre><code>lista = [1, 2, 3]\ncopia = lista[:]\nprint(lista == copia, lista is copia)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">lista = [1, 2, 3]\ncopia = lista[:]\nprint(lista == copia, lista is copia)</code></pre>",
                 options: [
                     "True True",
                     "True False",
@@ -587,23 +622,23 @@
             {
                 id: 8,
                 category: "Imutabilidade",
-                question: "Considere:<br><pre><code>t = (1, [2, 3])\nt[1].append(4)\nprint(t)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">t = (1, [2, 3])\nt[1].append(4)\nprint(t)</code></pre>",
                 options: [
-                    "Erro TypeError: 'tuple' object does not support item assignment",
-                    "O tuplo permanece (1, [2, 3]) pois é imutável",
+                    "Erro TypeError",
+                    "O tuplo permanece (1, [2, 3])",
                     "O tuplo passa a ser (1, [2, 3, 4])",
                     "Erro de sintaxe",
                 ],
                 correct: 2,
-                explanation: "O tuplo é imutável, mas a lista lá dentro continua mutável. <code>append</code> altera a lista in-place. O tuplo continua a apontar para a *mesma* lista."
+                explanation: "O tuplo é imutável em referências, mas a lista lá dentro continua mutável. <code>append</code> altera a lista in-place. O ID da lista não muda."
             },
             {
                 id: 9,
                 category: "Dictionaries",
-                question: "Considere:<br><pre><code>k1 = (1, 2); k2 = [1, 2]\nd = {}\nd[k1] = 'ok'\nd[k2] = 'erro'</code></pre><br>O que acontece?",
+                question: "Considere:<br><pre><code class=\"language-python\">k1 = (1, 2); k2 = [1, 2]\nd = {}\nd[k1] = 'ok'\nd[k2] = 'erro'</code></pre><br>O que acontece?",
                 options: [
                     "O código corre sem erros.",
-                    "Erro ao adicionar k1 (tuplo).",
+                    "Erro ao adicionar k1.",
                     "Erro TypeError (listas não são hashable).",
                     "Erro de sintaxe.",
                 ],
@@ -621,12 +656,12 @@
                     "O Python gera um hash aleatório.",
                 ],
                 correct: 2,
-                explanation: "Ao definir <code>__eq__</code>, o Python define <code>__hash__</code> para <code>None</code> automaticamente, tornando a classe não hashable."
+                explanation: "Ao definir <code>__eq__</code>, o Python define <code>__hash__</code> para <code>None</code> automaticamente, tornando a classe não hashable explicitamente."
             },
             {
                 id: 11,
                 category: "Identity",
-                question: "Considere:<br><pre><code>x = True\ny = (10 > 5)\nprint(x is y)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">x = True\ny = (10 > 5)\nprint(x is y)</code></pre>",
                 options: [
                     "True",
                     "False",
@@ -634,7 +669,7 @@
                     "Depende da implementação",
                 ],
                 correct: 0,
-                explanation: "<code>True</code> e <code>False</code> são singletons em Python 3."
+                explanation: "<code>True</code> e <code>False</code> são singletons em Python. Qualquer expressão booleana verdadeira retorna a mesma instância <code>True</code>."
             },
             {
                 id: 12,
@@ -644,10 +679,10 @@
                     "O valor hash do objeto.",
                     "O endereço de memória do objeto.",
                     "Um timestamp.",
-                    "Um número aleatório.",
+                    "Um UID aleatório.",
                 ],
                 correct: 1,
-                explanation: "No CPython, <code>id()</code> retorna o endereço de memória."
+                explanation: "No CPython, <code>id()</code> retorna o endereço de memória inteiro."
             },
             {
                 id: 13,
@@ -655,12 +690,12 @@
                 question: "Duas instâncias diferentes da mesma classe genérica têm o mesmo <code>__dict__</code>?",
                 options: [
                     "Sim, é o mesmo objeto.",
-                    "Não, têm conteúdos iguais mas objetos diferentes (is False).",
-                    "Não, têm conteúdos diferentes.",
-                    "Erro de acesso.",
+                    "Não, têm conteúdos iguais mas objetos diferentes.",
+                    "Não, têm conteúdos sempre diferentes.",
+                    "As classes não usam __dict__.",
                 ],
                 correct: 1,
-                explanation: "Cada objeto tem o seu próprio dicionário de atributos. Se tiverem atributos iguais, o conteúdo é igual (<code>==</code>), mas são dicts diferentes (<code>is</code>)."
+                explanation: "Cada objeto tem o seu próprio dicionário de atributos. Se tiverem atributos iguais, o conteúdo dos dicts é igual, mas são objetos <code>dict</code> distintos."
             },
             {
                 id: 14,
@@ -678,7 +713,7 @@
             {
                 id: 15,
                 category: "Listas",
-                question: "Considere:<br><pre><code>a = [1, 2]\nb = a\nb = [3, 4]\nprint(a)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">a = [1, 2]\nb = a\nb = [3, 4]\nprint(a)</code></pre>",
                 options: [
                     "[3, 4]",
                     "[1, 2]",
@@ -686,7 +721,7 @@
                     "Erro",
                 ],
                 correct: 1,
-                explanation: "<code>b = [3, 4]</code> faz <code>b</code> apontar para uma *nova* lista. A referência original em <code>a</code> não é afetada."
+                explanation: "<code>b = [3, 4]</code> é uma reatribuição da variável <code>b</code> para um novo objeto. A referência original em <code>a</code> não é afetada."
             },
             {
                 id: 16,
@@ -699,7 +734,7 @@
                     "<code>id(x) != id(y) + 1</code>",
                 ],
                 correct: 2,
-                explanation: "<code>is not</code> é o operador inverso de <code>is</code>."
+                explanation: "<code>is not</code> verfica se os objectos não são o mesmo. É o operador inverso de <code>is</code>."
             },
             {
                 id: 17,
@@ -712,7 +747,7 @@
                     "Apenas se forem internadas.",
                 ],
                 correct: 0,
-                explanation: "Propriedade fundamental: objetos iguais devem ter o mesmo hash."
+                explanation: "Sim. Propriedade fundamental de hash maps: objetos iguais TÊM de ter o mesmo hash. (O inverso não é garantido devido a colisões)."
             },
             {
                 id: 18,
@@ -725,12 +760,12 @@
                     "NotImplemented",
                 ],
                 correct: 3,
-                explanation: "Retornar <code>NotImplemented</code> permite ao Python tentar a comparação reversa no outro objeto."
+                explanation: "Retornar <code>NotImplemented</code> sinaliza ao Python para tentar a comparação reversa (e.g. <code>outro.__eq__(self)</code>) ou usar identidade como fallback."
             },
             {
                 id: 19,
                 category: "Classes e Sets",
-                question: "Considere:<br><pre><code>class MeuInt(int): pass\na = MeuInt(5); b = MeuInt(5)\nprint(a == b, a is b)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">class MeuInt(int): pass\na = MeuInt(5); b = MeuInt(5)\nprint(a == b, a is b)</code></pre>",
                 options: [
                     "True True",
                     "True False",
@@ -743,7 +778,7 @@
             {
                 id: 20,
                 category: "Identity",
-                question: "Considere:<br><pre><code>def func(): pass\nf1 = func\nf2 = func\nprint(f1 is f2)</code></pre>",
+                question: "Considere:<br><pre><code class=\"language-python\">def func(): pass\nf1 = func\nf2 = func\nprint(f1 is f2)</code></pre>",
                 options: [
                     "True",
                     "False",
@@ -751,55 +786,165 @@
                     "Erro",
                 ],
                 correct: 0,
-                explanation: "Funções são objetos. f1 e f2 referenciam a mesma definição de função."
+                explanation: "Funções são objetos. <code>f1</code> e <code>f2</code> são apenas nomes diferentes para a mesmíssima função na memória."
+            },
+            // NOVAS QUESTÕES (21-30)
+            {
+                id: 21,
+                category: "Identity",
+                question: "Small Integer Caching. Considere:<br><pre><code class=\"language-python\">a = 256\nb = 256\nprint(a is b)</code></pre>",
+                options: [
+                    "True",
+                    "False",
+                    "Depende da memória RAM",
+                    "Erro",
+                ],
+                correct: 0,
+                explanation: "O CPython faz 'cache' (interning) de inteiros pequenos (geralmente entre -5 e 256). Portanto, referenciam o mesmo objeto."
+            },
+            {
+                id: 22,
+                category: "Identity",
+                question: "Inteiros maiores. Considere (num REPL padrão):<br><pre><code class=\"language-python\">a = 1000\nb = 1000\nprint(a is b)</code></pre>",
+                options: [
+                    "True",
+                    "False",
+                    "Erro",
+                    "None",
+                ],
+                correct: 1,
+                explanation: "Para inteiros fora do range de cache (-5 a 256), o Python geralmente cria novos objetos, a não ser que haja otimização do compilador (no mesmo bloco). Em instruções separadas no REPL, é False."
+            },
+            {
+                id: 23,
+                category: "Float",
+                question: "NaN (Not a Number). Considere:<br><pre><code class=\"language-python\">x = float('nan')\nprint(x == x, x is x)</code></pre>",
+                options: [
+                    "True True",
+                    "False False",
+                    "False True",
+                    "True False",
+                ],
+                correct: 2,
+                explanation: "Por definição IEEE 754, NaN != NaN (daí <code>x == x</code> ser False). Mas <code>x is x</code> é True porque é o mesmo objeto em memória."
+            },
+            {
+                id: 24,
+                category: "Identity",
+                question: "Bool vs Int. Considere:<br><pre><code class=\"language-python\">print(True == 1, True is 1)</code></pre>",
+                options: [
+                    "True True",
+                    "True False",
+                    "False True",
+                    "False False",
+                ],
+                correct: 1,
+                explanation: "<code>True</code> vale 1, logo <code>==</code> é True. Mas <code>True</code> é tipo <code>bool</code> e <code>1</code> é tipo <code>int</code>, logo são objetos diferentes (is False)."
+            },
+            {
+                id: 25,
+                category: "Coercion",
+                question: "Numéricos mistos.<br><pre><code class=\"language-python\">print(1.0 == 1, 1.0 is 1)</code></pre>",
+                options: [
+                    "True True",
+                    "True False",
+                    "False True",
+                    "False False",
+                ],
+                correct: 1,
+                explanation: "Valores são numericamente iguais, mas tipos diferentes (float vs int) implicam objetos diferentes (is False)."
+            },
+            {
+                id: 26,
+                category: "Interning",
+                question: "Tuplos vazios.<br><pre><code class=\"language-python\">t1 = ()\nt2 = tuple()\nprint(t1 is t2)</code></pre>",
+                options: [
+                    "True",
+                    "False",
+                    "Erro",
+                    "Depende",
+                ],
+                correct: 0,
+                explanation: "O Python faz interning do tuplo vazio. Só existe um <code>()</code> na memória."
+            },
+            {
+                id: 27,
+                category: "Classes",
+                question: "Instanciação de object.<br><pre><code class=\"language-python\">o1 = object()\no2 = object()\nprint(o1 == o2, o1 is o2)</code></pre>",
+                options: [
+                    "True True",
+                    "True False",
+                    "False False",
+                    "False True",
+                ],
+                correct: 2,
+                explanation: "<code>object()</code> cria sempre uma nova instância base. O <code>==</code> default para object é identidade (is), logo ambos dão False."
+            },
+            {
+                id: 28,
+                category: "Identity",
+                question: "Operadores encadeados.<br><pre><code class=\"language-python\">print(1 < 2 == 2)</code></pre>",
+                options: [
+                    "True",
+                    "False",
+                    "Erro",
+                    "1",
+                ],
+                correct: 0,
+                explanation: "Encadeamento: equivale a <code>(1 < 2) and (2 == 2)</code>. True and True -> True."
+            },
+            {
+                id: 29,
+                category: "Mutability",
+                question: "Função id(). O valor de <code>id(x)</code> pode mudar durante a vida do objeto x?",
+                options: [
+                    "Sim, se o objeto for mutável.",
+                    "Sim, se o garbage collector correr.",
+                    "Não, é constante durante o tempo de vida do objeto.",
+                    "Sim, em Python 3.10+.",
+                ],
+                correct: 2,
+                explanation: "O id é a 'identidade' (endereço memória no CPython) e é garantidamente constante enquanto o objeto existir."
+            },
+            {
+                id: 30,
+                category: "Identity",
+                question: "Interning manual. Como forçar interning de uma string dinâmica?",
+                options: [
+                    "str.cache(s)",
+                    "sys.intern(s)",
+                    "s.intern()",
+                    "Não é possível",
+                ],
+                correct: 1,
+                explanation: "<code>sys.intern()</code> permite forçar que uma string criada dinamicamente seja guardada na tabela interna de strings únicas."
             }
         ];
 
-
         // ========================================================================
-        // ESTADO DA APLICAÇÃO
+        // ESTADO APLICAÇÃO
         // ========================================================================
         let answers = {};
-        let categories = [...new Set(questions.map(q => q.category))];
-        let currentFilter = 'all';
 
         // ========================================================================
         // FUNÇÕES
         // ========================================================================
-
-        function initCategoryFilter() {
-            const container = document.getElementById('category-filter');
-            categories.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'category-btn';
-                btn.dataset.category = cat;
-                btn.textContent = cat;
-                btn.onclick = () => filterByCategory(cat);
-                container.appendChild(btn);
-            });
-        }
-
-        function filterByCategory(category) {
-            currentFilter = category;
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.category === category);
-            });
-            renderQuestions();
-        }
 
         function renderQuestions() {
             const container = document.getElementById('questions-container');
             const hideAnswered = document.getElementById('hide-answered').checked;
 
             let filtered = questions;
-            if (currentFilter !== 'all') {
-                filtered = questions.filter(q => q.category === currentFilter);
-            }
             if (hideAnswered) {
                 filtered = filtered.filter(q => answers[q.id] === undefined);
             }
 
-            container.innerHTML = filtered.map(q => createQuestionCard(q)).join('');
+            container.innerHTML = filtered.length
+                ? filtered.map(q => createQuestionCard(q)).join('')
+                : '<p style="text-align:center; padding: 2rem; color: var(--text-secondary)">Todas as questões apresentadas foram respondidas.</p>';
+
+            // Re-run Prism highlighting on new elements
+            Prism.highlightAll();
         }
 
         function createQuestionCard(q) {
@@ -839,8 +984,13 @@
                 else if (isSelected) optClass += ' wrong';
             }
 
-            const letters = ['A', 'B', 'C', 'D', 'E'];
+            // Converter código nas opções para usar code tags do Prism lightweight se necessário
+            // Mas as opções já vêm com HTML <code> básico. 
+            // Vamos assumir que o CSS trata do básico ou o user quer highlight real lá também?
+            // Para simplicidade, nas opções mantemos simples ou usamos Prism inline se houver <code>
+
             const onclick = isAnswered ? '' : `onclick="selectAnswer(${qId}, ${index})"`;
+            const letters = ['A', 'B', 'C', 'D', 'E'];
 
             return `
                 <div class="${optClass}" ${onclick}>
@@ -851,18 +1001,18 @@
         }
 
         function createFeedback(isCorrect, correctText, explanation) {
-            const icon = isCorrect ? '✅' : '❌';
-            const message = isCorrect
-                ? 'Correcto! Boa!'
-                : `Errado. A resposta correta é: ${correctText}`;
-
-            const explText = explanation ? `<div class="explanation">💡 <strong>Explicação:</strong> ${explanation}</div>` : '';
+            const icon = isCorrect ? 'Correcto!' : 'Errado!';
 
             return `
                 <div class="feedback show ${isCorrect ? 'correct' : 'wrong'}">
-                    <span class="feedback-icon">${icon}</span>
-                    ${message}
-                    ${explText}
+                    <div class="feedback-header">
+                        <span class="feedback-icon">${isCorrect ? '✅' : '❌'}</span>
+                        ${icon}
+                    </div>
+                    <div style="margin-bottom:0.5rem">
+                        ${isCorrect ? 'Muito bem!' : 'A resposta correta é: <strong>' + correctText + '</strong>'}
+                    </div>
+                    ${explanation ? `<div class="explanation">💡 <strong>Explicação:</strong> ${explanation}</div>` : ''}
                 </div>
             `;
         }
@@ -870,7 +1020,7 @@
         function selectAnswer(qId, optionIndex) {
             answers[qId] = optionIndex;
             saveProgress();
-            renderQuestions();
+            renderQuestions(); // Re-render to show feedback and lock options
             updateStats();
         }
 
@@ -900,9 +1050,9 @@
         }
 
         function resetQuiz() {
-            if (confirm('Tens a certeza que queres reiniciar o quiz? Todo o progresso será perdido.')) {
+            if (confirm('Tens a certeza que queres reiniciar o quiz?')) {
                 answers = {};
-                localStorage.removeItem('quizProgressExtraIdentity');
+                localStorage.removeItem('quizProgressExtraIdentityV2');
                 renderQuestions();
                 updateStats();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -910,11 +1060,11 @@
         }
 
         function saveProgress() {
-            localStorage.setItem('quizProgressExtraIdentity', JSON.stringify(answers));
+            localStorage.setItem('quizProgressExtraIdentityV2', JSON.stringify(answers));
         }
 
         function loadProgress() {
-            const saved = localStorage.getItem('quizProgressExtraIdentity');
+            const saved = localStorage.getItem('quizProgressExtraIdentityV2');
             if (saved) {
                 answers = JSON.parse(saved);
             }
@@ -925,10 +1075,8 @@
         // ========================================================================
         document.addEventListener('DOMContentLoaded', () => {
             loadProgress();
-            initCategoryFilter();
             renderQuestions();
             updateStats();
-
             document.getElementById('hide-answered').addEventListener('change', renderQuestions);
         });
     </script>
