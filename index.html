@@ -474,7 +474,7 @@
     <div class="container">
         <div class="header">
             <h1>Quiz Extra: Identidade e Igualdade</h1>
-            <p>30 Questões sobre Python Internals (v3.10+)</p>
+            <p>32 Questões sobre Python Internals (v3.10+)</p>
         </div>
 
         <div class="stats-bar">
@@ -918,6 +918,32 @@
                 ],
                 correct: 1,
                 explanation: "<code>sys.intern()</code> permite forçar que uma string criada dinamicamente seja guardada na tabela interna de strings únicas."
+            },
+            {
+                id: 31,
+                category: "Common Pitfalls",
+                question: "Argumentos por defeito mutáveis. Considere:<br><pre><code class=\"language-python\">def f(l=[]):\n    l.append(1)\n    return l\nprint(f() is f())</code></pre>",
+                options: [
+                    "True",
+                    "False",
+                    "Erro",
+                    "Depende",
+                ],
+                correct: 0,
+                explanation: "O argumento por defeito <code>l=[]</code> é criado <strong>apenas uma vez</strong> na definição da função. Todas as chamadas usam o <strong>mesmo</strong> objeto lista."
+            },
+            {
+                id: 32,
+                category: "Types",
+                question: "Identity de Tipos. Considere:<br><pre><code class=\"language-python\">class A: pass\nclass B(A): pass\nb = B()\nprint(type(b) is A, isinstance(b, A))</code></pre>",
+                options: [
+                    "True True",
+                    "True False",
+                    "False True",
+                    "False False",
+                ],
+                correct: 2,
+                explanation: "<code>type(b)</code> é <code>B</code>, e <code>B</code> não é o mesmo objeto que <code>A</code> (<code>is</code> False). Mas <code>b</code> é instância de <code>A</code> (<code>isinstance</code> True)."
             }
         ];
 
