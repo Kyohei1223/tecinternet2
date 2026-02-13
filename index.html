@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Extra: Identidade e Igualdade em Python</title>
+    <title>Quiz: Sistemas Multimédia I (SMUL1)</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
         rel="stylesheet">
@@ -473,8 +473,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Quiz Extra: Identidade e Igualdade</h1>
-            <p>32 Questões sobre Python Internals (v3.10+)</p>
+            <h1>Preparação Exame SMUL1</h1>
+            <p>100 Questões de Preparação (DDD, Scrum, Requisitos, Flask)</p>
         </div>
 
         <div class="stats-bar">
@@ -528,426 +528,1208 @@
         // DADOS DAS QUESTÕES
         // ========================================================================
         const questions = [
-            {
-                id: 1,
-                category: "Listas",
-                question: "Considere o seguinte código:<br><pre><code class=\"language-python\">x = [1, 2, 3]\ny = [1, 2, 3]\nz = x\nprint(x == y, x is y, x is z)</code></pre><br>Qual é o output?",
-                options: [
-                    "True True True",
-                    "True False True",
-                    "False True True",
-                    "True True False",
-                ],
-                correct: 1,
-                explanation: "Listas iguais em conteúdo (<code>== True</code>), mas objetos distintos na memória (<code>is False</code>). Atribuição <code>z=x</code> copia a referência (<code>is True</code>)."
-            },
-            {
-                id: 2,
-                category: "Classes e Sets",
-                question: "Considere:<br><pre><code class=\"language-python\">class Item:\n    def __init__(self, nome): self.nome = nome\n    def __eq__(self, outro): return self.nome == outro.nome\n    def __hash__(self): return hash(self.nome)\n\ni1 = Item('A'); i2 = Item('A')\ns = {i1, i2}\nprint(len(s), i1 == i2, i1 is i2)</code></pre>",
-                options: [
-                    "2 True False",
-                    "1 True True",
-                    "1 True False",
-                    "2 False False",
-                ],
-                correct: 2,
-                explanation: "<code>__eq__</code> torna-os iguais. <code>set</code> usa hash+eq para remover duplicados (tamanho 1). Instâncias distintas na memória (<code>is False</code>)."
-            },
-            {
-                id: 3,
-                category: "Classes e Sets",
-                question: "Considere:<br><pre><code class=\"language-python\">class Simples:\n    def __init__(self, val): self.val = val\n\ns1 = Simples(10); s2 = Simples(10)\nconjunto = {s1, s2}\nprint(len(conjunto), s1 == s2)</code></pre>",
-                options: [
-                    "1 True",
-                    "2 False",
-                    "1 False",
-                    "2 True",
-                ],
-                correct: 1,
-                explanation: "Sem <code>__eq__</code>, a igualdade padrão é a identidade. Objetos diferentes -> <code>== False</code> -> mantidos ambos no set."
-            },
-            {
-                id: 4,
-                category: "Imutabilidade",
-                question: "Considere:<br><pre><code class=\"language-python\">t1 = (1, 2); t2 = (1, 2)\nl1 = [1, 2]; l2 = [1, 2]\nprint(t1 == t2, l1 == l2)</code></pre>",
-                options: [
-                    "True True",
-                    "False False",
-                    "True False",
-                    "False True",
-                ],
-                correct: 0,
-                explanation: "Tanto tuplos como listas comparam o seu conteúdo com <code>==</code>."
-            },
-            {
-                id: 5,
-                category: "Identity",
-                question: "Considere:<br><pre><code class=\"language-python\">a = 'python'\nc = 'py' + 'thon'\nprint(a is c)</code></pre>",
-                options: [
-                    "False",
-                    "True",
-                    "Error",
-                    "None",
-                ],
-                correct: 1,
-                explanation: "Strings literais curtas são internadas (mesmo id). 'py'+'thon' é otimizado pelo compilador para 'python'."
-            },
-            {
-                id: 6,
-                category: "Identity",
-                question: "Considere:<br><pre><code class=\"language-python\">a = None\nb = None\nprint(a == b, a is b)</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False True",
-                    "False False",
-                ],
-                correct: 0,
-                explanation: "<code>None</code> é um Singleton. Existe apenas uma instância de <code>NoneType</code> no programa."
-            },
-            {
-                id: 7,
-                category: "Listas",
-                question: "Considere:<br><pre><code class=\"language-python\">lista = [1, 2, 3]\ncopia = lista[:]\nprint(lista == copia, lista is copia)</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False True",
-                    "False False",
-                ],
-                correct: 1,
-                explanation: "Slicing <code>[:]</code> cria uma cópia rasa (novo objeto). Conteúdo igual, identidade diferente."
-            },
-            {
-                id: 8,
-                category: "Imutabilidade",
-                question: "Considere:<br><pre><code class=\"language-python\">t = (1, [2, 3])\nt[1].append(4)\nprint(t)</code></pre>",
-                options: [
-                    "Erro TypeError",
-                    "O tuplo permanece (1, [2, 3])",
-                    "O tuplo passa a ser (1, [2, 3, 4])",
-                    "Erro de sintaxe",
-                ],
-                correct: 2,
-                explanation: "O tuplo é imutável em referências, mas a lista lá dentro continua mutável. <code>append</code> altera a lista in-place. O ID da lista não muda."
-            },
-            {
-                id: 9,
-                category: "Dictionaries",
-                question: "Considere:<br><pre><code class=\"language-python\">k1 = (1, 2); k2 = [1, 2]\nd = {}\nd[k1] = 'ok'\nd[k2] = 'erro'</code></pre><br>O que acontece?",
-                options: [
-                    "O código corre sem erros.",
-                    "Erro ao adicionar k1.",
-                    "Erro TypeError (listas não são hashable).",
-                    "Erro de sintaxe.",
-                ],
-                correct: 2,
-                explanation: "Chaves de dicionários têm de ser hashable. Tuplos (com conteúdo imutável) são hashable. Listas são mutáveis e não hashable."
-            },
-            {
-                id: 10,
-                category: "Classes e Sets",
-                question: "Se uma classe define <code>__eq__</code> mas não define <code>__hash__</code>, o que acontece ao tentar usar instâncias num set?",
-                options: [
-                    "Funciona e o set tem tamanho 1.",
-                    "Funciona e o set tem tamanho 2.",
-                    "Lança um TypeError: unhashable type.",
-                    "O Python gera um hash aleatório.",
-                ],
-                correct: 2,
-                explanation: "Ao definir <code>__eq__</code>, o Python define <code>__hash__</code> para <code>None</code> automaticamente, tornando a classe não hashable explicitamente."
-            },
-            {
-                id: 11,
-                category: "Identity",
-                question: "Considere:<br><pre><code class=\"language-python\">x = True\ny = (10 > 5)\nprint(x is y)</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "TypeError",
-                    "Depende da implementação",
-                ],
-                correct: 0,
-                explanation: "<code>True</code> e <code>False</code> são singletons em Python. Qualquer expressão booleana verdadeira retorna a mesma instância <code>True</code>."
-            },
-            {
-                id: 12,
-                category: "Identity",
-                question: "O que representa o valor retornado por <code>id(obj)</code> no CPython?",
-                options: [
-                    "O valor hash do objeto.",
-                    "O endereço de memória do objeto.",
-                    "Um timestamp.",
-                    "Um UID aleatório.",
-                ],
-                correct: 1,
-                explanation: "No CPython, <code>id()</code> retorna o endereço de memória inteiro."
-            },
-            {
-                id: 13,
-                category: "Identity",
-                question: "Duas instâncias diferentes da mesma classe genérica têm o mesmo <code>__dict__</code>?",
-                options: [
-                    "Sim, é o mesmo objeto.",
-                    "Não, têm conteúdos iguais mas objetos diferentes.",
-                    "Não, têm conteúdos sempre diferentes.",
-                    "As classes não usam __dict__.",
-                ],
-                correct: 1,
-                explanation: "Cada objeto tem o seu próprio dicionário de atributos. Se tiverem atributos iguais, o conteúdo dos dicts é igual, mas são objetos <code>dict</code> distintos."
-            },
-            {
-                id: 14,
-                category: "Classes e Sets",
-                question: "É possível adicionar uma lista a um set? Ex: <code>s = {[1, 2]}</code>",
-                options: [
-                    "Sim.",
-                    "Não, lança TypeError (unhashable).",
-                    "Sim, mas a lista fica imutável.",
-                    "Não, lança SyntaxError.",
-                ],
-                correct: 1,
-                explanation: "Sets só podem conter elementos hashable. Listas são mutáveis, logo não hashable."
-            },
-            {
-                id: 15,
-                category: "Listas",
-                question: "Considere:<br><pre><code class=\"language-python\">a = [1, 2]\nb = a\nb = [3, 4]\nprint(a)</code></pre>",
-                options: [
-                    "[3, 4]",
-                    "[1, 2]",
-                    "[1, 2, 3, 4]",
-                    "Erro",
-                ],
-                correct: 1,
-                explanation: "<code>b = [3, 4]</code> é uma reatribuição da variável <code>b</code> para um novo objeto. A referência original em <code>a</code> não é afetada."
-            },
-            {
-                id: 16,
-                category: "Identity",
-                question: "A expressão <code>x is not y</code> é equivalente a:",
-                options: [
-                    "<code>x != y</code>",
-                    "<code>not (x == y)</code>",
-                    "<code>not (x is y)</code>",
-                    "<code>id(x) != id(y) + 1</code>",
-                ],
-                correct: 2,
-                explanation: "<code>is not</code> verfica se os objectos não são o mesmo. É o operador inverso de <code>is</code>."
-            },
-            {
-                id: 17,
-                category: "Classes e Sets",
-                question: "Para strings s1 e s2, se <code>s1 == s2</code>, então obrigatoriamente <code>hash(s1) == hash(s2)</code>?",
-                options: [
-                    "Sim.",
-                    "Não.",
-                    "Depende do sistema operativo.",
-                    "Apenas se forem internadas.",
-                ],
-                correct: 0,
-                explanation: "Sim. Propriedade fundamental de hash maps: objetos iguais TÊM de ter o mesmo hash. (O inverso não é garantido devido a colisões)."
-            },
-            {
-                id: 18,
-                category: "Classes e Sets",
-                question: "O que deve retornar <code>__eq__</code> se não souber comparar com o tipo do outro objeto?",
-                options: [
-                    "False",
-                    "None",
-                    "TypeError",
-                    "NotImplemented",
-                ],
-                correct: 3,
-                explanation: "Retornar <code>NotImplemented</code> sinaliza ao Python para tentar a comparação reversa (e.g. <code>outro.__eq__(self)</code>) ou usar identidade como fallback."
-            },
-            {
-                id: 19,
-                category: "Classes e Sets",
-                question: "Considere:<br><pre><code class=\"language-python\">class MeuInt(int): pass\na = MeuInt(5); b = MeuInt(5)\nprint(a == b, a is b)</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False True",
-                    "False False",
-                ],
-                correct: 1,
-                explanation: "Herdam a igualdade de <code>int</code> (<code>5 == 5</code> True), mas são novas instâncias na memória."
-            },
-            {
-                id: 20,
-                category: "Identity",
-                question: "Considere:<br><pre><code class=\"language-python\">def func(): pass\nf1 = func\nf2 = func\nprint(f1 is f2)</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "None",
-                    "Erro",
-                ],
-                correct: 0,
-                explanation: "Funções são objetos. <code>f1</code> e <code>f2</code> são apenas nomes diferentes para a mesmíssima função na memória."
-            },
-            // NOVAS QUESTÕES (21-30)
-            {
-                id: 21,
-                category: "Identity",
-                question: "Small Integer Caching. Considere:<br><pre><code class=\"language-python\">a = 256\nb = 256\nprint(a is b)</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "Depende da memória RAM",
-                    "Erro",
-                ],
-                correct: 0,
-                explanation: "O CPython faz 'cache' (interning) de inteiros pequenos (geralmente entre -5 e 256). Portanto, referenciam o mesmo objeto."
-            },
-            {
-                id: 22,
-                category: "Identity",
-                question: "Inteiros maiores. Considere (num REPL padrão):<br><pre><code class=\"language-python\">a = 1000\nb = 1000\nprint(a is b)</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "Erro",
-                    "None",
-                ],
-                correct: 1,
-                explanation: "Para inteiros fora do range de cache (-5 a 256), o Python geralmente cria novos objetos, a não ser que haja otimização do compilador (no mesmo bloco). Em instruções separadas no REPL, é False."
-            },
-            {
-                id: 23,
-                category: "Float",
-                question: "NaN (Not a Number). Considere:<br><pre><code class=\"language-python\">x = float('nan')\nprint(x == x, x is x)</code></pre>",
-                options: [
-                    "True True",
-                    "False False",
-                    "False True",
-                    "True False",
-                ],
-                correct: 2,
-                explanation: "Por definição IEEE 754, NaN != NaN (daí <code>x == x</code> ser False). Mas <code>x is x</code> é True porque é o mesmo objeto em memória."
-            },
-            {
-                id: 24,
-                category: "Identity",
-                question: "Bool vs Int. Considere:<br><pre><code class=\"language-python\">print(True == 1, True is 1)</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False True",
-                    "False False",
-                ],
-                correct: 1,
-                explanation: "<code>True</code> vale 1, logo <code>==</code> é True. Mas <code>True</code> é tipo <code>bool</code> e <code>1</code> é tipo <code>int</code>, logo são objetos diferentes (is False)."
-            },
-            {
-                id: 25,
-                category: "Coercion",
-                question: "Numéricos mistos.<br><pre><code class=\"language-python\">print(1.0 == 1, 1.0 is 1)</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False True",
-                    "False False",
-                ],
-                correct: 1,
-                explanation: "Valores são numericamente iguais, mas tipos diferentes (float vs int) implicam objetos diferentes (is False)."
-            },
-            {
-                id: 26,
-                category: "Interning",
-                question: "Tuplos vazios.<br><pre><code class=\"language-python\">t1 = ()\nt2 = tuple()\nprint(t1 is t2)</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "Erro",
-                    "Depende",
-                ],
-                correct: 0,
-                explanation: "O Python faz interning do tuplo vazio. Só existe um <code>()</code> na memória."
-            },
-            {
-                id: 27,
-                category: "Classes",
-                question: "Instanciação de object.<br><pre><code class=\"language-python\">o1 = object()\no2 = object()\nprint(o1 == o2, o1 is o2)</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False False",
-                    "False True",
-                ],
-                correct: 2,
-                explanation: "<code>object()</code> cria sempre uma nova instância base. O <code>==</code> default para object é identidade (is), logo ambos dão False."
-            },
-            {
-                id: 28,
-                category: "Identity",
-                question: "Operadores encadeados.<br><pre><code class=\"language-python\">print(1 < 2 == 2)</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "Erro",
-                    "1",
-                ],
-                correct: 0,
-                explanation: "Encadeamento: equivale a <code>(1 < 2) and (2 == 2)</code>. True and True -> True."
-            },
-            {
-                id: 29,
-                category: "Mutability",
-                question: "Função id(). O valor de <code>id(x)</code> pode mudar durante a vida do objeto x?",
-                options: [
-                    "Sim, se o objeto for mutável.",
-                    "Sim, se o garbage collector correr.",
-                    "Não, é constante durante o tempo de vida do objeto.",
-                    "Sim, em Python 3.10+.",
-                ],
-                correct: 2,
-                explanation: "O id é a 'identidade' (endereço memória no CPython) e é garantidamente constante enquanto o objeto existir."
-            },
-            {
-                id: 30,
-                category: "Identity",
-                question: "Interning manual. Como forçar interning de uma string dinâmica?",
-                options: [
-                    "str.cache(s)",
-                    "sys.intern(s)",
-                    "s.intern()",
-                    "Não é possível",
-                ],
-                correct: 1,
-                explanation: "<code>sys.intern()</code> permite forçar que uma string criada dinamicamente seja guardada na tabela interna de strings únicas."
-            },
-            {
-                id: 31,
-                category: "Common Pitfalls",
-                question: "Argumentos por defeito mutáveis. Considere:<br><pre><code class=\"language-python\">def f(l=[]):\n    l.append(1)\n    return l\nprint(f() is f())</code></pre>",
-                options: [
-                    "True",
-                    "False",
-                    "Erro",
-                    "Depende",
-                ],
-                correct: 0,
-                explanation: "O argumento por defeito <code>l=[]</code> é criado <strong>apenas uma vez</strong> na definição da função. Todas as chamadas usam o <strong>mesmo</strong> objeto lista."
-            },
-            {
-                id: 32,
-                category: "Types",
-                question: "Identity de Tipos. Considere:<br><pre><code class=\"language-python\">class A: pass\nclass B(A): pass\nb = B()\nprint(type(b) is A, isinstance(b, A))</code></pre>",
-                options: [
-                    "True True",
-                    "True False",
-                    "False True",
-                    "False False",
-                ],
-                correct: 2,
-                explanation: "<code>type(b)</code> é <code>B</code>, e <code>B</code> não é o mesmo objeto que <code>A</code> (<code>is</code> False). Mas <code>b</code> é instância de <code>A</code> (<code>isinstance</code> True)."
-            }
-        ];
+    {
+        "category": "DDD",
+        "question": "O que significa DDD?",
+        "options": [
+            "Domain-Driven Design",
+            "Data-Driven Development",
+            "Design-Driven Data",
+            "Domain-Data Definition"
+        ],
+        "correct": 0,
+        "explanation": "DDD significa Domain-Driven Design, uma abordagem de desenvolvimento focada no núcleo do negócio."
+    },
+    {
+        "category": "DDD",
+        "question": "Qual é o principal objetivo do DDD?",
+        "options": [
+            "Alinhar o código com a realidade do negócio",
+            "Criar bases de dados mais rápidas",
+            "Usar microserviços obrigatoriamente",
+            "Reduzir o custo de servidores"
+        ],
+        "correct": 0,
+        "explanation": "O DDD foca-se na complexidade do domínio e em garantir que o software resolve problemas reais do negócio."
+    },
+    {
+        "category": "DDD",
+        "question": "O que caracteriza uma Entidade (Entity) em DDD?",
+        "options": [
+            "Tem identidade única e contínua",
+            "É definida apenas pelos seus atributos",
+            "É imutável",
+            "Não pode ter métodos"
+        ],
+        "correct": 0,
+        "explanation": "Entidades são definidas pela sua identidade (ID), que persiste mesmo que os seus atributos mudem."
+    },
+    {
+        "category": "DDD",
+        "question": "O que caracteriza um Objeto de Valor (Value Object)?",
+        "options": [
+            "É definido pelos seus atributos e não tem identidade",
+            "Tem um ID único na base de dados",
+            "Pode ser alterado livremente",
+            "É a raiz do agregado"
+        ],
+        "correct": 0,
+        "explanation": "Value Objects não têm identidade própria; são caracterizados apenas pelos seus valores (ex: uma cor, um valor monetário)."
+    },
+    {
+        "category": "DDD",
+        "question": "Qual destas opções descreve melhor um Agregado (Aggregate)?",
+        "options": [
+            "Um conjunto de objetos tratados como uma unidade de consistência",
+            "Uma tabela na base de dados",
+            "Uma coleção de serviços",
+            "Um módulo do Python"
+        ],
+        "correct": 0,
+        "explanation": "Um Agregado é um cluster de objetos de domínio que podem ser tratados como uma única unidade. Qualquer alteração deve manter a consistência de todo o agregado."
+    },
+    {
+        "category": "DDD",
+        "question": "Quem é a Aggregate Root?",
+        "options": [
+            "A única entidade do agregado que pode ser referenciada externamente",
+            "A tabela principal da base de dados",
+            "O utilizador administrador",
+            "O primeiro objeto criado no sistema"
+        ],
+        "correct": 0,
+        "explanation": "A Root é a porta de entrada do Agregado. Objetos de fora só podem referenciar a Root, nunca os objetos internos."
+    },
+    {
+        "category": "DDD",
+        "question": "Como deve ser feita a referência entre Agregados diferentes?",
+        "options": [
+            "Através do ID da Root",
+            "Através de apontadores de memória",
+            "Incluindo o objeto todo",
+            "Não deve haver referências"
+        ],
+        "correct": 0,
+        "explanation": "Para evitar acoplamento e problemas de performance, agregados devem referenciar outros agregados apenas pelo seu ID."
+    },
+    {
+        "category": "DDD",
+        "question": "Exemplo: Uma 'Morada' num sistema de entregas geralmente é modelada como:",
+        "options": [
+            "Value Object",
+            "Entity",
+            "Aggregate Root",
+            "Service"
+        ],
+        "correct": 0,
+        "explanation": "Uma morada é definida pelos seus valores (Rua, Código Postal). Se mudas a rua, é uma nova morada, logo é um Value Object."
+    },
+    {
+        "category": "DDD",
+        "question": "Exemplo: Um 'Cliente' num sistema de vendas é geralmente:",
+        "options": [
+            "Entity (e provavelmente Aggregate Root)",
+            "Value Object",
+            "Service",
+            "Repository"
+        ],
+        "correct": 0,
+        "explanation": "Um cliente tem identidade e ciclo de vida próprio, sendo normalmente uma Entidade e Raiz do seu próprio agregado."
+    },
+    {
+        "category": "DDD",
+        "question": "O que é a 'Linguagem Ubíqua' (Ubiquitous Language)?",
+        "options": [
+            "Linguagem comum entre developers e especialistas de domínio",
+            "A linguagem de programação usada (ex: Python)",
+            "O inglês, obrigatoriamente",
+            "SQL"
+        ],
+        "correct": 0,
+        "explanation": "É a linguagem partilhada e rigorosa usada por toda a equipa (técnica e de negócio) para descrever o modelo."
+    },
+    {
+        "category": "DDD",
+        "question": "Se um Objeto de Valor (Value Object) precisar de ser alterado, o que se deve fazer?",
+        "options": [
+            "Criar uma nova instância com os novos valores",
+            "Alterar os atributos da instância existente",
+            "Apagar o agregado",
+            "Converter em Entidade"
+        ],
+        "correct": 0,
+        "explanation": "Value Objects devem ser imutáveis. Para 'alterar', substitui-se o objeto antigo por um novo."
+    },
+    {
+        "category": "DDD",
+        "question": "O que acontece aos objetos dentro de um Agregado se a Root for apagada?",
+        "options": [
+            "Devem ser apagados também (Cascading Delete)",
+            "Ficam órfãos",
+            "São movidos para outro agregado",
+            "Nada"
+        ],
+        "correct": 0,
+        "explanation": "O Agregado é uma unidade de consistência e ciclo de vida. Sem a Root, os objetos internos não fazem sentido e devem ser removidos."
+    },
+    {
+        "category": "DDD",
+        "question": "Qual destas é uma regra de ouro dos Agregados?",
+        "options": [
+            "Uma transação deve alterar apenas um agregado de cada vez",
+            "Agregados devem ser o maior possível",
+            "Agregados podem referenciar objetos internos de outros agregados",
+            "Roots não têm ID"
+        ],
+        "correct": 0,
+        "explanation": "Idealmente, uma transação altera um só agregado para garantir escalabilidade e consistência simples."
+    },
+    {
+        "category": "DDD",
+        "question": "Onde deve ficar a lógica de validação de um Agregado?",
+        "options": [
+            "Dentro do próprio Agregado (na Root ou Entidades)",
+            "No Controller",
+            "No Frontend",
+            "Na Base de Dados"
+        ],
+        "correct": 0,
+        "explanation": "O modelo de domínio deve ser 'Rico' e conter as suas próprias regras de negócio e validações invariantes."
+    },
+    {
+        "category": "DDD",
+        "question": "O que é um Repositório (Repository) no DDD?",
+        "options": [
+            "Camada que abstrai a persistência (Base de Dados)",
+            "Onde guardamos o código (GitHub)",
+            "Um tipo de Entidade",
+            "Um serviço de email"
+        ],
+        "correct": 0,
+        "explanation": "Os repositórios servem para recuperar e guardar Agregados, escondendo os detalhes técnicos da base de dados."
+    },
+    {
+        "category": "DDD",
+        "question": "Um Repositório deve ser criado para:",
+        "options": [
+            "Apenas Aggregate Roots",
+            "Todas as Entidades",
+            "Todos os Value Objects",
+            "Tabelas auxiliares"
+        ],
+        "correct": 0,
+        "explanation": "Apenas as Aggregate Roots têm repositórios globais. Objetos internos são acedidos via Root."
+    },
+    {
+        "category": "DDD",
+        "question": "O que é um 'Bounded Context'?",
+        "options": [
+            "Uma fronteira lógica onde um modelo de domínio específico é válido",
+            "Uma variável limitada",
+            "Um limite de memória",
+            "Uma restrição da base de dados"
+        ],
+        "correct": 0,
+        "explanation": "Bounded Context define os limites onde um determinado modelo e Linguagem Ubíqua se aplicam (ex: Contexto de Vendas vs Contexto de Suporte)."
+    },
+    {
+        "category": "DDD",
+        "question": "No contexto de uma Loja Online, 'Produto' no catálogo e 'Produto' no inventário são:",
+        "options": [
+            "Possivelmente modelos diferentes em Bounded Contexts diferentes",
+            "Exatamente a mesma classe",
+            "Value Objects",
+            "Sempre a mesma entidade"
+        ],
+        "correct": 0,
+        "explanation": "Em contextos diferentes (Vendas vs Logística), o conceito de 'Produto' pode ter atributos e comportamentos muito diferentes."
+    },
+    {
+        "category": "DDD",
+        "question": "Se dois objetos têm atributos iguais mas devem ser distinguidos, são:",
+        "options": [
+            "Entidades",
+            "Value Objects",
+            "Clones",
+            "Singletons"
+        ],
+        "correct": 0,
+        "explanation": "Se a distinção é necessária apesar dos atributos iguais, é necessária uma identidade -> Entidade."
+    },
+    {
+        "category": "DDD",
+        "question": "Um 'Email' (string de endereço) é tipicamente um:",
+        "options": [
+            "Value Object",
+            "Entity",
+            "Service",
+            "Module"
+        ],
+        "correct": 0,
+        "explanation": "O endereço de email em si é um valor. Se duas pessoas têm o email 'a@b.com', é o mesmo endereço value object."
+    },
+    {
+        "category": "DDD",
+        "question": "Serviços de Domínio (Domain Services) usam-se quando:",
+        "options": [
+            "Uma operação não pertence naturalmente a uma Entidade ou Value Object",
+            "Queremos aceder à base de dados",
+            "Precisamos de uma API REST",
+            "Sempre que há lógica"
+        ],
+        "correct": 0,
+        "explanation": "Domain Services encapsulam lógica de negócio que envolve múltiplas entidades ou não cabe bem numa só."
+    },
+    {
+        "category": "DDD",
+        "question": "A imutabilidade dos Value Objects facilita:",
+        "options": [
+            "A partilha segura e a ausência de efeitos colaterais",
+            "A escrita na base de dados",
+            "A criação de IDs",
+            "O routing do Flask"
+        ],
+        "correct": 0,
+        "explanation": "Sendo imutáveis, podem ser passados e partilhados sem medo que alguém os altere inesperadamente."
+    },
+    {
+        "category": "DDD",
+        "question": "Um identificador (ID) deve ser:",
+        "options": [
+            "Único dentro do seu tipo/sistema",
+            "Sempre um número inteiro sequencial",
+            "Aleatório sempre",
+            "Opcional"
+        ],
+        "correct": 0,
+        "explanation": "A unicidade é a característica essencial da identidade."
+    },
+    {
+        "category": "DDD",
+        "question": "O DDD defende o foco em:",
+        "options": [
+            "Domínio do problema e Lógica de Negócio",
+            "Interface do Utilizador",
+            "Infraestrutura Tecnológica",
+            "Performance de Baixo Nível"
+        ],
+        "correct": 0,
+        "explanation": "O 'Coração' do software é o negócio."
+    },
+    {
+        "category": "DDD",
+        "question": "Qual a relação entre DDD e Bases de Dados?",
+        "options": [
+            "O modelo de domínio não deve ser ditado pela base de dados",
+            "A base de dados dita o modelo",
+            "DDD obriga a usar NoSQL",
+            "DDD não usa bases de dados"
+        ],
+        "correct": 0,
+        "explanation": "Persistence Ignorance: O domínio deve ser desenhado para resolver o problema de negócio, a persistência é um detalhe de implementação."
+    },
+    {
+        "category": "Scrum",
+        "question": "O SCRUM é uma metodologia:",
+        "options": [
+            "Ágil",
+            "Waterfall",
+            "Cascata",
+            "Rígida"
+        ],
+        "correct": 0,
+        "explanation": "Scrum é a framework ágil mais popular."
+    },
+    {
+        "category": "Scrum",
+        "question": "Qual NÃO é um papel (Role) no Scrum?",
+        "options": [
+            "Project Manager",
+            "Product Owner",
+            "Scrum Master",
+            "Development Team"
+        ],
+        "correct": 0,
+        "explanation": "No Scrum 'puro', não existe a figura do Project Manager tradicional. As responsabilidades são divididas."
+    },
+    {
+        "category": "Scrum",
+        "question": "Quem é responsável por gerir o Product Backlog?",
+        "options": [
+            "Product Owner",
+            "Scrum Master",
+            "Team",
+            "Cliente"
+        ],
+        "correct": 0,
+        "explanation": "O PO é o dono do produto e prioriza o trabalho."
+    },
+    {
+        "category": "Scrum",
+        "question": "Quem é responsável por decidir COMO fazer o trabalho?",
+        "options": [
+            "Development Team",
+            "Product Owner",
+            "Scrum Master",
+            "CEO"
+        ],
+        "correct": 0,
+        "explanation": "A equipa é auto-organizada e decide os aspetos técnicos."
+    },
+    {
+        "category": "Scrum",
+        "question": "Qual é a duração típica de um Sprint?",
+        "options": [
+            "1 a 4 semanas",
+            "3 a 6 meses",
+            "1 dia",
+            "Variável conforme o trabalho"
+        ],
+        "correct": 0,
+        "explanation": "Sprints são time-boxed (duração fixa), tipicamente 2 semanas, max 4."
+    },
+    {
+        "category": "Scrum",
+        "question": "O que acontece na Sprint Planning?",
+        "options": [
+            "A equipa define o que vai fazer no Sprint",
+            "A equipa mostra o trabalho feito",
+            "A equipa discute problemas pessoais",
+            "O PO distribui tarefas"
+        ],
+        "correct": 0,
+        "explanation": "Planeamento colaborativo do trabalho do Sprint."
+    },
+    {
+        "category": "Scrum",
+        "question": "Qual o objetivo da Daily Scrum?",
+        "options": [
+            "Sincronizar a equipa e planear as próximas 24h",
+            "Resolver problemas técnicos complexos nas 15 min",
+            "O PO dar ordens",
+            "Fazer relatórios de progresso para a gestão"
+        ],
+        "correct": 0,
+        "explanation": "Sincronização rápida. Problemas complexos discutem-se depois."
+    },
+    {
+        "category": "Scrum",
+        "question": "Quando ocorre a Sprint Review?",
+        "options": [
+            "No final do Sprint",
+            "No início do Sprint",
+            "A meio do Sprint",
+            "Todos os dias"
+        ],
+        "correct": 0,
+        "explanation": "Para inspecionar o incremento e adaptar o Product Backlog."
+    },
+    {
+        "category": "Scrum",
+        "question": "Qual a diferença entre Review e Retrospective?",
+        "options": [
+            "Review foca no Produto, Retrospective foca no Processo",
+            "Review é interna, Retrospective é com o cliente",
+            "São a mesma coisa",
+            "Retrospective é opcional"
+        ],
+        "correct": 0,
+        "explanation": "A Review é sobre 'O que fizemos'. A Retrospective é sobre 'Como trabalhámos'."
+    },
+    {
+        "category": "Scrum",
+        "question": "O que é um Incremento?",
+        "options": [
+            "A soma de todos os itens do Backlog completados no Sprint + anteriores",
+            "O aumento de salário",
+            "A lista de requisitos",
+            "O plano de testes"
+        ],
+        "correct": 0,
+        "explanation": "É o resultado utilizável e 'Done' do Sprint."
+    },
+    {
+        "category": "Scrum",
+        "question": "O que é o Definition of Done (DoD)?",
+        "options": [
+            "Uma lista de critérios para considerar um item completo",
+            "A data de entrega",
+            "O documento de requisitos",
+            "A aprovação do chefe"
+        ],
+        "correct": 0,
+        "explanation": "Garante qualidade e transparência sobre o estado do trabalho."
+    },
+    {
+        "category": "Scrum",
+        "question": "O Scrum Master é:",
+        "options": [
+            "Um líder servidor (Servant-Leader)",
+            "O chefe da equipa",
+            "O secretário do projeto",
+            "O responsável pelos commits"
+        ],
+        "correct": 0,
+        "explanation": "Ajuda a equipa e a organização a usar o Scrum, removendo impedimentos."
+    },
+    {
+        "category": "Scrum",
+        "question": "Se o Sprint não acabar e sobrarem tarefas, o que acontece?",
+        "options": [
+            "O Sprint termina na data marcada e o que não foi feito volta ao Backlog",
+            "O Sprint é prolongado",
+            "A equipa trabalha no fim de semana",
+            "O projeto é cancelado"
+        ],
+        "correct": 0,
+        "explanation": "Sprints são time-boxed. Nunca se estendem. Aprende-se com isso para planear menos no próximo."
+    },
+    {
+        "category": "Scrum",
+        "question": "O Waterfall é ideal quando:",
+        "options": [
+            "Os requisitos são claros e fixos desde o início",
+            "O cliente não sabe o que quer",
+            "O mercado muda rápido",
+            "A equipa é pequena"
+        ],
+        "correct": 0,
+        "explanation": "Cascata funciona bem para projetos previsíveis e lineares."
+    },
+    {
+        "category": "Scrum",
+        "question": "O Manifesto Ágil valoriza mais 'Software a funcionar' do que:",
+        "options": [
+            "Documentação abrangente",
+            "Interação com indivíduos",
+            "Colaboração com o cliente",
+            "Mudança"
+        ],
+        "correct": 0,
+        "explanation": "Embora valorize a documentação, o software funcional é a medida primária de progresso."
+    },
+    {
+        "category": "Scrum",
+        "question": "O que é o Sprint Backlog?",
+        "options": [
+            "Itens selecionados do Product Backlog para o Sprint + plano de entrega",
+            "Todo o trabalho do projeto",
+            "O histórico de bugs",
+            "As notas da reunião"
+        ],
+        "correct": 0,
+        "explanation": "É o plano da equipa para o Sprint atual."
+    },
+    {
+        "category": "Scrum",
+        "question": "Quem pode cancelar um Sprint?",
+        "options": [
+            "Apenas o Product Owner",
+            "O Scrum Master",
+            "A Equipa",
+            "O Cliente"
+        ],
+        "correct": 0,
+        "explanation": "O PO tem a autoridade para cancelar se o objetivo do Sprint se tornar obsoleto."
+    },
+    {
+        "category": "Scrum",
+        "question": "O que é um 'Burn-down Chart'?",
+        "options": [
+            "Gráfico que mostra trabalho restante vs tempo",
+            "Gráfico de custos",
+            "Gráfico de bugs",
+            "Layout do escritório"
+        ],
+        "correct": 0,
+        "explanation": "Ferramenta visual para acompanhar o progresso do Sprint ou Projeto."
+    },
+    {
+        "category": "Scrum",
+        "question": "A equipa de desenvolvimento deve ser:",
+        "options": [
+            "Multifuncional (Cross-functional)",
+            "Especializada apenas numa coisa",
+            "Grande (>15 pessoas)",
+            "Gerida pelo Scrum Master"
+        ],
+        "correct": 0,
+        "explanation": "Deve ter todas as competências necessárias para entregar o incremento."
+    },
+    {
+        "category": "Scrum",
+        "question": "O Scrum garante sucesso automático do projeto?",
+        "options": [
+            "Não, é uma framework que expõe problemas",
+            "Sim, sempre",
+            "Sim, se usarmos Jira",
+            "Depende do orçamento"
+        ],
+        "correct": 0,
+        "explanation": "Scrum torna os problemas visíveis para que possam ser resolvidos, não os resolve por magia."
+    },
+    {
+        "category": "Scrum",
+        "question": "User Stories são estimadas frequentemente usando:",
+        "options": [
+            "Story Points",
+            "Horas exatas",
+            "Linhas de código",
+            "Número de ficheiros"
+        ],
+        "correct": 0,
+        "explanation": "Story Points medem esforço relativo/complexidade, não tempo absoluto."
+    },
+    {
+        "category": "Scrum",
+        "question": "Planning Poker é uma técnica para:",
+        "options": [
+            "Estimativa conjunta",
+            "Jogar no intervalo",
+            "Decidir quem paga o almoço",
+            "Priorizar bugs"
+        ],
+        "correct": 0,
+        "explanation": "Técnica de consenso para estimar o esforço das User Stories."
+    },
+    {
+        "category": "Scrum",
+        "question": "O Backlog deve ser DEEP. O 'E' significa:",
+        "options": [
+            "Estimated",
+            "Easy",
+            "Expensive",
+            "External"
+        ],
+        "correct": 0,
+        "explanation": "Detailed appropriately, Estimated, Emergent, Prioritized."
+    },
+    {
+        "category": "Scrum",
+        "question": "No Scrum, as alterações durante o Sprint:",
+        "options": [
+            "Devem ser evitadas para não comprometer o foco",
+            "São encorajadas a qualquer momento",
+            "São proibidas por lei",
+            "Dependem do humor do chefe"
+        ],
+        "correct": 0,
+        "explanation": "O Sprint deve ter estabilidade. Mudanças vão para o próximo."
+    },
+    {
+        "category": "Scrum",
+        "question": "A 'Velocity' da equipa é:",
+        "options": [
+            "A média de Story Points entregues por Sprint",
+            "A velocidade de escrita de código",
+            "O número de horas extra",
+            "A rapidez do servidor"
+        ],
+        "correct": 0,
+        "explanation": "Ajuda a prever quanto trabalho a equipa consegue fazer em sprints futuros."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Um Requisito Funcional descreve:",
+        "options": [
+            "O que o sistema faz",
+            "Como o sistema faz",
+            "A velocidade do sistema",
+            "A cor do sistema"
+        ],
+        "correct": 0,
+        "explanation": "Funcionalidades, comportamentos, serviços."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Um Requisito Não Funcional descreve:",
+        "options": [
+            "Atributos de qualidade e restrições",
+            "Novas funcionalidades",
+            "As funções de login",
+            "Os casos de uso"
+        ],
+        "correct": 0,
+        "explanation": "Performance, Segurança, Usabilidade, etc."
+    },
+    {
+        "category": "Requisitos",
+        "question": "No acrónimo FURPS+, o 'P' significa:",
+        "options": [
+            "Performance",
+            "Process",
+            "Planning",
+            "People"
+        ],
+        "correct": 0,
+        "explanation": "Desempenho (tempo de resposta, throughput, recursos)."
+    },
+    {
+        "category": "Requisitos",
+        "question": "No acrónimo FURPS+, o 'R' significa:",
+        "options": [
+            "Reliability (Confiabilidade)",
+            "Requirements",
+            "Risk",
+            "Realism"
+        ],
+        "correct": 0,
+        "explanation": "Disponibilidade, MTBF (Mean Time Between Failures), recuperação."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Qual destes é um Requisito Não Funcional?",
+        "options": [
+            "O sistema deve responder em menos de 1 segundo",
+            "O sistema deve permitir login",
+            "O sistema deve calcular juros",
+            "O sistema deve imprimir relatório"
+        ],
+        "correct": 0,
+        "explanation": "É uma restrição de performance."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Uma User Story segue tipicamente o formato:",
+        "options": [
+            "Como [ator], quero [ação] para [benefício]",
+            "O sistema deve [ação]",
+            "Se [condição] então [resultado]",
+            "Eu quero [coisa]"
+        ],
+        "correct": 0,
+        "explanation": "Foca no valor para o utilizador."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Num Diagrama de Casos de Uso, um Ator representa:",
+        "options": [
+            "Um papel desempenhado por um utilizador ou sistema externo",
+            "Uma pessoa específica",
+            "O administrador",
+            "Um botão no ecrã"
+        ],
+        "correct": 0,
+        "explanation": "Atores são papéis (Ex: Cliente, Gestor, API Externa)."
+    },
+    {
+        "category": "Requisitos",
+        "question": "A relação 'Include' num Caso de Uso significa:",
+        "options": [
+            "O caso de uso base obrigatoriamente usa o incluído",
+            "O caso de uso incluído é opcional",
+            "O caso de uso base é filho do incluído",
+            "Uma herança"
+        ],
+        "correct": 0,
+        "explanation": "Reutilização de comportamento comum e obrigatório."
+    },
+    {
+        "category": "Requisitos",
+        "question": "A relação 'Extend' num Caso de Uso significa:",
+        "options": [
+            "Comportamento opcional ou excecional sob certas condições",
+            "Comportamento obrigatório",
+            "Cópia do caso de uso",
+            "Erro de sistema"
+        ],
+        "correct": 0,
+        "explanation": "O caso base pode funcionar sem a extensão, mas a extensão adiciona passos extras em certos cenários."
+    },
+    {
+        "category": "Requisitos",
+        "question": "O 'Levantamento de Requisitos' é:",
+        "options": [
+            "O processo de descobrir o que os stakeholders precisam",
+            "Escrever código",
+            "Testar o software",
+            "Instalar o servidor"
+        ],
+        "correct": 0,
+        "explanation": "Entrevistas, workshops, observação para entender o problema."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Qual destes é um requisito de Usabilidade (FURPS)?",
+        "options": [
+            "O sistema deve ser intuitivo para utilizadores sem formação",
+            "O sistema deve encriptar passwords",
+            "O sistema deve aguentar 1000 users",
+            "O sistema deve ter backup"
+        ],
+        "correct": 0,
+        "explanation": "Facilidade de uso e aprendizagem."
+    },
+    {
+        "category": "Requisitos",
+        "question": "O 'Critério de Aceitação' numa User Story serve para:",
+        "options": [
+            "Definir quando a história está completa e correta",
+            "Dizer quem vai fazer",
+            "Definir o prazo",
+            "Contar piadas"
+        ],
+        "correct": 0,
+        "explanation": "Testes ou condições que têm de ser verdadeiros para a Story ser aceite."
+    },
+    {
+        "category": "Requisitos",
+        "question": "A WBS (Work Breakdown Structure) serve para:",
+        "options": [
+            "Decompor o projeto em partes menores e geríveis",
+            "Fazer diagramas de classes",
+            "Programar em Java",
+            "Gerir versões Git"
+        ],
+        "correct": 0,
+        "explanation": "Estrutura Analítica do Projeto, hierárquica."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Requisitos de 'Supportability' incluem:",
+        "options": [
+            "Facilidade de manutenção e instalação",
+            "Rapidez",
+            "Cores do ecrã",
+            "Preço"
+        ],
+        "correct": 0,
+        "explanation": "Manutenibilidade, escalabilidade, compatibilidade."
+    },
+    {
+        "category": "Requisitos",
+        "question": "O Diagrama de Gantt é usado para:",
+        "options": [
+            "Calendarização e gestão de dependências temporais",
+            "Desenhar base de dados",
+            "Modelar classes",
+            "Escrever testes"
+        ],
+        "correct": 0,
+        "explanation": "Visualizar o cronograma do projeto."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Um 'Stakeholder' é:",
+        "options": [
+            "Qualquer pessoa/entidade afetada pelo projeto",
+            "Apenas quem paga",
+            "Apenas o programador",
+            "Apenas o chefe"
+        ],
+        "correct": 0,
+        "explanation": "Interessados no projeto (Clientes, Utilizadores, Equipa, Reguladores)."
+    },
+    {
+        "category": "Requisitos",
+        "question": "'O sistema deve ser desenvolvido em Python'. Isto é um requisito de:",
+        "options": [
+            "Implementação (Restrição Técnica)",
+            "Funcional",
+            "Usabilidade",
+            "Desempenho"
+        ],
+        "correct": 0,
+        "explanation": "Muitas vezes cai no '+' do FURPS+ (Design/Implementation Constraints)."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Brainstorming é uma técnica de:",
+        "options": [
+            "Elicitação (Levantamento) de Requisitos",
+            "Programação",
+            "Teste",
+            "Deploy"
+        ],
+        "correct": 0,
+        "explanation": "Gerar ideias em grupo."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Um Caso de Uso descreve o sistema como:",
+        "options": [
+            "Uma caixa preta (Black Box)",
+            "Uma caixa branca (código visível)",
+            "Um fluxograma detalhado",
+            "Uma base de dados"
+        ],
+        "correct": 0,
+        "explanation": "Foca nas interações externas, não na implementação interna."
+    },
+    {
+        "category": "Requisitos",
+        "question": "MoSCoW é uma técnica para:",
+        "options": [
+            "Priorização de requisitos",
+            "Programação na Rússia",
+            "Gestão de memória",
+            "Design gráfico"
+        ],
+        "correct": 0,
+        "explanation": "Must have, Should have, Could have, Won't have."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Prototipagem ajuda a:",
+        "options": [
+            "Validar requisitos e interface com o utilizador",
+            "Gerar o código final automaticamente",
+            "Substituir a base de dados",
+            "Evitar testes"
+        ],
+        "correct": 0,
+        "explanation": "Ter feedback visual cedo."
+    },
+    {
+        "category": "Requisitos",
+        "question": "A rastreabilidade dos requisitos permite:",
+        "options": [
+            "Saber a origem e onde é implementado cada requisito",
+            "Saber quem escreveu o código",
+            "Saber a hora do commit",
+            "Nada"
+        ],
+        "correct": 0,
+        "explanation": "Ligar Requisito <-> Design <-> Código <-> Teste."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Qual a diferença entre Cliente e Utilizador?",
+        "options": [
+            "O Cliente compra/decide, o Utilizador usa",
+            "São sempre a mesma pessoa",
+            "O Utilizador manda no Cliente",
+            "Não há diferença"
+        ],
+        "correct": 0,
+        "explanation": "Nem sempre quem paga é quem usa o sistema."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Um diagrama de Casos de Uso é um diagrama:",
+        "options": [
+            "Comportamental UML",
+            "Estrutural UML",
+            "Entidade-Relacionamento",
+            "De fluxo de dados"
+        ],
+        "correct": 0,
+        "explanation": "Mostra o comportamento do sistema sob o ponto de vista dos atores."
+    },
+    {
+        "category": "Requisitos",
+        "question": "Validar requisitos significa:",
+        "options": [
+            "Confirmar que estamos a construir o produto certo",
+            "Verificar se o código compila",
+            "Instalar o Windows",
+            "Formatar o PC"
+        ],
+        "correct": 0,
+        "explanation": "Validation vs Verification."
+    },
+    {
+        "category": "Flask",
+        "question": "O Flask segue o padrão arquitetural:",
+        "options": [
+            "MVC (ou MVT)",
+            "Singleton",
+            "Observer",
+            "Microservice puro sem padrão"
+        ],
+        "correct": 0,
+        "explanation": "Model-View-Controller (adaptado)."
+    },
+    {
+        "category": "Flask",
+        "question": "Qual o decorador para definir uma rota em Flask?",
+        "options": [
+            "@app.route('/')",
+            "@app.path('/')",
+            "@app.url('/')",
+            "def route():"
+        ],
+        "correct": 0,
+        "explanation": "Regista a função para responder a um URL."
+    },
+    {
+        "category": "Flask",
+        "question": "O que faz o `render_template`?",
+        "options": [
+            "Gera HTML a partir de um template Jinja2",
+            "Envia um ficheiro estático",
+            "Redireciona o utilizador",
+            "Erros de base de dados"
+        ],
+        "correct": 0,
+        "explanation": "Combina o template HTML com os dados Python."
+    },
+    {
+        "category": "Flask",
+        "question": "O SQLAlchemy é:",
+        "options": [
+            "Um ORM (Object Relational Mapper)",
+            "Uma base de dados",
+            "Um servidor web",
+            "Um navegador"
+        ],
+        "correct": 0,
+        "explanation": "Biblioteca para interagir com SQL usando objetos Python."
+    },
+    {
+        "category": "Flask",
+        "question": "Para passar dados de um form HTML para o Flask, usamos:",
+        "options": [
+            "request.form",
+            "request.data",
+            "request.args",
+            "request.html"
+        ],
+        "correct": 0,
+        "explanation": "Dados de POST form-data vêm em request.form."
+    },
+    {
+        "category": "Flask",
+        "question": "O comando `git init` serve para:",
+        "options": [
+            "Iniciar um novo repositório Git local",
+            "Iniciar o download",
+            "Iniciar o PC",
+            "Apagar tudo"
+        ],
+        "correct": 0,
+        "explanation": "Cria a pasta .git."
+    },
+    {
+        "category": "Flask",
+        "question": "Para guardar o estado atual dos ficheiros no histórico Git, usamos:",
+        "options": [
+            "git commit",
+            "git save",
+            "git store",
+            "git record"
+        ],
+        "correct": 0,
+        "explanation": "Cria um snapshot (commit) na timeline."
+    },
+    {
+        "category": "Flask",
+        "question": "O Jinja2 permite usar lógica nos templates HTML. O símbolo `{% %}` é para:",
+        "options": [
+            "Estruturas de controlo (if, for)",
+            "Imprimir variáveis",
+            "Comentários",
+            "CSS"
+        ],
+        "correct": 0,
+        "explanation": "{{ }} é para output, {% %} é para lógica."
+    },
+    {
+        "category": "Flask",
+        "question": "Método HTTP para enviar dados sensíveis (login) ou criar recursos:",
+        "options": [
+            "POST",
+            "GET",
+            "HEAD",
+            "OPTION"
+        ],
+        "correct": 0,
+        "explanation": "POST envia dados no corpo do pedido, mais seguro que GET (URL)."
+    },
+    {
+        "category": "Flask",
+        "question": "Em SQLAlchemy, uma classe que herda de `db.Model` representa:",
+        "options": [
+            "Uma tabela na base de dados",
+            "Uma linha",
+            "Uma coluna",
+            "Uma query"
+        ],
+        "correct": 0,
+        "explanation": "O modelo define a estrutura da tabela."
+    },
+    {
+        "category": "Flask",
+        "question": "O que é uma 'Migration'?",
+        "options": [
+            "Uma alteração controlada ao esquema da base de dados",
+            "Mudar de servidor",
+            "Mudar de linguagem",
+            "Copiar ficheiros"
+        ],
+        "correct": 0,
+        "explanation": "Versionamento da estrutura da BD (ex: Alembic)."
+    },
+    {
+        "category": "Flask",
+        "question": "`git pull` é a combinação de:",
+        "options": [
+            "git fetch + git merge",
+            "git fetch + git rebase",
+            "git download + git update",
+            "git clone + git init"
+        ],
+        "correct": 0,
+        "explanation": "Traz as alterações e aplica-as no branch atual."
+    },
+    {
+        "category": "Flask",
+        "question": "O ficheiro `.gitignore` serve para:",
+        "options": [
+            "Listar ficheiros que o Git deve ignorar",
+            "Guardar passwords",
+            "Configurar o servidor",
+            "Ignorar erros"
+        ],
+        "correct": 0,
+        "explanation": "Evita commitar lixo, ficheiros compilados, .env, etc."
+    },
+    {
+        "category": "Flask",
+        "question": "Para criar um ambiente virtual em Python:",
+        "options": [
+            "python -m venv venv",
+            "python create env",
+            "virtualenv start",
+            "pip install env"
+        ],
+        "correct": 0,
+        "explanation": "Comando padrão para isolar dependências."
+    },
+    {
+        "category": "Flask",
+        "question": "O ficheiro `requirements.txt` serve para:",
+        "options": [
+            "Listar as dependências do projeto",
+            "Guardar requisitos funcionais",
+            "Configurar o Git",
+            "Documentar o código"
+        ],
+        "correct": 0,
+        "explanation": "Permite instalar tudo com pip install -r requirements.txt."
+    },
+    {
+        "category": "Flask",
+        "question": "Em MVC, a 'View' (no contexto geral, não Flask específico) é responsável por:",
+        "options": [
+            "Apresentar os dados ao utilizador",
+            "Aceder à BD",
+            "Processar a lógica",
+            "Enviar email"
+        ],
+        "correct": 0,
+        "explanation": "Renderização da interface."
+    },
+    {
+        "category": "Flask",
+        "question": "Qual comando instala bibliotecas Python?",
+        "options": [
+            "pip install",
+            "python get",
+            "npm install",
+            "git install"
+        ],
+        "correct": 0,
+        "explanation": "Pip Installs Packages."
+    },
+    {
+        "category": "Flask",
+        "question": "O que é o 'Github'?",
+        "options": [
+            "Uma plataforma de alojamento de código Git",
+            "O mesmo que Git",
+            "Uma linguagem",
+            "Um sistema operativo"
+        ],
+        "correct": 0,
+        "explanation": "Git é a ferramenta, GitHub é o serviço."
+    },
+    {
+        "category": "Flask",
+        "question": "Para aceder a parâmetros do URL (ex: /search?q=gato) usamos:",
+        "options": [
+            "request.args",
+            "request.form",
+            "request.json",
+            "request.path"
+        ],
+        "correct": 0,
+        "explanation": "Query strings estão em args."
+    },
+    {
+        "category": "Flask",
+        "question": "session.commit() em SQLAlchemy serve para:",
+        "options": [
+            "Confirmar e gravar as alterações na BD",
+            "Cancelar alterações",
+            "Iniciar transação",
+            "Apagar tudo"
+        ],
+        "correct": 0,
+        "explanation": "Torna persistente a transação atual."
+    },
+    {
+        "category": "Flask",
+        "question": "Flask é considerado 'micro' porque:",
+        "options": [
+            "Não traz ORM nem validação por defeito, é modular",
+            "É lento",
+            "Só serve para sites pequenos",
+            "Foi feito por uma pessoa pequena"
+        ],
+        "correct": 0,
+        "explanation": "Core simples, extensível via plugins."
+    },
+    {
+        "category": "Flask",
+        "question": "Para definir uma chave primária em SQLAlchemy:",
+        "options": [
+            "primary_key=True",
+            "id=True",
+            "key=Primary",
+            "unique=True"
+        ],
+        "correct": 0,
+        "explanation": "Atributo da coluna."
+    },
+    {
+        "category": "Flask",
+        "question": "Um 'branch' no Git permite:",
+        "options": [
+            "Desenvolver funcionalidades isoladamente",
+            "Partir o código",
+            "Criar um novo repositório",
+            "Apagar histórico"
+        ],
+        "correct": 0,
+        "explanation": "Ramos paralelos de desenvolvimento."
+    },
+    {
+        "category": "Flask",
+        "question": "O erro 404 significa:",
+        "options": [
+            "Not Found",
+            "Server Error",
+            "Unauthorized",
+            "Bad Request"
+        ],
+        "correct": 0,
+        "explanation": "Recurso não encontrado."
+    },
+    {
+        "category": "Flask",
+        "question": "O erro 500 significa:",
+        "options": [
+            "Internal Server Error",
+            "NotFound",
+            "OK",
+            "Redirect"
+        ],
+        "correct": 0,
+        "explanation": "Erro no servidor (código crashou)."
+    }
+];
 
-        // ========================================================================
         // ESTADO APLICAÇÃO
         // ========================================================================
         let answers = {};
