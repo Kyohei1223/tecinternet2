@@ -538,7 +538,8 @@
             "Domain-Data Definition"
         ],
         "correct": 0,
-        "explanation": "DDD significa Domain-Driven Design, uma abordagem de desenvolvimento focada no núcleo do negócio."
+        "explanation": "DDD significa Domain-Driven Design, uma abordagem de desenvolvimento focada no núcleo do negócio.",
+        "id": 1
     },
     {
         "category": "DDD",
@@ -550,7 +551,8 @@
             "Reduzir o custo de servidores"
         ],
         "correct": 0,
-        "explanation": "O DDD foca-se na complexidade do domínio e em garantir que o software resolve problemas reais do negócio."
+        "explanation": "O DDD foca-se na complexidade do domínio e em garantir que o software resolve problemas reais do negócio.",
+        "id": 2
     },
     {
         "category": "DDD",
@@ -562,7 +564,8 @@
             "Não pode ter métodos"
         ],
         "correct": 0,
-        "explanation": "Entidades são definidas pela sua identidade (ID), que persiste mesmo que os seus atributos mudem."
+        "explanation": "Entidades são definidas pela sua identidade (ID), que persiste mesmo que os seus atributos mudem.",
+        "id": 3
     },
     {
         "category": "DDD",
@@ -574,7 +577,8 @@
             "É a raiz do agregado"
         ],
         "correct": 0,
-        "explanation": "Value Objects não têm identidade própria; são caracterizados apenas pelos seus valores (ex: uma cor, um valor monetário)."
+        "explanation": "Value Objects não têm identidade própria; são caracterizados apenas pelos seus valores (ex: uma cor, um valor monetário).",
+        "id": 4
     },
     {
         "category": "DDD",
@@ -586,7 +590,8 @@
             "Um módulo do Python"
         ],
         "correct": 0,
-        "explanation": "Um Agregado é um cluster de objetos de domínio que podem ser tratados como uma única unidade. Qualquer alteração deve manter a consistência de todo o agregado."
+        "explanation": "Um Agregado é um cluster de objetos de domínio que podem ser tratados como uma única unidade. Qualquer alteração deve manter a consistência de todo o agregado.",
+        "id": 5
     },
     {
         "category": "DDD",
@@ -598,7 +603,8 @@
             "O primeiro objeto criado no sistema"
         ],
         "correct": 0,
-        "explanation": "A Root é a porta de entrada do Agregado. Objetos de fora só podem referenciar a Root, nunca os objetos internos."
+        "explanation": "A Root é a porta de entrada do Agregado. Objetos de fora só podem referenciar a Root, nunca os objetos internos.",
+        "id": 6
     },
     {
         "category": "DDD",
@@ -610,7 +616,8 @@
             "Não deve haver referências"
         ],
         "correct": 0,
-        "explanation": "Para evitar acoplamento e problemas de performance, agregados devem referenciar outros agregados apenas pelo seu ID."
+        "explanation": "Para evitar acoplamento e problemas de performance, agregados devem referenciar outros agregados apenas pelo seu ID.",
+        "id": 7
     },
     {
         "category": "DDD",
@@ -622,7 +629,8 @@
             "Service"
         ],
         "correct": 0,
-        "explanation": "Uma morada é definida pelos seus valores (Rua, Código Postal). Se mudas a rua, é uma nova morada, logo é um Value Object."
+        "explanation": "Uma morada é definida pelos seus valores (Rua, Código Postal). Se mudas a rua, é uma nova morada, logo é um Value Object.",
+        "id": 8
     },
     {
         "category": "DDD",
@@ -634,7 +642,8 @@
             "Repository"
         ],
         "correct": 0,
-        "explanation": "Um cliente tem identidade e ciclo de vida próprio, sendo normalmente uma Entidade e Raiz do seu próprio agregado."
+        "explanation": "Um cliente tem identidade e ciclo de vida próprio, sendo normalmente uma Entidade e Raiz do seu próprio agregado.",
+        "id": 9
     },
     {
         "category": "DDD",
@@ -646,7 +655,8 @@
             "SQL"
         ],
         "correct": 0,
-        "explanation": "É a linguagem partilhada e rigorosa usada por toda a equipa (técnica e de negócio) para descrever o modelo."
+        "explanation": "É a linguagem partilhada e rigorosa usada por toda a equipa (técnica e de negócio) para descrever o modelo.",
+        "id": 10
     },
     {
         "category": "DDD",
@@ -658,7 +668,8 @@
             "Converter em Entidade"
         ],
         "correct": 0,
-        "explanation": "Value Objects devem ser imutáveis. Para 'alterar', substitui-se o objeto antigo por um novo."
+        "explanation": "Value Objects devem ser imutáveis. Para 'alterar', substitui-se o objeto antigo por um novo.",
+        "id": 11
     },
     {
         "category": "DDD",
@@ -670,7 +681,8 @@
             "Nada"
         ],
         "correct": 0,
-        "explanation": "O Agregado é uma unidade de consistência e ciclo de vida. Sem a Root, os objetos internos não fazem sentido e devem ser removidos."
+        "explanation": "O Agregado é uma unidade de consistência e ciclo de vida. Sem a Root, os objetos internos não fazem sentido e devem ser removidos.",
+        "id": 12
     },
     {
         "category": "DDD",
@@ -682,7 +694,8 @@
             "Roots não têm ID"
         ],
         "correct": 0,
-        "explanation": "Idealmente, uma transação altera um só agregado para garantir escalabilidade e consistência simples."
+        "explanation": "Idealmente, uma transação altera um só agregado para garantir escalabilidade e consistência simples.",
+        "id": 13
     },
     {
         "category": "DDD",
@@ -694,7 +707,8 @@
             "Na Base de Dados"
         ],
         "correct": 0,
-        "explanation": "O modelo de domínio deve ser 'Rico' e conter as suas próprias regras de negócio e validações invariantes."
+        "explanation": "O modelo de domínio deve ser 'Rico' e conter as suas próprias regras de negócio e validações invariantes.",
+        "id": 14
     },
     {
         "category": "DDD",
@@ -706,7 +720,8 @@
             "Um serviço de email"
         ],
         "correct": 0,
-        "explanation": "Os repositórios servem para recuperar e guardar Agregados, escondendo os detalhes técnicos da base de dados."
+        "explanation": "Os repositórios servem para recuperar e guardar Agregados, escondendo os detalhes técnicos da base de dados.",
+        "id": 15
     },
     {
         "category": "DDD",
@@ -718,7 +733,8 @@
             "Tabelas auxiliares"
         ],
         "correct": 0,
-        "explanation": "Apenas as Aggregate Roots têm repositórios globais. Objetos internos são acedidos via Root."
+        "explanation": "Apenas as Aggregate Roots têm repositórios globais. Objetos internos são acedidos via Root.",
+        "id": 16
     },
     {
         "category": "DDD",
@@ -730,7 +746,8 @@
             "Uma restrição da base de dados"
         ],
         "correct": 0,
-        "explanation": "Bounded Context define os limites onde um determinado modelo e Linguagem Ubíqua se aplicam (ex: Contexto de Vendas vs Contexto de Suporte)."
+        "explanation": "Bounded Context define os limites onde um determinado modelo e Linguagem Ubíqua se aplicam (ex: Contexto de Vendas vs Contexto de Suporte).",
+        "id": 17
     },
     {
         "category": "DDD",
@@ -742,7 +759,8 @@
             "Sempre a mesma entidade"
         ],
         "correct": 0,
-        "explanation": "Em contextos diferentes (Vendas vs Logística), o conceito de 'Produto' pode ter atributos e comportamentos muito diferentes."
+        "explanation": "Em contextos diferentes (Vendas vs Logística), o conceito de 'Produto' pode ter atributos e comportamentos muito diferentes.",
+        "id": 18
     },
     {
         "category": "DDD",
@@ -754,7 +772,8 @@
             "Singletons"
         ],
         "correct": 0,
-        "explanation": "Se a distinção é necessária apesar dos atributos iguais, é necessária uma identidade -> Entidade."
+        "explanation": "Se a distinção é necessária apesar dos atributos iguais, é necessária uma identidade -> Entidade.",
+        "id": 19
     },
     {
         "category": "DDD",
@@ -766,7 +785,8 @@
             "Module"
         ],
         "correct": 0,
-        "explanation": "O endereço de email em si é um valor. Se duas pessoas têm o email 'a@b.com', é o mesmo endereço value object."
+        "explanation": "O endereço de email em si é um valor. Se duas pessoas têm o email 'a@b.com', é o mesmo endereço value object.",
+        "id": 20
     },
     {
         "category": "DDD",
@@ -778,7 +798,8 @@
             "Sempre que há lógica"
         ],
         "correct": 0,
-        "explanation": "Domain Services encapsulam lógica de negócio que envolve múltiplas entidades ou não cabe bem numa só."
+        "explanation": "Domain Services encapsulam lógica de negócio que envolve múltiplas entidades ou não cabe bem numa só.",
+        "id": 21
     },
     {
         "category": "DDD",
@@ -790,7 +811,8 @@
             "O routing do Flask"
         ],
         "correct": 0,
-        "explanation": "Sendo imutáveis, podem ser passados e partilhados sem medo que alguém os altere inesperadamente."
+        "explanation": "Sendo imutáveis, podem ser passados e partilhados sem medo que alguém os altere inesperadamente.",
+        "id": 22
     },
     {
         "category": "DDD",
@@ -802,7 +824,8 @@
             "Opcional"
         ],
         "correct": 0,
-        "explanation": "A unicidade é a característica essencial da identidade."
+        "explanation": "A unicidade é a característica essencial da identidade.",
+        "id": 23
     },
     {
         "category": "DDD",
@@ -814,7 +837,8 @@
             "Performance de Baixo Nível"
         ],
         "correct": 0,
-        "explanation": "O 'Coração' do software é o negócio."
+        "explanation": "O 'Coração' do software é o negócio.",
+        "id": 24
     },
     {
         "category": "DDD",
@@ -826,7 +850,8 @@
             "DDD não usa bases de dados"
         ],
         "correct": 0,
-        "explanation": "Persistence Ignorance: O domínio deve ser desenhado para resolver o problema de negócio, a persistência é um detalhe de implementação."
+        "explanation": "Persistence Ignorance: O domínio deve ser desenhado para resolver o problema de negócio, a persistência é um detalhe de implementação.",
+        "id": 25
     },
     {
         "category": "Scrum",
@@ -838,7 +863,8 @@
             "Rígida"
         ],
         "correct": 0,
-        "explanation": "Scrum é a framework ágil mais popular."
+        "explanation": "Scrum é a framework ágil mais popular.",
+        "id": 26
     },
     {
         "category": "Scrum",
@@ -850,7 +876,8 @@
             "Development Team"
         ],
         "correct": 0,
-        "explanation": "No Scrum 'puro', não existe a figura do Project Manager tradicional. As responsabilidades são divididas."
+        "explanation": "No Scrum 'puro', não existe a figura do Project Manager tradicional. As responsabilidades são divididas.",
+        "id": 27
     },
     {
         "category": "Scrum",
@@ -862,7 +889,8 @@
             "Cliente"
         ],
         "correct": 0,
-        "explanation": "O PO é o dono do produto e prioriza o trabalho."
+        "explanation": "O PO é o dono do produto e prioriza o trabalho.",
+        "id": 28
     },
     {
         "category": "Scrum",
@@ -874,7 +902,8 @@
             "CEO"
         ],
         "correct": 0,
-        "explanation": "A equipa é auto-organizada e decide os aspetos técnicos."
+        "explanation": "A equipa é auto-organizada e decide os aspetos técnicos.",
+        "id": 29
     },
     {
         "category": "Scrum",
@@ -886,7 +915,8 @@
             "Variável conforme o trabalho"
         ],
         "correct": 0,
-        "explanation": "Sprints são time-boxed (duração fixa), tipicamente 2 semanas, max 4."
+        "explanation": "Sprints são time-boxed (duração fixa), tipicamente 2 semanas, max 4.",
+        "id": 30
     },
     {
         "category": "Scrum",
@@ -898,7 +928,8 @@
             "O PO distribui tarefas"
         ],
         "correct": 0,
-        "explanation": "Planeamento colaborativo do trabalho do Sprint."
+        "explanation": "Planeamento colaborativo do trabalho do Sprint.",
+        "id": 31
     },
     {
         "category": "Scrum",
@@ -910,7 +941,8 @@
             "Fazer relatórios de progresso para a gestão"
         ],
         "correct": 0,
-        "explanation": "Sincronização rápida. Problemas complexos discutem-se depois."
+        "explanation": "Sincronização rápida. Problemas complexos discutem-se depois.",
+        "id": 32
     },
     {
         "category": "Scrum",
@@ -922,7 +954,8 @@
             "Todos os dias"
         ],
         "correct": 0,
-        "explanation": "Para inspecionar o incremento e adaptar o Product Backlog."
+        "explanation": "Para inspecionar o incremento e adaptar o Product Backlog.",
+        "id": 33
     },
     {
         "category": "Scrum",
@@ -934,7 +967,8 @@
             "Retrospective é opcional"
         ],
         "correct": 0,
-        "explanation": "A Review é sobre 'O que fizemos'. A Retrospective é sobre 'Como trabalhámos'."
+        "explanation": "A Review é sobre 'O que fizemos'. A Retrospective é sobre 'Como trabalhámos'.",
+        "id": 34
     },
     {
         "category": "Scrum",
@@ -946,7 +980,8 @@
             "O plano de testes"
         ],
         "correct": 0,
-        "explanation": "É o resultado utilizável e 'Done' do Sprint."
+        "explanation": "É o resultado utilizável e 'Done' do Sprint.",
+        "id": 35
     },
     {
         "category": "Scrum",
@@ -958,7 +993,8 @@
             "A aprovação do chefe"
         ],
         "correct": 0,
-        "explanation": "Garante qualidade e transparência sobre o estado do trabalho."
+        "explanation": "Garante qualidade e transparência sobre o estado do trabalho.",
+        "id": 36
     },
     {
         "category": "Scrum",
@@ -970,7 +1006,8 @@
             "O responsável pelos commits"
         ],
         "correct": 0,
-        "explanation": "Ajuda a equipa e a organização a usar o Scrum, removendo impedimentos."
+        "explanation": "Ajuda a equipa e a organização a usar o Scrum, removendo impedimentos.",
+        "id": 37
     },
     {
         "category": "Scrum",
@@ -982,7 +1019,8 @@
             "O projeto é cancelado"
         ],
         "correct": 0,
-        "explanation": "Sprints são time-boxed. Nunca se estendem. Aprende-se com isso para planear menos no próximo."
+        "explanation": "Sprints são time-boxed. Nunca se estendem. Aprende-se com isso para planear menos no próximo.",
+        "id": 38
     },
     {
         "category": "Scrum",
@@ -994,7 +1032,8 @@
             "A equipa é pequena"
         ],
         "correct": 0,
-        "explanation": "Cascata funciona bem para projetos previsíveis e lineares."
+        "explanation": "Cascata funciona bem para projetos previsíveis e lineares.",
+        "id": 39
     },
     {
         "category": "Scrum",
@@ -1006,7 +1045,8 @@
             "Mudança"
         ],
         "correct": 0,
-        "explanation": "Embora valorize a documentação, o software funcional é a medida primária de progresso."
+        "explanation": "Embora valorize a documentação, o software funcional é a medida primária de progresso.",
+        "id": 40
     },
     {
         "category": "Scrum",
@@ -1018,7 +1058,8 @@
             "As notas da reunião"
         ],
         "correct": 0,
-        "explanation": "É o plano da equipa para o Sprint atual."
+        "explanation": "É o plano da equipa para o Sprint atual.",
+        "id": 41
     },
     {
         "category": "Scrum",
@@ -1030,7 +1071,8 @@
             "O Cliente"
         ],
         "correct": 0,
-        "explanation": "O PO tem a autoridade para cancelar se o objetivo do Sprint se tornar obsoleto."
+        "explanation": "O PO tem a autoridade para cancelar se o objetivo do Sprint se tornar obsoleto.",
+        "id": 42
     },
     {
         "category": "Scrum",
@@ -1042,7 +1084,8 @@
             "Layout do escritório"
         ],
         "correct": 0,
-        "explanation": "Ferramenta visual para acompanhar o progresso do Sprint ou Projeto."
+        "explanation": "Ferramenta visual para acompanhar o progresso do Sprint ou Projeto.",
+        "id": 43
     },
     {
         "category": "Scrum",
@@ -1054,7 +1097,8 @@
             "Gerida pelo Scrum Master"
         ],
         "correct": 0,
-        "explanation": "Deve ter todas as competências necessárias para entregar o incremento."
+        "explanation": "Deve ter todas as competências necessárias para entregar o incremento.",
+        "id": 44
     },
     {
         "category": "Scrum",
@@ -1066,7 +1110,8 @@
             "Depende do orçamento"
         ],
         "correct": 0,
-        "explanation": "Scrum torna os problemas visíveis para que possam ser resolvidos, não os resolve por magia."
+        "explanation": "Scrum torna os problemas visíveis para que possam ser resolvidos, não os resolve por magia.",
+        "id": 45
     },
     {
         "category": "Scrum",
@@ -1078,7 +1123,8 @@
             "Número de ficheiros"
         ],
         "correct": 0,
-        "explanation": "Story Points medem esforço relativo/complexidade, não tempo absoluto."
+        "explanation": "Story Points medem esforço relativo/complexidade, não tempo absoluto.",
+        "id": 46
     },
     {
         "category": "Scrum",
@@ -1090,7 +1136,8 @@
             "Priorizar bugs"
         ],
         "correct": 0,
-        "explanation": "Técnica de consenso para estimar o esforço das User Stories."
+        "explanation": "Técnica de consenso para estimar o esforço das User Stories.",
+        "id": 47
     },
     {
         "category": "Scrum",
@@ -1102,7 +1149,8 @@
             "External"
         ],
         "correct": 0,
-        "explanation": "Detailed appropriately, Estimated, Emergent, Prioritized."
+        "explanation": "Detailed appropriately, Estimated, Emergent, Prioritized.",
+        "id": 48
     },
     {
         "category": "Scrum",
@@ -1114,7 +1162,8 @@
             "Dependem do humor do chefe"
         ],
         "correct": 0,
-        "explanation": "O Sprint deve ter estabilidade. Mudanças vão para o próximo."
+        "explanation": "O Sprint deve ter estabilidade. Mudanças vão para o próximo.",
+        "id": 49
     },
     {
         "category": "Scrum",
@@ -1126,7 +1175,8 @@
             "A rapidez do servidor"
         ],
         "correct": 0,
-        "explanation": "Ajuda a prever quanto trabalho a equipa consegue fazer em sprints futuros."
+        "explanation": "Ajuda a prever quanto trabalho a equipa consegue fazer em sprints futuros.",
+        "id": 50
     },
     {
         "category": "Requisitos",
@@ -1138,7 +1188,8 @@
             "A cor do sistema"
         ],
         "correct": 0,
-        "explanation": "Funcionalidades, comportamentos, serviços."
+        "explanation": "Funcionalidades, comportamentos, serviços.",
+        "id": 51
     },
     {
         "category": "Requisitos",
@@ -1150,7 +1201,8 @@
             "Os casos de uso"
         ],
         "correct": 0,
-        "explanation": "Performance, Segurança, Usabilidade, etc."
+        "explanation": "Performance, Segurança, Usabilidade, etc.",
+        "id": 52
     },
     {
         "category": "Requisitos",
@@ -1162,7 +1214,8 @@
             "People"
         ],
         "correct": 0,
-        "explanation": "Desempenho (tempo de resposta, throughput, recursos)."
+        "explanation": "Desempenho (tempo de resposta, throughput, recursos).",
+        "id": 53
     },
     {
         "category": "Requisitos",
@@ -1174,7 +1227,8 @@
             "Realism"
         ],
         "correct": 0,
-        "explanation": "Disponibilidade, MTBF (Mean Time Between Failures), recuperação."
+        "explanation": "Disponibilidade, MTBF (Mean Time Between Failures), recuperação.",
+        "id": 54
     },
     {
         "category": "Requisitos",
@@ -1186,7 +1240,8 @@
             "O sistema deve imprimir relatório"
         ],
         "correct": 0,
-        "explanation": "É uma restrição de performance."
+        "explanation": "É uma restrição de performance.",
+        "id": 55
     },
     {
         "category": "Requisitos",
@@ -1198,7 +1253,8 @@
             "Eu quero [coisa]"
         ],
         "correct": 0,
-        "explanation": "Foca no valor para o utilizador."
+        "explanation": "Foca no valor para o utilizador.",
+        "id": 56
     },
     {
         "category": "Requisitos",
@@ -1210,7 +1266,8 @@
             "Um botão no ecrã"
         ],
         "correct": 0,
-        "explanation": "Atores são papéis (Ex: Cliente, Gestor, API Externa)."
+        "explanation": "Atores são papéis (Ex: Cliente, Gestor, API Externa).",
+        "id": 57
     },
     {
         "category": "Requisitos",
@@ -1222,7 +1279,8 @@
             "Uma herança"
         ],
         "correct": 0,
-        "explanation": "Reutilização de comportamento comum e obrigatório."
+        "explanation": "Reutilização de comportamento comum e obrigatório.",
+        "id": 58
     },
     {
         "category": "Requisitos",
@@ -1234,7 +1292,8 @@
             "Erro de sistema"
         ],
         "correct": 0,
-        "explanation": "O caso base pode funcionar sem a extensão, mas a extensão adiciona passos extras em certos cenários."
+        "explanation": "O caso base pode funcionar sem a extensão, mas a extensão adiciona passos extras em certos cenários.",
+        "id": 59
     },
     {
         "category": "Requisitos",
@@ -1246,7 +1305,8 @@
             "Instalar o servidor"
         ],
         "correct": 0,
-        "explanation": "Entrevistas, workshops, observação para entender o problema."
+        "explanation": "Entrevistas, workshops, observação para entender o problema.",
+        "id": 60
     },
     {
         "category": "Requisitos",
@@ -1258,7 +1318,8 @@
             "O sistema deve ter backup"
         ],
         "correct": 0,
-        "explanation": "Facilidade de uso e aprendizagem."
+        "explanation": "Facilidade de uso e aprendizagem.",
+        "id": 61
     },
     {
         "category": "Requisitos",
@@ -1270,7 +1331,8 @@
             "Contar piadas"
         ],
         "correct": 0,
-        "explanation": "Testes ou condições que têm de ser verdadeiros para a Story ser aceite."
+        "explanation": "Testes ou condições que têm de ser verdadeiros para a Story ser aceite.",
+        "id": 62
     },
     {
         "category": "Requisitos",
@@ -1282,7 +1344,8 @@
             "Gerir versões Git"
         ],
         "correct": 0,
-        "explanation": "Estrutura Analítica do Projeto, hierárquica."
+        "explanation": "Estrutura Analítica do Projeto, hierárquica.",
+        "id": 63
     },
     {
         "category": "Requisitos",
@@ -1294,7 +1357,8 @@
             "Preço"
         ],
         "correct": 0,
-        "explanation": "Manutenibilidade, escalabilidade, compatibilidade."
+        "explanation": "Manutenibilidade, escalabilidade, compatibilidade.",
+        "id": 64
     },
     {
         "category": "Requisitos",
@@ -1306,7 +1370,8 @@
             "Escrever testes"
         ],
         "correct": 0,
-        "explanation": "Visualizar o cronograma do projeto."
+        "explanation": "Visualizar o cronograma do projeto.",
+        "id": 65
     },
     {
         "category": "Requisitos",
@@ -1318,7 +1383,8 @@
             "Apenas o chefe"
         ],
         "correct": 0,
-        "explanation": "Interessados no projeto (Clientes, Utilizadores, Equipa, Reguladores)."
+        "explanation": "Interessados no projeto (Clientes, Utilizadores, Equipa, Reguladores).",
+        "id": 66
     },
     {
         "category": "Requisitos",
@@ -1330,7 +1396,8 @@
             "Desempenho"
         ],
         "correct": 0,
-        "explanation": "Muitas vezes cai no '+' do FURPS+ (Design/Implementation Constraints)."
+        "explanation": "Muitas vezes cai no '+' do FURPS+ (Design/Implementation Constraints).",
+        "id": 67
     },
     {
         "category": "Requisitos",
@@ -1342,7 +1409,8 @@
             "Deploy"
         ],
         "correct": 0,
-        "explanation": "Gerar ideias em grupo."
+        "explanation": "Gerar ideias em grupo.",
+        "id": 68
     },
     {
         "category": "Requisitos",
@@ -1354,7 +1422,8 @@
             "Uma base de dados"
         ],
         "correct": 0,
-        "explanation": "Foca nas interações externas, não na implementação interna."
+        "explanation": "Foca nas interações externas, não na implementação interna.",
+        "id": 69
     },
     {
         "category": "Requisitos",
@@ -1366,7 +1435,8 @@
             "Design gráfico"
         ],
         "correct": 0,
-        "explanation": "Must have, Should have, Could have, Won't have."
+        "explanation": "Must have, Should have, Could have, Won't have.",
+        "id": 70
     },
     {
         "category": "Requisitos",
@@ -1378,7 +1448,8 @@
             "Evitar testes"
         ],
         "correct": 0,
-        "explanation": "Ter feedback visual cedo."
+        "explanation": "Ter feedback visual cedo.",
+        "id": 71
     },
     {
         "category": "Requisitos",
@@ -1390,7 +1461,8 @@
             "Nada"
         ],
         "correct": 0,
-        "explanation": "Ligar Requisito <-> Design <-> Código <-> Teste."
+        "explanation": "Ligar Requisito <-> Design <-> Código <-> Teste.",
+        "id": 72
     },
     {
         "category": "Requisitos",
@@ -1402,7 +1474,8 @@
             "Não há diferença"
         ],
         "correct": 0,
-        "explanation": "Nem sempre quem paga é quem usa o sistema."
+        "explanation": "Nem sempre quem paga é quem usa o sistema.",
+        "id": 73
     },
     {
         "category": "Requisitos",
@@ -1414,7 +1487,8 @@
             "De fluxo de dados"
         ],
         "correct": 0,
-        "explanation": "Mostra o comportamento do sistema sob o ponto de vista dos atores."
+        "explanation": "Mostra o comportamento do sistema sob o ponto de vista dos atores.",
+        "id": 74
     },
     {
         "category": "Requisitos",
@@ -1426,7 +1500,8 @@
             "Formatar o PC"
         ],
         "correct": 0,
-        "explanation": "Validation vs Verification."
+        "explanation": "Validation vs Verification.",
+        "id": 75
     },
     {
         "category": "Flask",
@@ -1438,7 +1513,8 @@
             "Microservice puro sem padrão"
         ],
         "correct": 0,
-        "explanation": "Model-View-Controller (adaptado)."
+        "explanation": "Model-View-Controller (adaptado).",
+        "id": 76
     },
     {
         "category": "Flask",
@@ -1450,7 +1526,8 @@
             "def route():"
         ],
         "correct": 0,
-        "explanation": "Regista a função para responder a um URL."
+        "explanation": "Regista a função para responder a um URL.",
+        "id": 77
     },
     {
         "category": "Flask",
@@ -1462,7 +1539,8 @@
             "Erros de base de dados"
         ],
         "correct": 0,
-        "explanation": "Combina o template HTML com os dados Python."
+        "explanation": "Combina o template HTML com os dados Python.",
+        "id": 78
     },
     {
         "category": "Flask",
@@ -1474,7 +1552,8 @@
             "Um navegador"
         ],
         "correct": 0,
-        "explanation": "Biblioteca para interagir com SQL usando objetos Python."
+        "explanation": "Biblioteca para interagir com SQL usando objetos Python.",
+        "id": 79
     },
     {
         "category": "Flask",
@@ -1486,7 +1565,8 @@
             "request.html"
         ],
         "correct": 0,
-        "explanation": "Dados de POST form-data vêm em request.form."
+        "explanation": "Dados de POST form-data vêm em request.form.",
+        "id": 80
     },
     {
         "category": "Flask",
@@ -1498,7 +1578,8 @@
             "Apagar tudo"
         ],
         "correct": 0,
-        "explanation": "Cria a pasta .git."
+        "explanation": "Cria a pasta .git.",
+        "id": 81
     },
     {
         "category": "Flask",
@@ -1510,7 +1591,8 @@
             "git record"
         ],
         "correct": 0,
-        "explanation": "Cria um snapshot (commit) na timeline."
+        "explanation": "Cria um snapshot (commit) na timeline.",
+        "id": 82
     },
     {
         "category": "Flask",
@@ -1522,7 +1604,8 @@
             "CSS"
         ],
         "correct": 0,
-        "explanation": "{{ }} é para output, {% %} é para lógica."
+        "explanation": "{{ }} é para output, {% %} é para lógica.",
+        "id": 83
     },
     {
         "category": "Flask",
@@ -1534,7 +1617,8 @@
             "OPTION"
         ],
         "correct": 0,
-        "explanation": "POST envia dados no corpo do pedido, mais seguro que GET (URL)."
+        "explanation": "POST envia dados no corpo do pedido, mais seguro que GET (URL).",
+        "id": 84
     },
     {
         "category": "Flask",
@@ -1546,7 +1630,8 @@
             "Uma query"
         ],
         "correct": 0,
-        "explanation": "O modelo define a estrutura da tabela."
+        "explanation": "O modelo define a estrutura da tabela.",
+        "id": 85
     },
     {
         "category": "Flask",
@@ -1558,7 +1643,8 @@
             "Copiar ficheiros"
         ],
         "correct": 0,
-        "explanation": "Versionamento da estrutura da BD (ex: Alembic)."
+        "explanation": "Versionamento da estrutura da BD (ex: Alembic).",
+        "id": 86
     },
     {
         "category": "Flask",
@@ -1570,7 +1656,8 @@
             "git clone + git init"
         ],
         "correct": 0,
-        "explanation": "Traz as alterações e aplica-as no branch atual."
+        "explanation": "Traz as alterações e aplica-as no branch atual.",
+        "id": 87
     },
     {
         "category": "Flask",
@@ -1582,7 +1669,8 @@
             "Ignorar erros"
         ],
         "correct": 0,
-        "explanation": "Evita commitar lixo, ficheiros compilados, .env, etc."
+        "explanation": "Evita commitar lixo, ficheiros compilados, .env, etc.",
+        "id": 88
     },
     {
         "category": "Flask",
@@ -1594,7 +1682,8 @@
             "pip install env"
         ],
         "correct": 0,
-        "explanation": "Comando padrão para isolar dependências."
+        "explanation": "Comando padrão para isolar dependências.",
+        "id": 89
     },
     {
         "category": "Flask",
@@ -1606,7 +1695,8 @@
             "Documentar o código"
         ],
         "correct": 0,
-        "explanation": "Permite instalar tudo com pip install -r requirements.txt."
+        "explanation": "Permite instalar tudo com pip install -r requirements.txt.",
+        "id": 90
     },
     {
         "category": "Flask",
@@ -1618,7 +1708,8 @@
             "Enviar email"
         ],
         "correct": 0,
-        "explanation": "Renderização da interface."
+        "explanation": "Renderização da interface.",
+        "id": 91
     },
     {
         "category": "Flask",
@@ -1630,7 +1721,8 @@
             "git install"
         ],
         "correct": 0,
-        "explanation": "Pip Installs Packages."
+        "explanation": "Pip Installs Packages.",
+        "id": 92
     },
     {
         "category": "Flask",
@@ -1642,7 +1734,8 @@
             "Um sistema operativo"
         ],
         "correct": 0,
-        "explanation": "Git é a ferramenta, GitHub é o serviço."
+        "explanation": "Git é a ferramenta, GitHub é o serviço.",
+        "id": 93
     },
     {
         "category": "Flask",
@@ -1654,7 +1747,8 @@
             "request.path"
         ],
         "correct": 0,
-        "explanation": "Query strings estão em args."
+        "explanation": "Query strings estão em args.",
+        "id": 94
     },
     {
         "category": "Flask",
@@ -1666,7 +1760,8 @@
             "Apagar tudo"
         ],
         "correct": 0,
-        "explanation": "Torna persistente a transação atual."
+        "explanation": "Torna persistente a transação atual.",
+        "id": 95
     },
     {
         "category": "Flask",
@@ -1678,7 +1773,8 @@
             "Foi feito por uma pessoa pequena"
         ],
         "correct": 0,
-        "explanation": "Core simples, extensível via plugins."
+        "explanation": "Core simples, extensível via plugins.",
+        "id": 96
     },
     {
         "category": "Flask",
@@ -1690,7 +1786,8 @@
             "unique=True"
         ],
         "correct": 0,
-        "explanation": "Atributo da coluna."
+        "explanation": "Atributo da coluna.",
+        "id": 97
     },
     {
         "category": "Flask",
@@ -1702,7 +1799,8 @@
             "Apagar histórico"
         ],
         "correct": 0,
-        "explanation": "Ramos paralelos de desenvolvimento."
+        "explanation": "Ramos paralelos de desenvolvimento.",
+        "id": 98
     },
     {
         "category": "Flask",
@@ -1714,7 +1812,8 @@
             "Bad Request"
         ],
         "correct": 0,
-        "explanation": "Recurso não encontrado."
+        "explanation": "Recurso não encontrado.",
+        "id": 99
     },
     {
         "category": "Flask",
@@ -1726,7 +1825,8 @@
             "Redirect"
         ],
         "correct": 0,
-        "explanation": "Erro no servidor (código crashou)."
+        "explanation": "Erro no servidor (código crashou).",
+        "id": 100
     }
 ];
 
